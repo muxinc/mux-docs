@@ -169,7 +169,7 @@ html, body {
     list-style: none;
     margin: 0;
     padding: 0;
-    line-height: 28px;
+    line-height: 32px;
   }
 
   li {
@@ -198,10 +198,10 @@ html, body {
     }
 
     // for embossed look:
-    @include embossed-bg;
-    &>li:last-child {
-      box-shadow: none; // otherwise it'll overflow out of the subheader
-    }
+    // @include embossed-bg;
+    // &>li:last-child {
+    //   box-shadow: none; // otherwise it'll overflow out of the subheader
+    // }
   }
 
   .toc-footer {
@@ -369,7 +369,7 @@ html, body {
     font-size: 30px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #BFC5CC;
+    border-bottom: 1px solid #ddd;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     border-top: 1px solid #ddd;
@@ -386,7 +386,7 @@ html, body {
     font-size: 20px;
     margin-top: 4em;
     margin-bottom: 0;
-    border-top: 1px solid #BFC5CC;
+    border-top: 1px solid #ddd;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
     background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
@@ -427,7 +427,7 @@ html, body {
 
     th {
       padding: 5px 10px;
-      border-bottom: 1px solid #BFC5CC;
+      // border-bottom: 1px solid #BFC5CC;
       vertical-align: bottom;
     }
 
@@ -436,15 +436,16 @@ html, body {
     }
 
     tr:last-child {
-      border-bottom: 1px solid #BFC5CC;
+      // border-bottom: 1px solid #BFC5CC;
     }
 
     tr:nth-child(odd)>td {
-      background-color: lighten($main-bg,4.2%);
+      background-color: lighten($main-bg, 100%);
+
     }
 
     tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
+      background-color: lighten($main-bg, 1.8%);
     }
   }
 

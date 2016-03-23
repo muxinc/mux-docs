@@ -1,32 +1,27 @@
-$darkest-gray: #222632;
-$darker-gray: #2F323E;
-$dark-gray: #555B64;
-$gray: #7F8B99;
-$light-gray: #BFC5CC;
-$lighter-gray: #ECEEF1;
-$lightest-gray: #F4F7F9;
+// Started with mux colors but they didn't all work so well
+// for code highlighting so started pulling from my code editor's (atom)
+// color pallete
 
-$white: #fff;
-
-$red: #DD5C4E;
-$light-red: #EDB0B2;
-
-$green: #2ECC71;
-$light-green: #96E5B8;
-
-$orange: #F39C12;
-$light-orange: #F2BE90;
-
-$blue: #2CC2F2;
-
-$purple: #8E44AD;
-$light-purple: #CDACDA;
+$atom-green: #94C074;
+$atom-orange: #D29B62;
 
 .highlight {
+  // html tag names
   .nt { color: $light-orange; }
-  .na { color: $blue; }
-  .s { color: #1abc9c; }
-  .s1 { color: #1abc9c; }
+
+  // property names
+  .na { color: $lighter-gray; }
+
+  // Strings
+  .s { color: $atom-green; }
+  .s1 { color: $atom-green; }
+
   .k { color:  #AE79C4; }
-  .kd { color: $red; }
+  .kd { color: #C373DA; }
+
+  // false
+  .kc { color: $atom-orange; }
+
+  // vars like mux.monitor,
+  .nx { color: #E26B73; }
 }

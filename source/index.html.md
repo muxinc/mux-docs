@@ -206,3 +206,18 @@ When you change to a new video (in the same player) you need to update the infor
 It's best to change the video info immediately after telling the player which new source to play.
 
 When `changeVideo` is called it removes all previous video data and resets all metrics for the video view. See [Metadata](#metadata) for the list of video details you can provide. You can include any metadata when changing the video but you only need to update the values that start with `video_`.
+
+<!-- hackety hack hack to make left nav work better -->
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
