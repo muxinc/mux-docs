@@ -16,7 +16,7 @@ search: true
 
 While Mux is still in early development we support two browser-based video players: <strong>Video.js</strong> and the bare <strong>HTML5 video element</strong>. More players and platforms, including other desktop players, native SDKs for iOS and Android, and SDKs for OTT platforms are coming soon.
 
-Pick which SDK you want to use from the list.
+Pick which SDK you want to use from the tabs on the right (or in the nav on mobile).
 
 ## Including the SDK
 
@@ -25,7 +25,7 @@ Pick which SDK you want to use from the list.
 ```
 
 <p class="lang-specific video-element">
-  Include the Mux JavaScript SDK on every page of your site/app that includes video. Use the Mux-hosted version of the script to receive automatic updates (the API will not change).
+  Include the Mux JavaScript SDK on every page of your site/app that includes video. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
 </p>
 
 ```videojs--html
@@ -141,12 +141,12 @@ debug	| Put the SDK in debug mode to log operational details	| false
 
 ### Metadata
 
-The metadata object allows you to provide details about the video and environment that can't be detected automatically or if the video fails to load.
+The data object allows you to provide details about the video and environment that can't be detected automatically or if the video fails to load.
 
-All metadata parameters except for `property_key` are *optional*, however you'll be able to compare more and see more interesting results as you include more data.
+All metadata details except for `property_key` are *optional*, however you'll be able to compare and see more interesting results as you include more details.
 
-- `video_` details describe the current video that's playing and are all reset automatically when [changing the video](#changing-the-video)
-- `player_` details describe the player configuration that's being used and should be set each time a new player is instantiated. They do not reset when the video is changed.
+- Video details (prepended by `video_`) describe the current video that's playing and are all reset automatically when [changing the video](#changing-the-video)
+- Player details (prepended by `player_`) describe the player configuration that's being used and should be set each time a new player is instantiated. They do not reset when the video is changed.
 - All other details can be set once per page load, and after being set they will persist between videos and player instances on a page.
 
 Name	| Description
