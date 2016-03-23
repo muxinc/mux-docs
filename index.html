@@ -126,14 +126,14 @@
 
 <p>While Mux is still in early development we support two browser-based video players: <strong>Video.js</strong> and the bare <strong>HTML5 video element</strong>. More players and platforms, including other desktop players, native SDKs for iOS and Android, and SDKs for OTT platforms are coming soon.</p>
 
-<p>Pick which SDK you want to use from the list.</p>
+<p>Pick which SDK you want to use from the tabs on the right (or in the nav on mobile).</p>
 
 <h2 id="including-the-sdk">Including the SDK</h2>
 <pre class="highlight video-element--html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//src.litix.io/core/1/mux.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
 
 <p class="lang-specific video-element">
-  Include the Mux JavaScript SDK on every page of your site/app that includes video. Use the Mux-hosted version of the script to receive automatic updates (the API will not change).
+  Include the Mux JavaScript SDK on every page of your site/app that includes video. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
 </p>
 <pre class="highlight videojs--html"><code><span class="c">&lt;!-- Include videojs-mux after Video.js --&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"path/to/video.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
@@ -249,13 +249,13 @@
 
 <h3 id="metadata">Metadata</h3>
 
-<p>The metadata object allows you to provide details about the video and environment that can&rsquo;t be detected automatically or if the video fails to load.</p>
+<p>The data object allows you to provide details about the video and environment that can&rsquo;t be detected automatically or if the video fails to load.</p>
 
-<p>All metadata parameters except for <code class="prettyprint">property_key</code> are <em>optional</em>, however you&rsquo;ll be able to compare more and see more interesting results as you include more data.</p>
+<p>All metadata details except for <code class="prettyprint">property_key</code> are <em>optional</em>, however you&rsquo;ll be able to compare and see more interesting results as you include more details.</p>
 
 <ul>
-<li><code class="prettyprint">video_</code> details describe the current video that&rsquo;s playing and are all reset automatically when <a href="#changing-the-video">changing the video</a></li>
-<li><code class="prettyprint">player_</code> details describe the player configuration that&rsquo;s being used and should be set each time a new player is instantiated. They do not reset when the video is changed.</li>
+<li>Video details (prepended by <code class="prettyprint">video_</code>) describe the current video that&rsquo;s playing and are all reset automatically when <a href="#changing-the-video">changing the video</a></li>
+<li>Player details (prepended by <code class="prettyprint">player_</code>) describe the player configuration that&rsquo;s being used and should be set each time a new player is instantiated. They do not reset when the video is changed.</li>
 <li>All other details can be set once per page load, and after being set they will persist between videos and player instances on a page.</li>
 </ul>
 
