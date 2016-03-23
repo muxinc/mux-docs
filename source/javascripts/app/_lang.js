@@ -27,13 +27,45 @@ under the License.
     if (!language) return;
     if (language === "") return;
 
+    // Language Menu
     $(".lang-selector a").removeClass('active');
     $(".lang-selector a[data-language-name='" + language + "']").addClass('active');
+
+    $(".highlight").each(function(){
+      var el = this;
+      var $el = $(el);
+      var isALang = false;
+      var isSelectedLang = false;
+
+      el.classList.forEach(function(className, i){
+        // console.log(className, el, i);
+
+        if (className.indexOf(language) === 0) {
+          isALang = true;
+          isSelectedLang = true;
+        } else {
+          languages.forEach(function(thisLang){
+            if (className.indexOf(thisLang) === 0) {
+              isALang = true;
+            }
+          });
+        }
+      });
+
+      if (isSelectedLang) {
+        $el.show();
+      } else if (isALang) {
+        // Only hide specified lang blocks.
+        // Other blocks should always show.
+        $el.hide();
+      }
+    });
+
+    // Content (not code) blocks with .lang-specific
     for (var i=0; i < languages.length; i++) {
-      $(".highlight." + languages[i]).hide();
       $(".lang-specific." + languages[i]).hide();
     }
-    $(".highlight." + language).show();
+
     $(".lang-specific." + language).show();
 
     global.toc.calculateHeights();

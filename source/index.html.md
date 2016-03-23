@@ -2,7 +2,7 @@
 title: Mux API Docs
 
 language_tabs:
-  - video_element: Video Element
+  - video-element: Video Element
   - videojs: Video.js
 
 toc_footers:
@@ -12,198 +12,197 @@ toc_footers:
 search: true
 ---
 
-# Integration
+# SDK Integration
 
-While Mux is still in early development we support two browser-based video players: <strong>Video.js</strong> and the bare <strong>HTML5 video element</strong>. Select one from the language menu. More players and platforms, including other desktop players, native SDKs for iOS and Android, and SDKs for OTT platforms are coming soon.
+While Mux is still in early development we support two browser-based video players: <strong>Video.js</strong> and the bare <strong>HTML5 video element</strong>. More players and platforms, including other desktop players, native SDKs for iOS and Android, and SDKs for OTT platforms are coming soon.
 
-## Core Mux embed
+Pick which SDK you want to use from the list.
 
-```html
-<script>
-  window.mux=window.mux||function(){(mux.q=mux.q||[]).push([arguments,1*new Date()]);};
-  mux('set', 'property_key', 'EXAMPLE-PROPERTY-KEY');
-  mux('send', 'pageloadstart');
-</script>
-<script async src='//src.litix.io/core/1/mux.js'></script>
+## Including the SDK
+
+```video-element--html
+<script src="//src.litix.io/core/1/mux.js"></script>
 ```
 
-```
-<script>
-  window.mux=window.mux||function(){(mux.q=mux.q||[]).push([arguments,1*new Date()]);};
-  mux('set', 'property_key', 'EXAMPLE-PROPERTY-KEY');
-  mux('send', 'pageloadstart');
-</script>
-<script async src='//src.litix.io/core/1/mux.js'></script>
-```
+<p class="lang-specific video-element">
+  Include the Mux JavaScript SDK on every page of your site/app that includes video. Use the Mux-hosted version of the script to receive automatic updates (the API will not change).
+</p>
 
-```html
-<script>
-  window.mux=window.mux||function(){(mux.q=mux.q||[]).push([arguments,1*new Date()]);};
-  mux('set', 'property_key', 'EXAMPLE-PROPERTY-KEY');
-  mux('send', 'pageloadstart');
-</script>
-<script async src='//src.litix.io/core/1/mux.js'></script>
-```
-
-Put the core Mux embed code in the document &lt;head&gt;. This needs to be included at the top of the page in order to ensure that we can track page loads when the user navigates away quickly.
-
-## videojs-mux plugin
-
-Some some
-
-```videojs_html
-<!-- Include the videojs-mux plugin after Video.js. -->
+```videojs--html
+<!-- Include videojs-mux after Video.js -->
 <script src="/path/to/video.js"></script>
 <script src="//src.litix.io/videojs/1/videojs-mux.js"></script>
 ```
 
+<p class="lang-specific videojs">
+  Include the videojs-mux plugin after Video.js in the page (or wherever your other Video.js plugins are loaded).
+</p>
+
+## Initializing
+
+```video-element--html
+<!-- Example html video element -->
+<video id="my-video"></video>
+
+<script>
+// Initialize mux monitoring
+mux.monitor('#my-video', {
+  debug: false,
+  data: {
+    property_key: 'EXAMPLE_PROPERTY_KEY', // required
+    viewer_user_id: '', // ex: '12345'
+    page_type: '', // (see docs) 'watchpage', 'iframe', or leave empty
+
+    // Player Metadata
+    player_name: '', // ex: 'My Main Player'
+    player_version: '', // ex: '1.0.0'
+
+    // Video Metadata (cleared with changeVideo)
+    video_id: '', // ex: 'abcd123'
+    video_title: '', // ex: 'My Great Video'
+    video_series: '', // ex: 'Weekly Great Videos'
+    video_producer: '', // ex: 'Bob the Producer'
+    video_content_type: '', // 'short', 'movie', 'episode', 'clip', 'trailer', or 'event'
+    video_language: '', // ex: 'en'
+    video_variant_name: '', // ex: 'Spanish Hard Subs'
+    video_variant_id: '', // ex: 'abcd1234'
+    video_duration: '', // in seconds, ex: 120.0
+    video_stream_type: '', // 'live' or 'on-demand'
+    video_encoding_variant: '' // ex: 'Variant 1'
+  }
+});
+</script>
+```
+
+<p class="lang-specific video-element">
+  Monitor the performance of a specific video element by passing the ID of the video element (or another CSS selector) to the `mux.monitor` function.
+</p>
 
 ```videojs
-// If you already initialize a Video.js player via JavaScript, you
-// can include mux in the plugin object in settings.
-videojs('my-cool-player', {
+// Initialize through player options
+videojs('my-player', {
   plugins: {
-    mux: {}
+    mux: {
+      debug: false,
+      data: {
+        property_key: 'EXAMPLE_PROPERTY_KEY', // required
+        viewer_user_id: '', // ex: '12345'
+        page_type: '', // (see docs) 'watchpage', 'iframe', or leave empty
+
+        // Player Metadata
+        player_name: '', // ex: 'My Main Player'
+        player_version: '', // ex: '1.0.0'
+
+        // Video Metadata (cleared with changeVideo)
+        video_id: '', // ex: 'abcd123'
+        video_title: '', // ex: 'My Great Video'
+        video_series: '', // ex: 'Weekly Great Videos'
+        video_producer: '', // ex: 'Bob the Producer'
+        video_content_type: '', // 'short', 'movie', 'episode', 'clip', 'trailer', or 'event'
+        video_language: '', // ex: 'en'
+        video_variant_name: '', // ex: 'Spanish Hard Subs'
+        video_variant_id: '', // ex: 'abcd1234'
+        video_duration: '', // in seconds, ex: 120.0
+        video_stream_type: '', // 'live' or 'on-demand'
+        video_encoding_variant: '' // ex: 'Variant 1'
+      }
+    }
   }
 });
 ```
 
-<div class="before-video-js"></div>
-
-```html
-<!-- Using the data-setup attribute -->
-<video id="my-cool-player" data-setup='{"plugins": {"mux": {}}}'>...</video>
+```videojs--html
+<!-- OR in the data-setup attribute of the video.js element -->
+<video id="my-player"
+  data-setup='{"plugins": {"mux": {"debug": false, "data": {}}}}'
+  >
+...
+</video>
 ```
 
-<div class="before-video-js"></div>
-
-```javascript
-// You can also initialize the mux plugin separately. Here we check to make sure
-// the videojs-mux plugin has already been successfully loaded first.
-var player = videojs('my-cool-player');
-if (typeof player.mux !== 'undefined') {
-  var mux = player.mux({});
-}
+```videojs
+// OR by calling the plugin directly
+var player = videojs('my-player');
+player.mux({
+  debug: false,
+  data: {}
+});
 ```
 
-If you want to integrate Mux with a Video.js player, you will need to include the videojs-mux plugin. This has two steps.
+<p class="lang-specific videojs">
+  Like other Video.js plugins, initialize the videojs-mux plugin by including  options in the player plugin options. This can be in the options passed to the `videojs` function (or the `data-setup` attribute) or by calling the `mux` function directly on the player instance.
+</p>
 
-First, include the videojs-mux. Put the following script tag in your page somewhere after you have already included Video.js itself:
+### SDK Options
 
-`<script src="//src.litix.io/videojs/1/videojs-mux.js"></script>`
+Name	| Description	| Default
+----------- | ----------- | --------
+debug	| Put the SDK in debug mode to log operational details	| false
 
-Second, initialize the plugin in your player settings when you normally initialize a Video.js plugin. This can be done in multiple ways.
+### Metadata
 
-<aside class="notice">Make sure that the videojs-mux plugin is included *after* Video.js itself is loaded.</aside>
+The metadata object allows you to provide details about the video and environment that can't be detected automatically or if the video fails to load.
 
+All metadata parameters except for `property_key` are *optional*, however you'll be able to compare more and see more interesting results as you include more data.
 
-## Changing the video
+- `video_` details describe the current video that's playing and are all reset automatically when [changing the video](#changing-the-video)
+- `player_` details describe the player configuration that's being used and should be set each time a new player is instantiated. They do not reset when the video is changed.
+- All other details can be set once per page load, and after being set they will persist between videos and player instances on a page.
 
-<div class="before-video-js"></div>
+Name	| Description
+----- | -----------
+property_key | Your property key from the Mux dashboard
+viewer_user_id | Provide a user ID (if available) to search by in the Mux UI
+page_type | Provide the context of the page for more specific analysis. Values include 'watchpage', 'iframe', or leave empty. <ul><li>**watchpage** &mdash; A web page that is dedicated to playing a specific video (for example [youtube.com/watch/ID](https://www.youtube.com/watch?v=WtA-IWdLMN0) or [hulu.com/watch/ID](http://www.hulu.com/watch/4183))</li><li>**iframe** &mdash; An iframe specifically used to embed a player on different sites/pages</li></ul>
+player_name | If you have different configurations or types of players around your site or application you can use player_name to compare them. **This is *not* the player software (e.g. Video.js), which is tracked automatically by the SDK.**
+player_version | As you make changes to your player you can compare how new versions of your player perform by updating this value. **This is *not* the player software version (e.g. Video.js 5.0.0), which is tracked automatically by the SDK.**
+video_id | Your internal ID for the video
+video_title | example: 'Awesome Show Episode 1'
+video_series | example: 'Season 1'
+video_variant_name | An optional detail that allows you to monitor issues with the files of specific versions of the content, for example different audio translations or versions with hard-coded/burned-in subtitles.
+video_variant_id | Your internal ID for a video variant
+video_language | The audio language of the video, assuming it's unchangeable after playing.
+video_content_type | 'short', 'movie', 'episode', 'clip', 'trailer', or 'event'
+video_duration | The length of the video in **seconds** [float]
+video_stream_type | 'live' or 'on-demand'
+video_producer | The producer of the video title
+video_encoding_variant | An optional detail that allows you to compare different encoding settings.
 
-```javascript
-var myPlayer = videojs('my-cool-player');
+## Changing the Video
 
-myPlayer.mux.setVideo({
-  video_id: 'abcd123',
-  video_title: 'Really Great Video',
+```video-element
+// Example of changing the source of a video element
+// Should happen before changeVideo is called
+var myVideo = document.querySelector('#my-video');
+myVideo.src = 'nextVideo.mp4';
+
+mux.monitor('#my-video').changeVideo({
+  video_id: 'abc345',
+  video_title: 'My Other Great Video',
   video_series: 'Weekly Great Videos'
 });
-
-////
-// Code that changes the player source is here
-////
 ```
 
-When you change to a new video (in the same player) you need to update the video data using the `setVideo` function. Some examples of when this happens are:
+```videojs
+// Example of changing the source of a Video.js player
+// Should happen before mux.changeVideo is called
+var myPlayer = videojs('my-player');
+myPlayer.src('nextVideo.mp4');
+
+myPlayer.mux.changeVideo({
+  video_id: 'abc345',
+  video_title: 'My Other Great Video',
+  video_series: 'Weekly Great Videos'
+});
+```
+
+When you change to a new video (in the same player) you need to update the information that Mux knows about the current video. Examples of when this is needed are:
 
 * The player advances to the next video in a playlist
 * The user selects a different video to play
 
-It's best to do this immediately before telling the player which new source to play, so that no events are lost.
+**You do not need to change the video info when changing to a different source of the same video content (e.g. different resolution or video format).**
 
-When setVideo is called it removes all previous video data and resets all metrics for the video view.
+It's best to change the video info immediately after telling the player which new source to play.
 
-<aside class="notice">This does not include changing the source to a new resolution or rendition of the same video.</aside>
-
-# API Parameters
-
-## General
-
-<div class="before-video-js"></div>
-
-```javascript
-videojs('my-cool-player', {
-  plugins: {
-    mux: {
-      debug: false
-    }
-  }
-});
-```
-
-Name	| Description	| Default
------------ | ----------- | --------
-debug	| Put the plugin in debug mode to log operational details	| false
-heart_beat_interval	| How often to send heartbeats (in ms) | 10000
-check_buffering_interval | How often to check whether or not the player is buffering (in ms) | 100
-
-## Video Metadata
-
-<div class="before-video-js"></div>
-
-```javascript
-videojs('my-cool-player', {
-  plugins: {
-    mux: {
-      debug: false,
-      video_data: {
-        video_title: 'My Great Video'
-      }
-    }
-  }
-});
-```
-
-Video data can be set to provide more information about the video that's being played. It can be set in the Mux plugin options, or with the `player.mux.setVideo()` function after the plugin has been initialized.
-
-When you change the video title that a player is playing you will also need to use `player.mux.setVideo()` to update the video details. This does not include when you change to a different source (e.g. a different resolution) of the same title.
-
-Name | Description
----- | -----------
-video_id | Your internal ID for the video
-video_title | Video Title, ex: "Awesome Show Episode 1"
-video_series | Video Series, ex: "Season 1"
-video_variant_name | Video Variant, ex: "French Hard Subs"
-video_variant_id | Video Variant ID, ex: "abcd1234abcd"
-video_language | The language of the video
-video_content_type | "short", "movie", "episode", "clip", "trailer", or "event"
-video_duration | The length of the video. (Can also be determined from the player.)
-video_stream_type | "live" or "on-demand"
-video_producer | The producer of the video title
-video_encoding_variant | Which encoding profile is being used, when testing multiple.
-
-## Player
-
-<div class="before-video-js"></div>
-
-```javascript
-videojs('my-cool-player', {
-  plugins: {
-    mux: {
-      debug: false,
-      player_data: {
-        player_name: 'My Main Player',
-      }
-    }
-  }
-});
-```
-
-Player data can be set to provide additional information about the player. It does not change between videos.
-
-Name	| Description
------ | -----------
-player_name | Player Name, ex: "My Site Main Player"
-player_version | Player Version, ex: "2.0.0"
-ad_config_variant | Which version of the ad configuration is being used
+When `changeVideo` is called it removes all previous video data and resets all metrics for the video view. See [Metadata](#metadata) for the list of video details you can provide. You can include any metadata when changing the video but you only need to update the values that start with `video_`.
