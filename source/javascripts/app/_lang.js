@@ -37,9 +37,7 @@ under the License.
       var isALang = false;
       var isSelectedLang = false;
 
-      el.classList.forEach(function(className, i){
-        // console.log(className, el, i);
-
+      el.className.split(' ').forEach(function(className){
         if (className.indexOf(language) === 0) {
           isALang = true;
           isSelectedLang = true;
