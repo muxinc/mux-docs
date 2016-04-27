@@ -68,7 +68,8 @@ mux.monitor('#my-video', {
     video_variant_id: '', // ex: 'abcd1234'
     video_duration: '', // in seconds, ex: 120.0
     video_stream_type: '', // 'live' or 'on-demand'
-    video_encoding_variant: '' // ex: 'Variant 1'
+    video_encoding_variant: '', // ex: 'Variant 1'
+    video_cdn: '' // 'akamai', 'fastly', 'cloudfront', 'limelight', 'level3', 'custom', or 'none'
   }
 });
 </script>
@@ -104,7 +105,8 @@ videojs('my-player', {
         video_variant_id: '', // ex: 'abcd1234'
         video_duration: '', // in seconds, ex: 120.0
         video_stream_type: '', // 'live' or 'on-demand'
-        video_encoding_variant: '' // ex: 'Variant 1'
+        video_encoding_variant: '', // ex: 'Variant 1'
+        video_cdn: '' // 'akamai', 'fastly', 'cloudfront', 'limelight', 'level3', 'custom', or 'none'
       }
     }
   }
@@ -167,6 +169,7 @@ video_duration | The length of the video in **seconds** [float]
 video_stream_type | 'live' or 'on-demand'
 video_producer | The producer of the video title
 video_encoding_variant | An optional detail that allows you to compare different encoding settings.
+video_cdn | The name of the CDN, for comparing across CDN providers. Possible values include 'akamai', 'fastly', 'cloudfront', 'limelight', 'level3', 'custom', 'none'. Contact mux support to include additional CDN providers.
 
 ## Changing the Video
 
