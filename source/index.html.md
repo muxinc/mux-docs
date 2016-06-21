@@ -68,7 +68,6 @@ mux.monitor('#my-video', {
     video_variant_name: '', // ex: 'Spanish Hard Subs'
     video_variant_id: '', // ex: 'abcd1234'
     video_duration: '', // in milliseconds, ex: 120000
-    video_stream_type: '', // 'live' or 'on-demand'
     video_is_live: false, // e.g. false or true
     video_encoding_variant: '', // ex: 'Variant 1'
     video_cdn: '' // ex: 'Fastly', 'Akamai'
@@ -106,7 +105,6 @@ videojs('my-player', {
         video_variant_name: '', // ex: 'Spanish Hard Subs'
         video_variant_id: '', // ex: 'abcd1234'
         video_duration: '', // in milliseconds, ex: 120000
-        video_stream_type: '', // 'live' or 'on-demand'
         video_is_live: false, // e.g. false or true
         video_encoding_variant: '', // ex: 'Variant 1'
         video_cdn: '' // ex: 'Fastly', 'Akamai'
@@ -169,7 +167,6 @@ video_variant_id | Your internal ID for a video variant
 video_language_code | The audio language of the video, assuming it's unchangeable after playing.
 video_content_type | 'short', 'movie', 'episode', 'clip', 'trailer', or 'event'
 video_duration | The length of the video in **milliseconds** [integer]
-video_stream_type | 'live' or 'on-demand'
 video_is_live | Boolean indicating if the video is a live stream or not
 video_producer | The producer of the video title
 video_encoding_variant | An optional detail that allows you to compare different encoding settings.
