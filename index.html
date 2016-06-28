@@ -129,7 +129,7 @@
 <p>Pick which SDK you want to use from the tabs on the right (or in the nav on mobile).</p>
 
 <h2 id="including-the-sdk">Including the SDK</h2>
-<pre class="highlight video-element--html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//src.litix.io/core/1/mux.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<pre class="highlight video-element--html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//src.litix.io/core/2/mux.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
 
 <p class="lang-specific video-element">
@@ -137,11 +137,12 @@
 </p>
 <pre class="highlight videojs--html"><code><span class="c">&lt;!-- Include videojs-mux after Video.js --&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"path/to/video.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//src.litix.io/videojs/1/videojs-mux.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="c">&lt;!-- Include any ad-specific files here --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//src.litix.io/videojs/2/videojs-mux.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
 
 <p class="lang-specific videojs">
-  Include the videojs-mux plugin after Video.js in the page (or wherever your other Video.js plugins are loaded).
+  Include the videojs-mux plugin after Video.js in the page (or wherever your other Video.js plugins are loaded). If you utilize any ad integrations with Video.js, include the necessary ad integration JavaScript files before the videojs-mux plugin.
 </p>
 
 <h2 id="initializing">Initializing</h2>
@@ -154,32 +155,33 @@
   <span class="na">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">property_key</span><span class="p">:</span> <span class="s1">'EXAMPLE_PROPERTY_KEY'</span><span class="p">,</span> <span class="c1">// required</span>
-    <span class="na">viewer_user_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '12345'</span>
     <span class="na">page_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// (see docs) 'watchpage', 'iframe', or leave empty</span>
+    <span class="na">viewer_user_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '12345'</span>
 
     <span class="c1">// Player Metadata</span>
     <span class="na">player_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'My Main Player'</span>
     <span class="na">player_version</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '1.0.0'</span>
 
-    <span class="c1">// Video Metadata (cleared with changeVideo)</span>
+    <span class="c1">// Video Metadata (cleared with 'videochange' event)</span>
     <span class="na">video_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd123'</span>
     <span class="na">video_title</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'My Great Video'</span>
     <span class="na">video_series</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Weekly Great Videos'</span>
     <span class="na">video_producer</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Bob the Producer'</span>
     <span class="na">video_content_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// 'short', 'movie', 'episode', 'clip', 'trailer', or 'event'</span>
-    <span class="na">video_language</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'en'</span>
+    <span class="na">video_language_code</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'en'</span>
     <span class="na">video_variant_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Spanish Hard Subs'</span>
     <span class="na">video_variant_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd1234'</span>
-    <span class="na">video_duration</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// in seconds, ex: 120.0</span>
-    <span class="na">video_stream_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// 'live' or 'on-demand'</span>
-    <span class="na">video_encoding_variant</span><span class="p">:</span> <span class="s1">''</span> <span class="c1">// ex: 'Variant 1'</span>
+    <span class="na">video_duration</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// in milliseconds, ex: 120000</span>
+    <span class="na">video_is_live</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// e.g. false or true</span>
+    <span class="na">video_encoding_variant</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Variant 1'</span>
+    <span class="na">video_cdn</span><span class="p">:</span> <span class="s1">''</span> <span class="c1">// ex: 'Fastly', 'Akamai'</span>
   <span class="p">}</span>
 <span class="p">});</span>
 <span class="nt">&lt;/script&gt;</span>
 </code></pre>
 
 <p class="lang-specific video-element">
-  Monitor the performance of a specific video element by passing the ID of the video element (or another CSS selector) to the `mux.monitor` function.
+  To monitor the performance of a specific video element, call <code>mux.monitor</code>, passing a valid CSS selector for your video element along with options for the SDK. This selector must return only a single element (the <code>&ltvideo&gt</code> element that is tracked), and should be used in any further calls to mux for the same player, such as when <a href="#changing-the-video">changing the video</a>.
 </p>
 <pre class="highlight videojs"><code><span class="c1">// Initialize through player options</span>
 <span class="nx">videojs</span><span class="p">(</span><span class="s1">'my-player'</span><span class="p">,</span> <span class="p">{</span>
@@ -188,25 +190,26 @@
       <span class="na">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
       <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
         <span class="na">property_key</span><span class="p">:</span> <span class="s1">'EXAMPLE_PROPERTY_KEY'</span><span class="p">,</span> <span class="c1">// required</span>
-        <span class="na">viewer_user_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '12345'</span>
         <span class="na">page_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// (see docs) 'watchpage', 'iframe', or leave empty</span>
+        <span class="na">viewer_user_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '12345'</span>
 
         <span class="c1">// Player Metadata</span>
         <span class="na">player_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'My Main Player'</span>
         <span class="na">player_version</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '1.0.0'</span>
 
-        <span class="c1">// Video Metadata (cleared with changeVideo)</span>
+        <span class="c1">// Video Metadata (cleared with 'videochange' event)</span>
         <span class="na">video_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd123'</span>
         <span class="na">video_title</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'My Great Video'</span>
         <span class="na">video_series</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Weekly Great Videos'</span>
         <span class="na">video_producer</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Bob the Producer'</span>
         <span class="na">video_content_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// 'short', 'movie', 'episode', 'clip', 'trailer', or 'event'</span>
-        <span class="na">video_language</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'en'</span>
+        <span class="na">video_language_code</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'en'</span>
         <span class="na">video_variant_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Spanish Hard Subs'</span>
         <span class="na">video_variant_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd1234'</span>
-        <span class="na">video_duration</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// in seconds, ex: 120.0</span>
-        <span class="na">video_stream_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// 'live' or 'on-demand'</span>
-        <span class="na">video_encoding_variant</span><span class="p">:</span> <span class="s1">''</span> <span class="c1">// ex: 'Variant 1'</span>
+        <span class="na">video_duration</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// in milliseconds, ex: 120000</span>
+        <span class="na">video_is_live</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// e.g. false or true</span>
+        <span class="na">video_encoding_variant</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Variant 1'</span>
+        <span class="na">video_cdn</span><span class="p">:</span> <span class="s1">''</span> <span class="c1">// ex: 'Fastly', 'Akamai'</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">}</span>
@@ -214,21 +217,20 @@
 </code></pre>
 <pre class="highlight videojs--html"><code><span class="c">&lt;!-- OR in the data-setup attribute of the video.js element --&gt;</span>
 <span class="nt">&lt;video</span> <span class="na">id=</span><span class="s">"my-player"</span>
-  <span class="na">data-setup=</span><span class="s">'{"plugins": {"mux": {"debug": false, "data": {}}}}'</span>
-  <span class="nt">&gt;</span>
-...
+  <span class="na">data-setup=</span><span class="s">'{"plugins": {"mux": {"debug": false, "data": { ... }}}}'</span> <span class="nt">&gt;</span>
+  ...
 <span class="nt">&lt;/video&gt;</span>
 </code></pre>
 <pre class="highlight videojs"><code><span class="c1">// OR by calling the plugin directly</span>
 <span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">videojs</span><span class="p">(</span><span class="s1">'my-player'</span><span class="p">);</span>
 <span class="nx">player</span><span class="p">.</span><span class="nx">mux</span><span class="p">({</span>
   <span class="na">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="na">data</span><span class="p">:</span> <span class="p">{}</span>
+  <span class="na">data</span><span class="p">:</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 <span class="p">});</span>
 </code></pre>
 
 <p class="lang-specific videojs">
-  Like other Video.js plugins, initialize the videojs-mux plugin by including  options in the player plugin options. This can be in the options passed to the `videojs` function (or the `data-setup` attribute) or by calling the `mux` function directly on the player instance.
+  Like other Video.js plugins, initialize the videojs-mux plugin by including options in the player plugin options. This can be in the options passed to the <code>videojs</code> function (or the <code>data-setup</code> attribute) or by calling the <code>mux</code> function directly on the player instance.
 </p>
 
 <h3 id="sdk-options">SDK Options</h3>
@@ -245,6 +247,11 @@
 <td>Put the SDK in debug mode to log operational details</td>
 <td>false</td>
 </tr>
+<tr>
+<td>data</td>
+<td>User, page, player, and video metadata for the video</td>
+<td>{ }</td>
+</tr>
 </tbody></table>
 
 <h3 id="metadata">Metadata</h3>
@@ -254,7 +261,7 @@
 <p>All metadata details except for <code class="prettyprint">property_key</code> are <em>optional</em>, however you&rsquo;ll be able to compare and see more interesting results as you include more details.</p>
 
 <ul>
-<li>Video details (prepended by <code class="prettyprint">video_</code>) describe the current video that&rsquo;s playing and are all reset automatically when <a href="#changing-the-video">changing the video</a></li>
+<li>Video details (prepended by <code class="prettyprint">video_</code>) describe the current video that&rsquo;s playing and are all reset automatically when <a href="#changing-the-video">changing the video</a>. This metadata would come from your internal CMS or video management system.</li>
 <li>Player details (prepended by <code class="prettyprint">player_</code>) describe the player configuration that&rsquo;s being used and should be set whenever monitoring is started on a new player. They do not reset when the video is changed.</li>
 <li>All other details can be set once per page load, and after being set they will persist between videos and player instances on a page.</li>
 </ul>
@@ -306,7 +313,7 @@
 <td>Your internal ID for a video variant</td>
 </tr>
 <tr>
-<td>video_language</td>
+<td>video_language_code</td>
 <td>The audio language of the video, assuming it&rsquo;s unchangeable after playing.</td>
 </tr>
 <tr>
@@ -315,11 +322,11 @@
 </tr>
 <tr>
 <td>video_duration</td>
-<td>The length of the video in <strong>seconds</strong> [float]</td>
+<td>The length of the video in <strong>milliseconds</strong> [integer]</td>
 </tr>
 <tr>
-<td>video_stream_type</td>
-<td>&#39;live&rsquo; or &#39;on-demand&rsquo;</td>
+<td>video_is_live</td>
+<td>Boolean indicating if the video is a live stream or not</td>
 </tr>
 <tr>
 <td>video_producer</td>
@@ -329,29 +336,35 @@
 <td>video_encoding_variant</td>
 <td>An optional detail that allows you to compare different encoding settings.</td>
 </tr>
+<tr>
+<td>video_cdn</td>
+<td>An optional detail that allows you to compare different CDNs (assuming the CDN selection is made at page load time).</td>
+</tr>
 </tbody></table>
 
 <h2 id="changing-the-video">Changing the Video</h2>
 <pre class="highlight video-element"><code><span class="c1">// Example of changing the source of a video element</span>
-<span class="c1">// Should happen before changeVideo is called</span>
+<span class="c1">// Should happen before emitting the videochange event</span>
 <span class="kd">var</span> <span class="nx">myVideo</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#my-video'</span><span class="p">);</span>
 <span class="nx">myVideo</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">'nextVideo.mp4'</span><span class="p">;</span>
 
-<span class="nx">mux</span><span class="p">.</span><span class="nx">monitor</span><span class="p">(</span><span class="s1">'#my-video'</span><span class="p">).</span><span class="nx">changeVideo</span><span class="p">({</span>
+<span class="nx">mux</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'#my-video'</span><span class="p">,</span> <span class="s1">'videochange'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">video_id</span><span class="p">:</span> <span class="s1">'abc345'</span><span class="p">,</span>
   <span class="na">video_title</span><span class="p">:</span> <span class="s1">'My Other Great Video'</span><span class="p">,</span>
-  <span class="na">video_series</span><span class="p">:</span> <span class="s1">'Weekly Great Videos'</span>
+  <span class="na">video_series</span><span class="p">:</span> <span class="s1">'Weekly Great Videos'</span><span class="p">,</span>
+  <span class="p">...</span>
 <span class="p">});</span>
 </code></pre>
 <pre class="highlight videojs"><code><span class="c1">// Example of changing the source of a Video.js player</span>
-<span class="c1">// Should happen before mux.changeVideo is called</span>
+<span class="c1">// Should happen before emitting the videochange event</span>
 <span class="kd">var</span> <span class="nx">myPlayer</span> <span class="o">=</span> <span class="nx">videojs</span><span class="p">(</span><span class="s1">'my-player'</span><span class="p">);</span>
 <span class="nx">myPlayer</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'nextVideo.mp4'</span><span class="p">);</span>
 
-<span class="nx">myPlayer</span><span class="p">.</span><span class="nx">mux</span><span class="p">.</span><span class="nx">changeVideo</span><span class="p">({</span>
+<span class="nx">myPlayer</span><span class="p">.</span><span class="nx">mux</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'videochange'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">video_id</span><span class="p">:</span> <span class="s1">'abc345'</span><span class="p">,</span>
   <span class="na">video_title</span><span class="p">:</span> <span class="s1">'My Other Great Video'</span><span class="p">,</span>
-  <span class="na">video_series</span><span class="p">:</span> <span class="s1">'Weekly Great Videos'</span>
+  <span class="na">video_series</span><span class="p">:</span> <span class="s1">'Weekly Great Videos'</span><span class="p">,</span>
+  <span class="p">...</span>
 <span class="p">});</span>
 </code></pre>
 
@@ -366,11 +379,17 @@
 
 <p>It&rsquo;s best to change the video info immediately after telling the player which new source to play.</p>
 
-<p>When <code class="prettyprint">changeVideo</code> is called it removes all previous video data and resets all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you only need to update the values that start with <code class="prettyprint">video_</code>.</p>
+<p>This is done by emitting a <code class="prettyprint">videochange</code> event through <code class="prettyprint">mux</code>, and when this is emitted it removes all previous video data and resets all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you only need to update the values that start with <code class="prettyprint">video_</code>.</p>
 
 <!-- hackety hack hack to make left nav work better -->
 
 <p><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
