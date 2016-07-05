@@ -157,6 +157,7 @@
     <span class="na">property_key</span><span class="p">:</span> <span class="s1">'EXAMPLE_PROPERTY_KEY'</span><span class="p">,</span> <span class="c1">// required</span>
     <span class="na">page_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// (see docs) 'watchpage', 'iframe', or leave empty</span>
     <span class="na">viewer_user_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '12345'</span>
+    <span class="na">experiment_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'player_test_A'</span>
 
     <span class="c1">// Player Metadata</span>
     <span class="na">player_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'My Main Player'</span>
@@ -172,7 +173,7 @@
     <span class="na">video_variant_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Spanish Hard Subs'</span>
     <span class="na">video_variant_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd1234'</span>
     <span class="na">video_duration</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// in milliseconds, ex: 120000</span>
-    <span class="na">video_is_live</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// e.g. false or true</span>
+    <span class="na">video_is_live</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// ex: false or true</span>
     <span class="na">video_encoding_variant</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Variant 1'</span>
     <span class="na">video_cdn</span><span class="p">:</span> <span class="s1">''</span> <span class="c1">// ex: 'Fastly', 'Akamai'</span>
   <span class="p">}</span>
@@ -192,6 +193,7 @@
         <span class="na">property_key</span><span class="p">:</span> <span class="s1">'EXAMPLE_PROPERTY_KEY'</span><span class="p">,</span> <span class="c1">// required</span>
         <span class="na">page_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// (see docs) 'watchpage', 'iframe', or leave empty</span>
         <span class="na">viewer_user_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '12345'</span>
+        <span class="na">experiment_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'player_test_A'</span>
 
         <span class="c1">// Player Metadata</span>
         <span class="na">player_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'My Main Player'</span>
@@ -207,7 +209,7 @@
         <span class="na">video_variant_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Spanish Hard Subs'</span>
         <span class="na">video_variant_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd1234'</span>
         <span class="na">video_duration</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// in milliseconds, ex: 120000</span>
-        <span class="na">video_is_live</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// e.g. false or true</span>
+        <span class="na">video_is_live</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// ex: false or true</span>
         <span class="na">video_encoding_variant</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Variant 1'</span>
         <span class="na">video_cdn</span><span class="p">:</span> <span class="s1">''</span> <span class="c1">// ex: 'Fastly', 'Akamai'</span>
       <span class="p">}</span>
@@ -283,6 +285,10 @@
 <tr>
 <td>page_type</td>
 <td>Provide the context of the page for more specific analysis. Values include &lsquo;watchpage&rsquo;, &#39;iframe&rsquo;, or leave empty. <ul><li><strong>watchpage</strong> &mdash; A web page that is dedicated to playing a specific video (for example <a href="https://www.youtube.com/watch?v=WtA-IWdLMN0">youtube.com/watch/ID</a> or <a href="http://www.hulu.com/watch/4183">hulu.com/watch/ID</a>)</li><li><strong>iframe</strong> &mdash; An iframe specifically used to embed a player on different sites/pages</li></ul></td>
+</tr>
+<tr>
+<td>experiment_name</td>
+<td>You can use this field to separate views into different experiments, if you would like to filter by this dimension later. This should be a string value, but your account is limited to a total of 10 unique experiment names, so be sure that this value is not generated dynamically or randomly.</td>
 </tr>
 <tr>
 <td>player_name</td>
