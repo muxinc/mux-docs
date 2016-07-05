@@ -53,6 +53,7 @@ mux.monitor('#my-video', {
     property_key: 'EXAMPLE_PROPERTY_KEY', // required
     page_type: '', // (see docs) 'watchpage', 'iframe', or leave empty
     viewer_user_id: '', // ex: '12345'
+    experiment_name: '', // ex: 'player_test_A'
 
     // Player Metadata
     player_name: '', // ex: 'My Main Player'
@@ -68,7 +69,7 @@ mux.monitor('#my-video', {
     video_variant_name: '', // ex: 'Spanish Hard Subs'
     video_variant_id: '', // ex: 'abcd1234'
     video_duration: '', // in milliseconds, ex: 120000
-    video_is_live: false, // e.g. false or true
+    video_is_live: false, // ex: false or true
     video_encoding_variant: '', // ex: 'Variant 1'
     video_cdn: '' // ex: 'Fastly', 'Akamai'
   }
@@ -90,6 +91,7 @@ videojs('my-player', {
         property_key: 'EXAMPLE_PROPERTY_KEY', // required
         page_type: '', // (see docs) 'watchpage', 'iframe', or leave empty
         viewer_user_id: '', // ex: '12345'
+        experiment_name: '', // ex: 'player_test_A'
 
         // Player Metadata
         player_name: '', // ex: 'My Main Player'
@@ -105,7 +107,7 @@ videojs('my-player', {
         video_variant_name: '', // ex: 'Spanish Hard Subs'
         video_variant_id: '', // ex: 'abcd1234'
         video_duration: '', // in milliseconds, ex: 120000
-        video_is_live: false, // e.g. false or true
+        video_is_live: false, // ex: false or true
         video_encoding_variant: '', // ex: 'Variant 1'
         video_cdn: '' // ex: 'Fastly', 'Akamai'
       }
@@ -157,6 +159,7 @@ Name	| Description
 property_key | Your property key from the Mux dashboard
 viewer_user_id | Provide a user ID (if available) to search by in the Mux UI
 page_type | Provide the context of the page for more specific analysis. Values include 'watchpage', 'iframe', or leave empty. <ul><li>**watchpage** &mdash; A web page that is dedicated to playing a specific video (for example [youtube.com/watch/ID](https://www.youtube.com/watch?v=WtA-IWdLMN0) or [hulu.com/watch/ID](http://www.hulu.com/watch/4183))</li><li>**iframe** &mdash; An iframe specifically used to embed a player on different sites/pages</li></ul>
+experiment_name | You can use this field to separate views into different experiments, if you would like to filter by this dimension later. This should be a string value, but your account is limited to a total of 10 unique experiment names, so be sure that this value is not generated dynamically or randomly.
 player_name | If you have different configurations or types of players around your site or application you can use player_name to compare them. **This is *not* the player software (e.g. Video.js), which is tracked automatically by the SDK.**
 player_version | As you make changes to your player you can compare how new versions of your player perform by updating this value. **This is *not* the player software version (e.g. Video.js 5.0.0), which is tracked automatically by the SDK.**
 video_id | Your internal ID for the video
