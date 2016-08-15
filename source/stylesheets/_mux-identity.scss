@@ -1,0 +1,43 @@
+/*
+Base colors
+*/
+$grey: #221E1F;
+$pink: #FB2491;
+$orange: #FB501D;
+$blue: #1CA0FD;
+$green: #1FC3A8;
+$purple: #9620D8;
+$yellow: #FED32F;
+$white: #FFFFFF;
+
+/*
+<100% opacity on $white
+*/
+
+$grey-90w: #383435;
+$grey-10w: #e8e8e8;
+/*
+<100% opacity on $grey
+*/
+$orange-90g: #df491E;
+$orange-75g: #A93B1D;
+
+/*
+Typography
+*/
+
+%default-font {
+  font-family: 'Akkurat Light', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+}
+
+%header-font {
+  @extend %default-font;
+  font-weight: bold;
+}
+
+%code-font {
+  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+  font-size: 12px;
+  line-height: 1.5;
+}

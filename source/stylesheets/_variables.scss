@@ -23,26 +23,26 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #2F323E;
-$examples-bg: #2F323E;
-$code-bg: #222632;
+$nav-bg: $grey-90w;
+$examples-bg: $grey-90w;
+$code-bg: $grey;
 $code-annotation-bg: #1c1c1c;
-$nav-subitem-bg: #222632;
-$nav-active-bg: #DC6166;
+$nav-subitem-bg: $grey;
+$nav-active-bg: $orange-75g;
 $lang-select-border: #000;
-$lang-select-bg: #222;
+$lang-select-bg: $grey;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
 $main-bg: #F4F7F9;
 $aside-notice-bg: #CDACDA;
 $aside-warning-bg: #c97a7e;
 $aside-success-bg: #6ac174;
-$search-notice-bg: #c97a7e;
-
-
-// TEXT COLORS
-////////////////////
-$main-text: #2F323E; // main content text color
+// $search-notice-bg: #c97a7e;
+//
+//
+// // TEXT COLORS
+// ////////////////////
+$main-text: $grey; // main content text color
 $nav-text: #fff;
 $nav-active-text: #fff;
 $lang-select-text: #fff; // color of unselected language tab text
@@ -67,21 +67,21 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 // FONTS
 ////////////////////
-%default-font {
-  font-family: Ubuntu, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
-  font-size: 15px;
-}
-
-%header-font {
-  @extend %default-font;
-  font-weight: bold;
-}
-
-%code-font {
-  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
-  font-size: 12px;
-  line-height: 1.5;
-}
+// %default-font {
+//   font-family: 'Akkurat', 'Helvetica Neue', sans-serif;
+//   font-size: 15px;
+// }
+//
+// %header-font {
+//   @extend %default-font;
+//   font-weight: bold;
+// }
+//
+// %code-font {
+//   font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+//   font-size: 12px;
+//   line-height: 1.5;
+// }
 
 
 // OTHER
@@ -98,7 +98,6 @@ $search-box-border-color: #717880;
 // INTERNAL
 ////////////////////////////////////////////////////////////////////////////////
 // These settings are probably best left alone.
-
 %break-words {
     word-break: break-all;
     hyphens: auto;

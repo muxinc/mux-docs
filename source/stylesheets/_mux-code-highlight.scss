@@ -1,27 +1,33 @@
-// Started with mux colors but they didn't all work so well
-// for code highlighting so started pulling from my code editor's (atom)
-// color pallete
+/*
+TODO: redo this with the new color palate. This off-the-shelf template isn't
+too far off: http://ethanschoonover.com/solarized
+*/
+$code-purple: #871EC0;
+$code-light-purple: #C373DA;
+$code-light-red: #DF491E;
+$code-lighter-gray: #E8E8E8;
+$code-yellow: #FEDE2F;
+$code-orange: #1D8FE1;
+$code-green: #1FAE96;
 
-$atom-green: #94C074;
-$atom-orange: #D29B62;
 
 .highlight {
   // html tag names
-  .nt { color: $light-orange; }
+  .nt { color: $code-yellow; }
 
   // property names
-  .na { color: $lighter-gray; }
+  .na { color: $code-lighter-gray; }
 
   // Strings
-  .s { color: $atom-green; }
-  .s1 { color: $atom-green; }
+  .s { color: $code-green; }
+  .s1 { color: $code-green; }
 
-  .k { color:  #AE79C4; }
-  .kd { color: #C373DA; }
+  .k { color:  $code-purple; }
+  .kd { color: $code-light-purple; }
 
   // false
-  .kc { color: $atom-orange; }
+  .kc { color: $code-orange; }
 
   // vars like mux.monitor,
-  .nx { color: #E26B73; }
+  .nx { color: $code-light-red; }
 }

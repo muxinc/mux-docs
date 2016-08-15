@@ -6,8 +6,7 @@ language_tabs:
   - videojs: Video.js
 
 toc_footers:
-  - <a href='http://app.mux.io'>Sign Up for Mux</a>
-  - Documentation Powered by <a href='https://github.com/tripit/slate'>Slate</a>
+  - <a href='http://mux.com'>Sign Up for Mux</a>
 
 search: true
 ---
