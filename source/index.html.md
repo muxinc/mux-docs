@@ -46,34 +46,36 @@ Pick which SDK you want to use from the tabs on the right (or in the nav on mobi
 
 <script>
 // Initialize mux monitoring
-mux.monitor('#my-video', {
-  debug: false,
-  data: {
-    property_key: 'EXAMPLE_PROPERTY_KEY', // required
-    page_type: '', // (see docs) 'watchpage', 'iframe', or leave empty
-    viewer_user_id: '', // ex: '12345'
-    experiment_name: '', // ex: 'player_test_A'
+if (typeof mux !== 'undefined') {
+  mux.monitor('#my-video', {
+    debug: false,
+    data: {
+      property_key: 'EXAMPLE_PROPERTY_KEY', // required
+      page_type: '', // (see docs) 'watchpage', 'iframe', or leave empty
+      viewer_user_id: '', // ex: '12345'
+      experiment_name: '', // ex: 'player_test_A'
 
-    // Player Metadata
-    player_name: '', // ex: 'My Main Player'
-    player_version: '', // ex: '1.0.0'
-    player_init_time: '', // ex: 1451606400000
+      // Player Metadata
+      player_name: '', // ex: 'My Main Player'
+      player_version: '', // ex: '1.0.0'
+      player_init_time: '', // ex: 1451606400000
 
-    // Video Metadata (cleared with 'videochange' event)
-    video_id: '', // ex: 'abcd123'
-    video_title: '', // ex: 'My Great Video'
-    video_series: '', // ex: 'Weekly Great Videos'
-    video_producer: '', // ex: 'Bob the Producer'
-    video_content_type: '', // 'short', 'movie', 'episode', 'clip', 'trailer', or 'event'
-    video_language_code: '', // ex: 'en'
-    video_variant_name: '', // ex: 'Spanish Hard Subs'
-    video_variant_id: '', // ex: 'abcd1234'
-    video_duration: '', // in milliseconds, ex: 120000
-    video_is_live: false, // ex: false or true
-    video_encoding_variant: '', // ex: 'Variant 1'
-    video_cdn: '' // ex: 'Fastly', 'Akamai'
-  }
-});
+      // Video Metadata (cleared with 'videochange' event)
+      video_id: '', // ex: 'abcd123'
+      video_title: '', // ex: 'My Great Video'
+      video_series: '', // ex: 'Weekly Great Videos'
+      video_producer: '', // ex: 'Bob the Producer'
+      video_content_type: '', // 'short', 'movie', 'episode', 'clip', 'trailer', or 'event'
+      video_language_code: '', // ex: 'en'
+      video_variant_name: '', // ex: 'Spanish Hard Subs'
+      video_variant_id: '', // ex: 'abcd1234'
+      video_duration: '', // in milliseconds, ex: 120000
+      video_is_live: false, // ex: false or true
+      video_encoding_variant: '', // ex: 'Variant 1'
+      video_cdn: '' // ex: 'Fastly', 'Akamai'
+    }
+  });
+}
 </script>
 ```
 
@@ -188,12 +190,14 @@ video_cdn | An optional detail that allows you to compare different CDNs (assumi
 var myVideo = document.querySelector('#my-video');
 myVideo.src = 'nextVideo.mp4';
 
-mux.emit('#my-video', 'videochange', {
-  video_id: 'abc345',
-  video_title: 'My Other Great Video',
-  video_series: 'Weekly Great Videos',
-  ...
-});
+if (typeof mux !== 'undefined') {
+  mux.emit('#my-video', 'videochange', {
+    video_id: 'abc345',
+    video_title: 'My Other Great Video',
+    video_series: 'Weekly Great Videos',
+    ...
+  });
+}
 ```
 
 ```videojs
