@@ -150,34 +150,36 @@
 
 <span class="nt">&lt;script&gt;</span>
 <span class="c1">// Initialize mux monitoring</span>
-<span class="nx">mux</span><span class="p">.</span><span class="nx">monitor</span><span class="p">(</span><span class="s1">'#my-video'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">property_key</span><span class="p">:</span> <span class="s1">'EXAMPLE_PROPERTY_KEY'</span><span class="p">,</span> <span class="c1">// required</span>
-    <span class="na">page_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// (see docs) 'watchpage', 'iframe', or leave empty</span>
-    <span class="na">viewer_user_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '12345'</span>
-    <span class="na">experiment_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'player_test_A'</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">mux</span> <span class="o">!==</span> <span class="s1">'undefined'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">mux</span><span class="p">.</span><span class="nx">monitor</span><span class="p">(</span><span class="s1">'#my-video'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">property_key</span><span class="p">:</span> <span class="s1">'EXAMPLE_PROPERTY_KEY'</span><span class="p">,</span> <span class="c1">// required</span>
+      <span class="na">page_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// (see docs) 'watchpage', 'iframe', or leave empty</span>
+      <span class="na">viewer_user_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '12345'</span>
+      <span class="na">experiment_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'player_test_A'</span>
 
-    <span class="c1">// Player Metadata</span>
-    <span class="na">player_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'My Main Player'</span>
-    <span class="na">player_version</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '1.0.0'</span>
-    <span class="na">player_init_time</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 1451606400000</span>
+      <span class="c1">// Player Metadata</span>
+      <span class="na">player_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'My Main Player'</span>
+      <span class="na">player_version</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '1.0.0'</span>
+      <span class="na">player_init_time</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 1451606400000</span>
 
-    <span class="c1">// Video Metadata (cleared with 'videochange' event)</span>
-    <span class="na">video_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd123'</span>
-    <span class="na">video_title</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'My Great Video'</span>
-    <span class="na">video_series</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Weekly Great Videos'</span>
-    <span class="na">video_producer</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Bob the Producer'</span>
-    <span class="na">video_content_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// 'short', 'movie', 'episode', 'clip', 'trailer', or 'event'</span>
-    <span class="na">video_language_code</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'en'</span>
-    <span class="na">video_variant_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Spanish Hard Subs'</span>
-    <span class="na">video_variant_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd1234'</span>
-    <span class="na">video_duration</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// in milliseconds, ex: 120000</span>
-    <span class="na">video_is_live</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// ex: false or true</span>
-    <span class="na">video_encoding_variant</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Variant 1'</span>
-    <span class="na">video_cdn</span><span class="p">:</span> <span class="s1">''</span> <span class="c1">// ex: 'Fastly', 'Akamai'</span>
-  <span class="p">}</span>
-<span class="p">});</span>
+      <span class="c1">// Video Metadata (cleared with 'videochange' event)</span>
+      <span class="na">video_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd123'</span>
+      <span class="na">video_title</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'My Great Video'</span>
+      <span class="na">video_series</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Weekly Great Videos'</span>
+      <span class="na">video_producer</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Bob the Producer'</span>
+      <span class="na">video_content_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// 'short', 'movie', 'episode', 'clip', 'trailer', or 'event'</span>
+      <span class="na">video_language_code</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'en'</span>
+      <span class="na">video_variant_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Spanish Hard Subs'</span>
+      <span class="na">video_variant_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd1234'</span>
+      <span class="na">video_duration</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// in milliseconds, ex: 120000</span>
+      <span class="na">video_is_live</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// ex: false or true</span>
+      <span class="na">video_encoding_variant</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Variant 1'</span>
+      <span class="na">video_cdn</span><span class="p">:</span> <span class="s1">''</span> <span class="c1">// ex: 'Fastly', 'Akamai'</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">}</span>
 <span class="nt">&lt;/script&gt;</span>
 </code></pre>
 
@@ -362,12 +364,14 @@
 <span class="kd">var</span> <span class="nx">myVideo</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#my-video'</span><span class="p">);</span>
 <span class="nx">myVideo</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">'nextVideo.mp4'</span><span class="p">;</span>
 
-<span class="nx">mux</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'#my-video'</span><span class="p">,</span> <span class="s1">'videochange'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">video_id</span><span class="p">:</span> <span class="s1">'abc345'</span><span class="p">,</span>
-  <span class="na">video_title</span><span class="p">:</span> <span class="s1">'My Other Great Video'</span><span class="p">,</span>
-  <span class="na">video_series</span><span class="p">:</span> <span class="s1">'Weekly Great Videos'</span><span class="p">,</span>
-  <span class="p">...</span>
-<span class="p">});</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">mux</span> <span class="o">!==</span> <span class="s1">'undefined'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">mux</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'#my-video'</span><span class="p">,</span> <span class="s1">'videochange'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">video_id</span><span class="p">:</span> <span class="s1">'abc345'</span><span class="p">,</span>
+    <span class="na">video_title</span><span class="p">:</span> <span class="s1">'My Other Great Video'</span><span class="p">,</span>
+    <span class="na">video_series</span><span class="p">:</span> <span class="s1">'Weekly Great Videos'</span><span class="p">,</span>
+    <span class="p">...</span>
+  <span class="p">});</span>
+<span class="p">}</span>
 </code></pre>
 <pre class="highlight videojs"><code><span class="c1">// Example of changing the source of a Video.js player</span>
 <span class="c1">// Should happen before emitting the videochange event</span>
