@@ -2,32 +2,41 @@
 TODO: redo this with the new color palate. This off-the-shelf template isn't
 too far off: http://ethanschoonover.com/solarized
 */
-$code-purple: #871EC0;
-$code-light-purple: #C373DA;
+$code-purple: #9620D8;
+$code-light-purple: #CA8FEB;
 $code-light-red: #DF491E;
-$code-lighter-gray: #E8E8E8;
+$code-light-gray: #E8E8E8;
+$code-mid-gray: #C8C7C7;
 $code-yellow: #FEDE2F;
-$code-orange: #1D8FE1;
+$code-orange: #FB501D;
+$code-light-orange: #FC7C56;
 $code-green: #1FAE96;
+$code-light-green: #8FE1D3;
+$code-pink: #FB2491;
+$code-light-pink: #FC5BAD;
+$code-blue: #1CA0FD;
 
 
 .highlight {
+  // symbols
+  .o { color: $code-blue; }
+
   // html tag names
-  .nt { color: $code-yellow; }
+  .nt { color: $code-light-gray; }
 
   // property names
-  .na { color: $code-lighter-gray; }
+  .na { color: $code-light-gray; }
 
   // Strings
-  .s { color: $code-green; }
-  .s1 { color: $code-green; }
+  .s { color: $code-light-pink; }
+  .s1 { color: $code-light-pink; }
 
-  .k { color:  $code-purple; }
+  .k { color:  $code-light-purple; }
   .kd { color: $code-light-purple; }
 
   // false
-  .kc { color: $code-orange; }
+  .kc { color: $code-green; }
 
   // vars like mux.monitor,
-  .nx { color: $code-light-red; }
+  .nx { color: $code-light-orange; }
 }
