@@ -4,6 +4,7 @@ title: Mux API Docs
 language_tabs:
   - video-element: Video Element
   - videojs: Video.js
+  - objc: Objective-C
 
 toc_footers:
   - <a href='http://mux.com'>Sign Up for Mux</a>
@@ -13,7 +14,7 @@ search: true
 
 # SDK Integration
 
-While Mux is still in early development we support two browser-based video players: **Video.js** and the bare **HTML5 video element**. More players and platforms, including other desktop players, native SDKs for iOS and Android, and SDKs for OTT platforms are coming soon.
+Mux is still in early development. At this time we support **iOS**, **tvOS** and two browser-based video players: **Video.js** and the bare **HTML5 video element**. More players and platforms as well as native SDKs for Android and OTT platforms are coming soon.
 
 Pick which SDK you want to use from the tabs on the right (or in the nav on mobile).
 
@@ -36,6 +37,22 @@ Pick which SDK you want to use from the tabs on the right (or in the nav on mobi
 
 <p class="lang-specific videojs">
   Include the videojs-mux plugin after Video.js in the page (or wherever your other Video.js plugins are loaded). If you utilize any ad integrations with Video.js, include the necessary ad integration JavaScript files before the videojs-mux plugin.
+</p>
+
+```objc--shell
+git clone https://github.com/muxinc/stats-sdk-objc.git
+```
+
+```objc--objective_c
+// for iOS
+@import MUXSDKStats;
+
+// for tvOS
+@import MUXSDKStatsTv;
+```
+
+<p class="lang-specific objc">
+  Include the correct Mux Objective-C SDK for your project by cloning our repository and then bringing the right framework into your project. The <code>Frameworks</code> folder contains two folders, one for iOS and one for tvOS. Inside these folders, there are 3 additional folders containing different architecture combinations. The <code>fat</code> folder contains a library with all architectures in one. This is library cannot be used when compiling for submission to the App Store as it contains the simulator architectures that are not used by any Apple devices. You can use the framework in the <code>release</code> folder when building a release version of your application, or you can run <a href="https://gist.github.com/brett-stover-hs/b25947a125ff7e38e7ca#file-frameworks_blogpost_removal_script_a-sh">a script to strip unneeded architectures</a>. Finally, don't forget to add the correct import statement for your target platform.
 </p>
 
 ## Initializing
@@ -122,6 +139,39 @@ videojs('my-player', {
 });
 ```
 
+<p class="lang-specific objc">
+  To monitor the performance of an AVPlayer, call either <code>monitorAVPlayerViewController:withPlayerName:andConfig:</code> or <code>monitorAVPlayerLayer:withPlayerName:andConfig:</code>, passing a pointer to your AVPlayer container (either the <code>AVPlayerLayer</code> or <code>AVPlayerViewController</code>) to the SDK. When calling <code>destroyPlayer</code> or <code>videoChangeForPlayer:withConfig:</code> to <a href="#changing-the-video">change the video</a> the same player name used for the monitor call must be used.
+</p>
+
+```objc--objective_c
+NSDictionary *config = @{
+  @"debug": NO, // Note that this is in the config in Objective-C
+  @"property_key": @"EXAMPLE_PROPERTY_KEY", // required
+  @"viewer_user_id": @"", // ex: @"12345"
+  @"experiment_name": @"", // ex: @"player_test_A"
+
+  // Player Metadata
+  @"player_name": @"", // ex: @"My Main Player"
+  @"player_version": @"", // ex: @"1.0.0"
+
+  // Video Metadata (cleared with @"videochange" event)
+  @"video_id": @"", // ex: @"abcd123"
+  @"video_title": @"", // ex: @"My Great Video"
+  @"video_series": @"", // ex: @"Weekly Great Videos"
+  @"video_producer": @"", // ex: @"Bob the Producer"
+  @"video_content_type": @"", // @"short", @"movie", @"episode", @"clip", @"trailer", or @"event"
+  @"video_language_code": @"", // ex: @"en"
+  @"video_variant_name": @"", // ex: @"Spanish Hard Subs"
+  @"video_variant_id": @"", // ex: @"abcd1234"
+  @"video_duration": nil, // in milliseconds, ex: [NSNumber numberWithLongLong:120000]
+  @"video_is_live": NO, // ex: YES or NO
+  @"video_encoding_variant": @"", // ex: @"Variant 1"
+  @"video_cdn": @"" // ex: @"Fastly", @"Akamai"
+};
+AVPlayerLayer *player = [[AVPlayerLayer alloc] init];
+[MUXSDKStats monitorAVPlayerLayer:player withPlayerName:@"awesome" andConfig:config];
+```
+
 ```videojs--html
 <!-- OR in the data-setup attribute of the video.js element -->
 <video id="my-player"
@@ -149,6 +199,10 @@ Name	| Description	| Default
 ----------- | ----------- | --------
 debug	| Put the SDK in debug mode to log operational details	| false
 data | User, page, player, and video metadata for the video | { }
+
+<p class="lang-specific objc">
+  In the Objective-C SDKs, <strong>options and metadata are all passed in the config dictionary</strong>. The <code>debug</code> key maybe passed with a boolean value of <code>YES</code> or <code>NO</code> to put the SDK into debug mode to log operational details.
+</p>
 
 ### Metadata
 
@@ -214,6 +268,20 @@ myPlayer.mux.emit('videochange', {
 });
 ```
 
+```objc--objective_c
+// Example of changing the AVPlayerItem
+// Should happen before telling MUXSDKStats about the change.
+[player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:@"..."]];
+
+NSDictionary *config = @{
+  @"video_id": @"abc345",
+  @"video_title": @"My Other Great Video",
+  @"video_series": @"Weekly Great Videos",
+  ...
+};
+[MUXSDKStats videoChangeForPlayer:@"awesome" withConfig:config];
+```
+
 When you change to a new video (in the same player) you need to update the information that Mux knows about the current video. Examples of when this is needed are:
 
 * The player advances to the next video in a playlist
@@ -223,9 +291,33 @@ When you change to a new video (in the same player) you need to update the infor
 
 It's best to change the video info immediately after telling the player which new source to play.
 
-This is done by emitting a `videochange` event through `mux`, and when this is emitted it removes all previous video data and resets all metrics for the video view. See [Metadata](#metadata) for the list of video details you can provide. You can include any metadata when changing the video but you only need to update the values that start with `video_`.
+<p class="lang-specific videojs video-element">
+This is done by emitting a <code>videochange</code> event through <code>mux</code>, and when this is emitted it removes all previous video data and resets all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
+</p>
+
+<p class="lang-specific obj-c">
+This is done by calling <code>videoChangeForPlayer:withConfig:</code> which will remove all previous video data and reset all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
+</p>
 
 <!-- hackety hack hack to make left nav work better -->
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
