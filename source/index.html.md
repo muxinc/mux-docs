@@ -52,7 +52,7 @@ git clone https://github.com/muxinc/stats-sdk-objc.git
 ```
 
 <p class="lang-specific objc">
-  Include the correct Mux Objective-C SDK for your project by cloning our repository and then bringing the right framework into your project. The <code>Frameworks</code> folder contains two folders for iOS and tvOS. Inside these folders, there are 3 additional folders containing different architecture combinations. The <code>fat</code> folder contains a library with all architectures in one. This is library cannot be used when compiling for submission to the App Store as it contains the simulator architectures that are not used by any Apple devices. You can use the framework in the <code>release</code> folder when building a release version of your application, or you can run <a href="https://gist.github.com/brett-stover-hs/b25947a125ff7e38e7ca#file-frameworks_blogpost_removal_script_a-sh">a script to strip unneeded architectures</a>. Finally, don't forget to add the correct import statement for your target platform.
+  Include the correct Mux Objective-C SDK for your project by cloning our repository and then bringing the right framework into your project. The <code>Frameworks</code> folder contains two folders, one for iOS and one for tvOS. Inside these folders, there are 3 additional folders containing different architecture combinations. The <code>fat</code> folder contains a library with all architectures in one. This is library cannot be used when compiling for submission to the App Store as it contains the simulator architectures that are not used by any Apple devices. You can use the framework in the <code>release</code> folder when building a release version of your application, or you can run <a href="https://gist.github.com/brett-stover-hs/b25947a125ff7e38e7ca#file-frameworks_blogpost_removal_script_a-sh">a script to strip unneeded architectures</a>. Finally, don't forget to add the correct import statement for your target platform.
 </p>
 
 ## Initializing
@@ -140,7 +140,7 @@ videojs('my-player', {
 ```
 
 <p class="lang-specific objc">
-  To monitor the performance of an AVPlayer, call either <code>monitorAVPlayerViewController:withPlayerName:andConfig:</code> or <code>monitorAVPlayerLayer:withPlayerName:andConfig:</code>, passing a pointer to your AVPlayer container to the SDK. When calling <code>destroyPlayer</code> or <code>videoChangeForPlayer:withConfig:</code> to <a href="#changing-the-video">change the video</a> the same player name used for the monitor call must be used.
+  To monitor the performance of an AVPlayer, call either <code>monitorAVPlayerViewController:withPlayerName:andConfig:</code> or <code>monitorAVPlayerLayer:withPlayerName:andConfig:</code>, passing a pointer to your AVPlayer container (either the <code>AVPlayerLayer</code> or <code>AVPlayerViewController</code>) to the SDK. When calling <code>destroyPlayer</code> or <code>videoChangeForPlayer:withConfig:</code> to <a href="#changing-the-video">change the video</a> the same player name used for the monitor call must be used.
 </p>
 
 ```objc--objective_c
@@ -168,8 +168,8 @@ NSDictionary *config = @{
   @"video_encoding_variant": @"", // ex: @"Variant 1"
   @"video_cdn": @"" // ex: @"Fastly", @"Akamai"
 };
-AVPlayerViewController *controller = [[AVPlayerViewController alloc] init];
-[MUXSDKStats monitorAVPlayerViewController:controller withPlayerName:@"awesome" andConfig:config];
+AVPlayerLayer *player = [[AVPlayerLayer alloc] init];
+[MUXSDKStats monitorAVPlayerLayer:player withPlayerName:@"awesome" andConfig:config];
 ```
 
 ```videojs--html
