@@ -4,7 +4,7 @@ title: Mux API Docs
 language_tabs:
   - video-element: Video Element
   - videojs: Video.js
-  - objc: Objective-C
+  - objective_c: Objective-C
 
 toc_footers:
   - <a href='http://mux.com'>Sign Up for Mux</a>
@@ -39,11 +39,9 @@ Pick which SDK you want to use from the tabs on the right (or in the nav on mobi
   Include the videojs-mux plugin after Video.js in the page (or wherever your other Video.js plugins are loaded). If you utilize any ad integrations with Video.js, include the necessary ad integration JavaScript files before the videojs-mux plugin.
 </p>
 
-```objc--shell
-git clone https://github.com/muxinc/stats-sdk-objc.git
-```
+```objective_c
+# git clone https://github.com/muxinc/stats-sdk-objc.git
 
-```objc--objective_c
 // for iOS
 @import MUXSDKStats;
 
@@ -51,7 +49,7 @@ git clone https://github.com/muxinc/stats-sdk-objc.git
 @import MUXSDKStatsTv;
 ```
 
-<p class="lang-specific objc">
+<p class="lang-specific objective_c">
   Include the correct Mux Objective-C SDK for your project by cloning our repository and then bringing the right framework into your project. The <code>Frameworks</code> folder contains two folders, one for iOS and one for tvOS. Inside these folders, there are 3 additional folders containing different architecture combinations. The <code>fat</code> folder contains a library with all architectures in one. This is library cannot be used when compiling for submission to the App Store as it contains the simulator architectures that are not used by any Apple devices. You can use the framework in the <code>release</code> folder when building a release version of your application, or you can run <a href="https://gist.github.com/brett-stover-hs/b25947a125ff7e38e7ca#file-frameworks_blogpost_removal_script_a-sh">a script to strip unneeded architectures</a>. Finally, don't forget to add the correct import statement for your target platform.
 </p>
 
@@ -139,11 +137,11 @@ videojs('my-player', {
 });
 ```
 
-<p class="lang-specific objc">
+<p class="lang-specific objective_c">
   To monitor the performance of an AVPlayer, call either <code>monitorAVPlayerViewController:withPlayerName:andConfig:</code> or <code>monitorAVPlayerLayer:withPlayerName:andConfig:</code>, passing a pointer to your AVPlayer container (either the <code>AVPlayerLayer</code> or <code>AVPlayerViewController</code>) to the SDK. When calling <code>destroyPlayer</code> or <code>videoChangeForPlayer:withConfig:</code> to <a href="#changing-the-video">change the video</a> the same player name used for the monitor call must be used.
 </p>
 
-```objc--objective_c
+```objective_c
 NSDictionary *config = @{
   @"debug": NO, // Note that this is in the config in Objective-C
   @"property_key": @"EXAMPLE_PROPERTY_KEY", // required
@@ -200,7 +198,7 @@ Name	| Description	| Default
 debug	| Put the SDK in debug mode to log operational details	| false
 data | User, page, player, and video metadata for the video | { }
 
-<p class="lang-specific objc">
+<p class="lang-specific objective_c">
   In the Objective-C SDKs, <strong>options and metadata are all passed in the config dictionary</strong>. The <code>debug</code> key maybe passed with a boolean value of <code>YES</code> or <code>NO</code> to put the SDK into debug mode to log operational details.
 </p>
 
@@ -268,7 +266,7 @@ myPlayer.mux.emit('videochange', {
 });
 ```
 
-```objc--objective_c
+```objective_c
 // Example of changing the AVPlayerItem
 // Should happen before telling MUXSDKStats about the change.
 [player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:@"..."]];
