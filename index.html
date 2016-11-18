@@ -241,7 +241,7 @@
   To monitor the performance of an AVPlayer, call either <code>monitorAVPlayerViewController:withPlayerName:andConfig:</code> or <code>monitorAVPlayerLayer:withPlayerName:andConfig:</code>, passing a pointer to your AVPlayer container (either the <code>AVPlayerLayer</code> or <code>AVPlayerViewController</code>) to the SDK. When calling <code>destroyPlayer</code> or <code>videoChangeForPlayer:withConfig:</code> to <a href="#changing-the-video">change the video</a> the same player name used for the monitor call must be used.
 </p>
 <pre class="highlight objective_c"><code><span class="n">NSDictionary</span> <span class="o">*</span><span class="n">config</span> <span class="o">=</span> <span class="err">@</span><span class="p">{</span>
-  <span class="s">@"debug"</span><span class="o">:</span> <span class="nb">NO</span><span class="p">,</span> <span class="c1">// Note that this is in the config in Objective-C
+  <span class="s">@"debug"</span><span class="o">:</span> <span class="nb">@NO</span><span class="p">,</span> <span class="c1">// Note that this is in the config in Objective-C
 </span>  <span class="s">@"property_key"</span><span class="o">:</span> <span class="s">@"EXAMPLE_PROPERTY_KEY"</span><span class="p">,</span> <span class="c1">// required
 </span>  <span class="s">@"viewer_user_id"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"12345"
 </span>  <span class="s">@"experiment_name"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"player_test_A"
@@ -260,11 +260,11 @@
 </span>  <span class="s">@"video_variant_name"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"Spanish Hard Subs"
 </span>  <span class="s">@"video_variant_id"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"abcd1234"
 </span>  <span class="s">@"video_duration"</span><span class="o">:</span> <span class="nb">nil</span><span class="p">,</span> <span class="c1">// in milliseconds, ex: [NSNumber numberWithLongLong:120000]
-</span>  <span class="s">@"video_is_live"</span><span class="o">:</span> <span class="nb">NO</span><span class="p">,</span> <span class="c1">// ex: YES or NO
+</span>  <span class="s">@"video_is_live"</span><span class="o">:</span> <span class="nb">@NO</span><span class="p">,</span> <span class="c1">// ex: @YES or @NO
 </span>  <span class="s">@"video_encoding_variant"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"Variant 1"
 </span>  <span class="s">@"video_cdn"</span><span class="o">:</span> <span class="s">@""</span> <span class="c1">// ex: @"Fastly", @"Akamai"
 </span><span class="p">};</span>
-<span class="n">AVPlayerLayer</span> <span class="o">*</span><span class="n">player</span> <span class="o">=</span> <span class="p">[[</span><span class="n">AVPlayerLayer</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+<span class="n">AVPlayerLayer</span> <span class="o">*</span><span class="n">player</span> <span class="o">=</span> <span class="p">[</span><span class="n">AVPlayerLayer</span> <span class="nf">new</span><span class="p">];</span>
 <span class="p">[</span><span class="n">MUXSDKStats</span> <span class="nf">monitorAVPlayerLayer</span><span class="p">:</span><span class="n">player</span> <span class="nf">withPlayerName</span><span class="p">:</span><span class="s">@"awesome"</span> <span class="nf">andConfig</span><span class="p">:</span><span class="n">config</span><span class="p">];</span>
 </code></pre>
 <pre class="highlight videojs--html"><code><span class="c">&lt;!-- OR in the data-setup attribute of the video.js element --&gt;</span>
