@@ -143,7 +143,7 @@ videojs('my-player', {
 
 ```objective_c
 NSDictionary *config = @{
-  @"debug": NO, // Note that this is in the config in Objective-C
+  @"debug": @NO, // Note that this is in the config in Objective-C
   @"property_key": @"EXAMPLE_PROPERTY_KEY", // required
   @"viewer_user_id": @"", // ex: @"12345"
   @"experiment_name": @"", // ex: @"player_test_A"
@@ -162,11 +162,11 @@ NSDictionary *config = @{
   @"video_variant_name": @"", // ex: @"Spanish Hard Subs"
   @"video_variant_id": @"", // ex: @"abcd1234"
   @"video_duration": nil, // in milliseconds, ex: [NSNumber numberWithLongLong:120000]
-  @"video_is_live": NO, // ex: YES or NO
+  @"video_is_live": @NO, // ex: @YES or @NO
   @"video_encoding_variant": @"", // ex: @"Variant 1"
   @"video_cdn": @"" // ex: @"Fastly", @"Akamai"
 };
-AVPlayerLayer *player = [[AVPlayerLayer alloc] init];
+AVPlayerLayer *player = [AVPlayerLayer new];
 [MUXSDKStats monitorAVPlayerLayer:player withPlayerName:@"awesome" andConfig:config];
 ```
 
