@@ -93,7 +93,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;video-element&quot;,&quot;videojs&quot;]">
+  <body class="index" data-languages="[&quot;video-element&quot;,&quot;videojs&quot;,&quot;objective_c&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -107,6 +107,7 @@
         <div class="lang-selector">
               <a href="#" data-language-name="video-element">Video Element</a>
               <a href="#" data-language-name="videojs">Video.js</a>
+              <a href="#" data-language-name="objective_c">Objective-C</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -123,7 +124,7 @@
       <div class="content">
         <h1 id="sdk-integration">SDK Integration</h1>
 
-<p>While Mux is still in early development we support two browser-based video players: <strong>Video.js</strong> and the bare <strong>HTML5 video element</strong>. More players and platforms, including other desktop players, native SDKs for iOS and Android, and SDKs for OTT platforms are coming soon.</p>
+<p>Mux is still in early development. At this time we support <strong>iOS</strong>, <strong>tvOS</strong> and two browser-based video players: <strong>Video.js</strong> and the bare <strong>HTML5 video element</strong>. More players and platforms as well as native SDKs for Android and OTT platforms are coming soon.</p>
 
 <p>Pick which SDK you want to use from the tabs on the right (or in the nav on mobile).</p>
 
@@ -142,6 +143,18 @@
 
 <p class="lang-specific videojs">
   Include the videojs-mux plugin after Video.js in the page (or wherever your other Video.js plugins are loaded). If you utilize any ad integrations with Video.js, include the necessary ad integration JavaScript files before the videojs-mux plugin.
+</p>
+<pre class="highlight objective_c"><code><span class="cp"># git clone https://github.com/muxinc/stats-sdk-objc.git
+</span>
+<span class="c1">// for iOS
+</span><span class="k">@import</span> <span class="n">MUXSDKStats</span><span class="p">;</span>
+
+<span class="c1">// for tvOS
+</span><span class="k">@import</span> <span class="n">MUXSDKStatsTv</span><span class="p">;</span>
+</code></pre>
+
+<p class="lang-specific objective_c">
+  Include the correct Mux Objective-C SDK for your project by cloning our repository and then bringing the right framework into your project. The <code>Frameworks</code> folder contains two folders, one for iOS and one for tvOS. Inside these folders, there are 3 additional folders containing different architecture combinations. The <code>fat</code> folder contains a library with all architectures in one. This is library cannot be used when compiling for submission to the App Store as it contains the simulator architectures that are not used by any Apple devices. You can use the framework in the <code>release</code> folder when building a release version of your application, or you can run <a href="https://gist.github.com/brett-stover-hs/b25947a125ff7e38e7ca#file-frameworks_blogpost_removal_script_a-sh">a script to strip unneeded architectures</a>. Finally, don&rsquo;t forget to add the correct import statement for your target platform.
 </p>
 
 <h2 id="initializing">Initializing</h2>
@@ -223,6 +236,37 @@
   <span class="p">}</span>
 <span class="p">});</span>
 </code></pre>
+
+<p class="lang-specific objective_c">
+  To monitor the performance of an AVPlayer, call either <code>monitorAVPlayerViewController:withPlayerName:andConfig:</code> or <code>monitorAVPlayerLayer:withPlayerName:andConfig:</code>, passing a pointer to your AVPlayer container (either the <code>AVPlayerLayer</code> or <code>AVPlayerViewController</code>) to the SDK. When calling <code>destroyPlayer</code> or <code>videoChangeForPlayer:withConfig:</code> to <a href="#changing-the-video">change the video</a> the same player name used for the monitor call must be used.
+</p>
+<pre class="highlight objective_c"><code><span class="n">NSDictionary</span> <span class="o">*</span><span class="n">config</span> <span class="o">=</span> <span class="err">@</span><span class="p">{</span>
+  <span class="s">@"debug"</span><span class="o">:</span> <span class="nb">NO</span><span class="p">,</span> <span class="c1">// Note that this is in the config in Objective-C
+</span>  <span class="s">@"property_key"</span><span class="o">:</span> <span class="s">@"EXAMPLE_PROPERTY_KEY"</span><span class="p">,</span> <span class="c1">// required
+</span>  <span class="s">@"viewer_user_id"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"12345"
+</span>  <span class="s">@"experiment_name"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"player_test_A"
+</span>
+  <span class="c1">// Player Metadata
+</span>  <span class="s">@"player_name"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"My Main Player"
+</span>  <span class="s">@"player_version"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"1.0.0"
+</span>
+  <span class="c1">// Video Metadata (cleared with @"videochange" event)
+</span>  <span class="s">@"video_id"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"abcd123"
+</span>  <span class="s">@"video_title"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"My Great Video"
+</span>  <span class="s">@"video_series"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"Weekly Great Videos"
+</span>  <span class="s">@"video_producer"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"Bob the Producer"
+</span>  <span class="s">@"video_content_type"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// @"short", @"movie", @"episode", @"clip", @"trailer", or @"event"
+</span>  <span class="s">@"video_language_code"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"en"
+</span>  <span class="s">@"video_variant_name"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"Spanish Hard Subs"
+</span>  <span class="s">@"video_variant_id"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"abcd1234"
+</span>  <span class="s">@"video_duration"</span><span class="o">:</span> <span class="nb">nil</span><span class="p">,</span> <span class="c1">// in milliseconds, ex: [NSNumber numberWithLongLong:120000]
+</span>  <span class="s">@"video_is_live"</span><span class="o">:</span> <span class="nb">NO</span><span class="p">,</span> <span class="c1">// ex: YES or NO
+</span>  <span class="s">@"video_encoding_variant"</span><span class="o">:</span> <span class="s">@""</span><span class="p">,</span> <span class="c1">// ex: @"Variant 1"
+</span>  <span class="s">@"video_cdn"</span><span class="o">:</span> <span class="s">@""</span> <span class="c1">// ex: @"Fastly", @"Akamai"
+</span><span class="p">};</span>
+<span class="n">AVPlayerLayer</span> <span class="o">*</span><span class="n">player</span> <span class="o">=</span> <span class="p">[[</span><span class="n">AVPlayerLayer</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+<span class="p">[</span><span class="n">MUXSDKStats</span> <span class="nf">monitorAVPlayerLayer</span><span class="p">:</span><span class="n">player</span> <span class="nf">withPlayerName</span><span class="p">:</span><span class="s">@"awesome"</span> <span class="nf">andConfig</span><span class="p">:</span><span class="n">config</span><span class="p">];</span>
+</code></pre>
 <pre class="highlight videojs--html"><code><span class="c">&lt;!-- OR in the data-setup attribute of the video.js element --&gt;</span>
 <span class="nt">&lt;video</span> <span class="na">id=</span><span class="s">"my-player"</span>
   <span class="na">data-setup=</span><span class="s">'{"plugins": {"mux": {"debug": false, "data": { ... }}}}'</span> <span class="nt">&gt;</span>
@@ -261,6 +305,10 @@
 <td>{ }</td>
 </tr>
 </tbody></table>
+
+<p class="lang-specific objective_c">
+  In the Objective-C SDKs, <strong>options and metadata are all passed in the config dictionary</strong>. The <code>debug</code> key maybe passed with a boolean value of <code>YES</code> or <code>NO</code> to put the SDK into debug mode to log operational details.
+</p>
 
 <h3 id="metadata">Metadata</h3>
 
@@ -385,6 +433,18 @@
   <span class="p">...</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight objective_c"><code><span class="c1">// Example of changing the AVPlayerItem
+// Should happen before telling MUXSDKStats about the change.
+</span><span class="p">[</span><span class="n">player</span> <span class="nf">replaceCurrentItemWithPlayerItem</span><span class="p">:[</span><span class="n">AVPlayerItem</span> <span class="nf">playerItemWithURL</span><span class="p">:</span><span class="s">@"..."</span><span class="p">]];</span>
+
+<span class="n">NSDictionary</span> <span class="o">*</span><span class="n">config</span> <span class="o">=</span> <span class="err">@</span><span class="p">{</span>
+  <span class="s">@"video_id"</span><span class="o">:</span> <span class="s">@"abc345"</span><span class="p">,</span>
+  <span class="s">@"video_title"</span><span class="o">:</span> <span class="s">@"My Other Great Video"</span><span class="p">,</span>
+  <span class="s">@"video_series"</span><span class="o">:</span> <span class="s">@"Weekly Great Videos"</span><span class="p">,</span>
+  <span class="p">...</span>
+<span class="p">};</span>
+<span class="p">[</span><span class="n">MUXSDKStats</span> <span class="nf">videoChangeForPlayer</span><span class="p">:</span><span class="s">@"awesome"</span> <span class="nf">withConfig</span><span class="p">:</span><span class="n">config</span><span class="p">];</span>
+</code></pre>
 
 <p>When you change to a new video (in the same player) you need to update the information that Mux knows about the current video. Examples of when this is needed are:</p>
 
@@ -397,11 +457,35 @@
 
 <p>It&rsquo;s best to change the video info immediately after telling the player which new source to play.</p>
 
-<p>This is done by emitting a <code class="prettyprint">videochange</code> event through <code class="prettyprint">mux</code>, and when this is emitted it removes all previous video data and resets all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you only need to update the values that start with <code class="prettyprint">video_</code>.</p>
+<p class="lang-specific videojs video-element">
+This is done by emitting a <code>videochange</code> event through <code>mux</code>, and when this is emitted it removes all previous video data and resets all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
+</p>
+
+<p class="lang-specific obj-c">
+This is done by calling <code>videoChangeForPlayer:withConfig:</code> which will remove all previous video data and reset all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
+</p>
 
 <!-- hackety hack hack to make left nav work better -->
 
 <p><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -426,6 +510,7 @@
           <div class="lang-selector">
                 <a href="#" data-language-name="video-element">Video Element</a>
                 <a href="#" data-language-name="videojs">Video.js</a>
+                <a href="#" data-language-name="objective_c">Objective-C</a>
           </div>
       </div>
     </div>
