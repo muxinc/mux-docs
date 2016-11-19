@@ -50,7 +50,7 @@ Pick which SDK you want to use from the tabs on the right (or in the nav on mobi
 ```
 
 <p class="lang-specific objective_c">
-  Include the correct Mux Objective-C SDK for your project by cloning our repository and then bringing the right framework into your project. The <code>Frameworks</code> folder contains two folders, one for iOS and one for tvOS. Inside these folders, there are 3 additional folders containing different architecture combinations. The <code>fat</code> folder contains a library with all architectures in one. This is library cannot be used when compiling for submission to the App Store as it contains the simulator architectures that are not used by any Apple devices. You can use the framework in the <code>release</code> folder when building a release version of your application, or you can run <a href="https://gist.github.com/brett-stover-hs/b25947a125ff7e38e7ca#file-frameworks_blogpost_removal_script_a-sh">a script to strip unneeded architectures</a>. Finally, don't forget to add the correct import statement for your target platform.
+  Include the correct Mux Objective-C SDK for your project by cloning our repository and dragging the framework into your Xcode project. The <code>Frameworks</code> folder contains two folders, one for iOS and one for tvOS. Inside these folders, there are 3 additional folders containing different architecture combinations. The <code>fat</code> folder contains a library with all architectures in one. This library cannot be used when compiling for submission to the App Store as it contains the simulator architectures that are not used by any Apple devices. You can use the framework in the <code>release</code> folder when building a release version of your application, or you can run <a href="https://gist.github.com/brett-stover-hs/b25947a125ff7e38e7ca#file-frameworks_blogpost_removal_script_a-sh">a script to strip unneeded architectures</a>. Finally, don't forget to add the correct import statement for your target platform.
 </p>
 
 ## Initializing
@@ -138,36 +138,34 @@ videojs('my-player', {
 ```
 
 <p class="lang-specific objective_c">
-  To monitor the performance of an AVPlayer, call either <code>monitorAVPlayerViewController:withPlayerName:andConfig:</code> or <code>monitorAVPlayerLayer:withPlayerName:andConfig:</code>, passing a pointer to your AVPlayer container (either the <code>AVPlayerLayer</code> or <code>AVPlayerViewController</code>) to the SDK. When calling <code>destroyPlayer</code> or <code>videoChangeForPlayer:withConfig:</code> to <a href="#changing-the-video">change the video</a> the same player name used for the monitor call must be used.
+  To monitor the performance of an AVPlayer, call either <code>monitorAVPlayerViewController:withPlayerName:playerData:videoData:</code> or <code>monitorAVPlayerLayer:withPlayerName:playerData:videoData:</code>, passing a pointer to your AVPlayer container (either the <code>AVPlayerLayer</code> or <code>AVPlayerViewController</code>) to the SDK. When calling <code>destroyPlayer</code> or <code>videoChangeForPlayer:withVideoData:</code> to <a href="#changing-the-video">change the video</a> the same player name used for the monitor call must be used.
 </p>
 
 ```objective_c
-NSDictionary *config = @{
-  @"debug": NO, // Note that this is in the config in Objective-C
-  @"property_key": @"EXAMPLE_PROPERTY_KEY", // required
-  @"viewer_user_id": @"", // ex: @"12345"
-  @"experiment_name": @"", // ex: @"player_test_A"
+// Property and player data that persists until the player is destroyed
+MUXSDKCustomerPlayerData *playerData = [[MUXSDKCustomerPlayerData alloc] initWithPropertyKey:@"EXAMPLE_PROPERTY_KEY"];
+[playerData setViewerUserId: @"1234"];
+[playerData setExperimentName:@"player_test_A"];
+[playerData setPlayerName:@"My Main Player"];
+[playerData setPlayerVersion:@"1.0.0"];
 
-  // Player Metadata
-  @"player_name": @"", // ex: @"My Main Player"
-  @"player_version": @"", // ex: @"1.0.0"
+// Video metadata (cleared with videoChangeForPlayer:withVideoData:)
+MUXSDKCustomerVideoData *videoData = [MUXSDKCustomerVideoData new];
+[videoData setVideoId:@"abcd123"];
+[videoData setVideoTitle:@"My Great Video"];
+[videoData setVideoSeries:@"Weekly Great Videos"];
+[videoData setVideoProducer:@"Bob the Producer"];
+[videoData setVideoContentType:@"type"];
+[videoData setVideoLanguageCode:@"en"];
+[videoData setVideoVariantName:@"Spanish Hard Subs"];
+[videoData setVideoVariantId:@"abcd1234"];
+[videoData setVideoDuration:[NSNumber numberWithLongLong:120000]]; // in milliseconds
+[videoData setVideoIsLive:@NO];
+[videoData setVideoEncodingVariant:@"Variant 1"];
+[videoData setVideoCdn:@"cdn"];
 
-  // Video Metadata (cleared with @"videochange" event)
-  @"video_id": @"", // ex: @"abcd123"
-  @"video_title": @"", // ex: @"My Great Video"
-  @"video_series": @"", // ex: @"Weekly Great Videos"
-  @"video_producer": @"", // ex: @"Bob the Producer"
-  @"video_content_type": @"", // @"short", @"movie", @"episode", @"clip", @"trailer", or @"event"
-  @"video_language_code": @"", // ex: @"en"
-  @"video_variant_name": @"", // ex: @"Spanish Hard Subs"
-  @"video_variant_id": @"", // ex: @"abcd1234"
-  @"video_duration": nil, // in milliseconds, ex: [NSNumber numberWithLongLong:120000]
-  @"video_is_live": NO, // ex: YES or NO
-  @"video_encoding_variant": @"", // ex: @"Variant 1"
-  @"video_cdn": @"" // ex: @"Fastly", @"Akamai"
-};
-AVPlayerLayer *player = [[AVPlayerLayer alloc] init];
-[MUXSDKStats monitorAVPlayerLayer:player withPlayerName:@"awesome" andConfig:config];
+AVPlayerLayer *player = [AVPlayerLayer new];
+[MUXSDKStats monitorAVPlayerViewController:player withPlayerName:@"awesome" playerData:playerData videoData:videoData];
 ```
 
 ```videojs--html
@@ -199,7 +197,7 @@ debug	| Put the SDK in debug mode to log operational details	| false
 data | User, page, player, and video metadata for the video | { }
 
 <p class="lang-specific objective_c">
-  In the Objective-C SDKs, <strong>options and metadata are all passed in the config dictionary</strong>. The <code>debug</code> key maybe passed with a boolean value of <code>YES</code> or <code>NO</code> to put the SDK into debug mode to log operational details.
+  In the Objective-C SDKs, <strong>options are provided via the MUXSDKCustomerPlayerData and MUXSDKCustomerVideoData objects</strong>.
 </p>
 
 ### Metadata
@@ -211,6 +209,10 @@ All metadata details except for `property_key` are *optional*, however you'll be
 - Video details (prepended by `video_`) describe the current video that's playing and are all reset automatically when [changing the video](#changing-the-video). This metadata would come from your internal CMS or video management system.
 - Player details (prepended by `player_`) describe the player configuration that's being used and should be set whenever monitoring is started on a new player. They do not reset when the video is changed.
 - All other details can be set once per page load, and after being set they will persist between videos and player instances on a page.
+
+<p class="lang-specific objective_c">
+In the Objective-C SDKs, <strong>names are converted to lowerCamelCase setters and getters per Apple's naming guidelines</strong>. See the <a href="https://github.com/muxinc/stats-sdk-objc/blob/master/Frameworks/iOS/release/MUXSDKStats.framework/Headers/MUXSDKCustomerPlayerData.h">MUXSDKCustomerPlayerData.h</a> and <a href="https://github.com/muxinc/stats-sdk-objc/blob/master/Frameworks/iOS/release/MUXSDKStats.framework/Headers/MUXSDKCustomerVideoData.h">MUXSDKCustomerVideoData.h</a> header files for a complete list of names.
+</p>
 
 Name	| Description
 ----- | -----------
@@ -271,13 +273,11 @@ myPlayer.mux.emit('videochange', {
 // Should happen before telling MUXSDKStats about the change.
 [player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:@"..."]];
 
-NSDictionary *config = @{
-  @"video_id": @"abc345",
-  @"video_title": @"My Other Great Video",
-  @"video_series": @"Weekly Great Videos",
-  ...
-};
-[MUXSDKStats videoChangeForPlayer:@"awesome" withConfig:config];
+MUXSDKCustomerVideoData *videoData = [MUXSDKCustomerVideoData new];
+[videoData setVideoId:@"abcd345"];
+[videoData setVideoTitle:@"My Other Great Video"];
+[videoData setVideoSeries:@"Weekly Great Videos"];
+[MUXSDKStats videoChangeForPlayer:@"awesome" withVideoData:videoData];
 ```
 
 When you change to a new video (in the same player) you need to update the information that Mux knows about the current video. Examples of when this is needed are:
@@ -294,7 +294,7 @@ This is done by emitting a <code>videochange</code> event through <code>mux</cod
 </p>
 
 <p class="lang-specific obj-c">
-This is done by calling <code>videoChangeForPlayer:withConfig:</code> which will remove all previous video data and reset all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
+This is done by calling <code>videoChangeForPlayer:withVideoData:</code> which will remove all previous video data and reset all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
 </p>
 
 <!-- hackety hack hack to make left nav work better -->
