@@ -7,7 +7,7 @@ language_tabs:
   - objective_c: Objective-C
 
 toc_footers:
-  - <a href='http://mux.com'>Sign Up for Mux</a>
+  - <a href='https://mux.com/sales-contact'>Sign Up for Mux</a>
 
 search: true
 ---
