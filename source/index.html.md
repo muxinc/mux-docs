@@ -144,25 +144,25 @@ videojs('my-player', {
 ```objective_c
 // Property and player data that persists until the player is destroyed
 MUXSDKCustomerPlayerData *playerData = [[MUXSDKCustomerPlayerData alloc] initWithPropertyKey:@"EXAMPLE_PROPERTY_KEY"];
-[playerData setViewerUserId: @"1234"];
-[playerData setExperimentName:@"player_test_A"];
-[playerData setPlayerName:@"My Main Player"];
-[playerData setPlayerVersion:@"1.0.0"];
+playerData.viewerUserId = @"1234";
+playerData.experimentName = @"player_test_A";
+playerData.playerName = @"My Main Player";
+playerData.playerVersion = @"1.0.0";
 
 // Video metadata (cleared with videoChangeForPlayer:withVideoData:)
 MUXSDKCustomerVideoData *videoData = [MUXSDKCustomerVideoData new];
-[videoData setVideoId:@"abcd123"];
-[videoData setVideoTitle:@"My Great Video"];
-[videoData setVideoSeries:@"Weekly Great Videos"];
-[videoData setVideoProducer:@"Bob the Producer"];
-[videoData setVideoContentType:@"type"];
-[videoData setVideoLanguageCode:@"en"];
-[videoData setVideoVariantName:@"Spanish Hard Subs"];
-[videoData setVideoVariantId:@"abcd1234"];
-[videoData setVideoDuration:[NSNumber numberWithLongLong:120000]]; // in milliseconds
-[videoData setVideoIsLive:@NO];
-[videoData setVideoEncodingVariant:@"Variant 1"];
-[videoData setVideoCdn:@"cdn"];
+videoData.videoId = @"abcd123";
+videoData.videoTitle = @"My Great Video";
+videoData.videoSeries = @"Weekly Great Videos";
+videoData.videoProducer = @"Bob the Producer";
+videoData.videoContentType = @"type";
+videoData.videoLanguageCode = @"en";
+videoData.videoVariantName = @"Spanish Hard Subs";
+videoData.videoVariantId = @"abcd1234";
+videoData.videoDuration = @(120000); // in millisecons
+videoData.videoIsLive = @NO;
+videoData.videoEncodingVariant = @"Variant 1";
+videoData.videoCdn = @"cdn";
 
 AVPlayerLayer *player = [AVPlayerLayer new];
 [MUXSDKStats monitorAVPlayerViewController:player withPlayerName:@"awesome" playerData:playerData videoData:videoData];
@@ -274,9 +274,9 @@ myPlayer.mux.emit('videochange', {
 [player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:@"..."]];
 
 MUXSDKCustomerVideoData *videoData = [MUXSDKCustomerVideoData new];
-[videoData setVideoId:@"abcd345"];
-[videoData setVideoTitle:@"My Other Great Video"];
-[videoData setVideoSeries:@"Weekly Great Videos"];
+videoData.videoId = @"abcd345";
+videoData.videoTitle = @"My Other Great Video";
+videoData.videoSeries = @"Weekly Great Videos";
 [MUXSDKStats videoChangeForPlayer:@"awesome" withVideoData:videoData];
 ```
 
