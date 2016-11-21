@@ -242,25 +242,25 @@
 </p>
 <pre class="highlight objective_c"><code><span class="c1">// Property and player data that persists until the player is destroyed
 </span><span class="n">MUXSDKCustomerPlayerData</span> <span class="o">*</span><span class="n">playerData</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MUXSDKCustomerPlayerData</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithPropertyKey</span><span class="p">:</span><span class="s">@"EXAMPLE_PROPERTY_KEY"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">playerData</span> <span class="nf">setViewerUserId</span><span class="p">:</span> <span class="s">@"1234"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">playerData</span> <span class="nf">setExperimentName</span><span class="p">:</span><span class="s">@"player_test_A"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">playerData</span> <span class="nf">setPlayerName</span><span class="p">:</span><span class="s">@"My Main Player"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">playerData</span> <span class="nf">setPlayerVersion</span><span class="p">:</span><span class="s">@"1.0.0"</span><span class="p">];</span>
+<span class="n">playerData</span><span class="p">.</span><span class="n">viewerUserId</span> <span class="o">=</span> <span class="s">@"1234"</span><span class="p">;</span>
+<span class="n">playerData</span><span class="p">.</span><span class="n">experimentName</span> <span class="o">=</span> <span class="s">@"player_test_A"</span><span class="p">;</span>
+<span class="n">playerData</span><span class="p">.</span><span class="n">playerName</span> <span class="o">=</span> <span class="s">@"My Main Player"</span><span class="p">;</span>
+<span class="n">playerData</span><span class="p">.</span><span class="n">playerVersion</span> <span class="o">=</span> <span class="s">@"1.0.0"</span><span class="p">;</span>
 
 <span class="c1">// Video metadata (cleared with videoChangeForPlayer:withVideoData:)
 </span><span class="n">MUXSDKCustomerVideoData</span> <span class="o">*</span><span class="n">videoData</span> <span class="o">=</span> <span class="p">[</span><span class="n">MUXSDKCustomerVideoData</span> <span class="nf">new</span><span class="p">];</span>
-<span class="p">[</span><span class="n">videoData</span> <span class="nf">setVideoId</span><span class="p">:</span><span class="s">@"abcd123"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">videoData</span> <span class="nf">setVideoTitle</span><span class="p">:</span><span class="s">@"My Great Video"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">videoData</span> <span class="nf">setVideoSeries</span><span class="p">:</span><span class="s">@"Weekly Great Videos"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">videoData</span> <span class="nf">setVideoProducer</span><span class="p">:</span><span class="s">@"Bob the Producer"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">videoData</span> <span class="nf">setVideoContentType</span><span class="p">:</span><span class="s">@"type"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">videoData</span> <span class="nf">setVideoLanguageCode</span><span class="p">:</span><span class="s">@"en"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">videoData</span> <span class="nf">setVideoVariantName</span><span class="p">:</span><span class="s">@"Spanish Hard Subs"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">videoData</span> <span class="nf">setVideoVariantId</span><span class="p">:</span><span class="s">@"abcd1234"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">videoData</span> <span class="nf">setVideoDuration</span><span class="p">:[</span><span class="n">NSNumber</span> <span class="nf">numberWithLongLong</span><span class="p">:</span><span class="mi">120000</span><span class="p">]];</span> <span class="c1">// in milliseconds
-</span><span class="p">[</span><span class="n">videoData</span> <span class="nf">setVideoIsLive</span><span class="p">:</span><span class="nb">@NO</span><span class="p">];</span>
-<span class="p">[</span><span class="n">videoData</span> <span class="nf">setVideoEncodingVariant</span><span class="p">:</span><span class="s">@"Variant 1"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">videoData</span> <span class="nf">setVideoCdn</span><span class="p">:</span><span class="s">@"cdn"</span><span class="p">];</span>
+<span class="n">videoData</span><span class="p">.</span><span class="n">videoId</span> <span class="o">=</span> <span class="s">@"abcd123"</span><span class="p">;</span>
+<span class="n">videoData</span><span class="p">.</span><span class="n">videoTitle</span> <span class="o">=</span> <span class="s">@"My Great Video"</span><span class="p">;</span>
+<span class="n">videoData</span><span class="p">.</span><span class="n">videoSeries</span> <span class="o">=</span> <span class="s">@"Weekly Great Videos"</span><span class="p">;</span>
+<span class="n">videoData</span><span class="p">.</span><span class="n">videoProducer</span> <span class="o">=</span> <span class="s">@"Bob the Producer"</span><span class="p">;</span>
+<span class="n">videoData</span><span class="p">.</span><span class="n">videoContentType</span> <span class="o">=</span> <span class="s">@"type"</span><span class="p">;</span>
+<span class="n">videoData</span><span class="p">.</span><span class="n">videoLanguageCode</span> <span class="o">=</span> <span class="s">@"en"</span><span class="p">;</span>
+<span class="n">videoData</span><span class="p">.</span><span class="n">videoVariantName</span> <span class="o">=</span> <span class="s">@"Spanish Hard Subs"</span><span class="p">;</span>
+<span class="n">videoData</span><span class="p">.</span><span class="n">videoVariantId</span> <span class="o">=</span> <span class="s">@"abcd1234"</span><span class="p">;</span>
+<span class="n">videoData</span><span class="p">.</span><span class="n">videoDuration</span> <span class="o">=</span> <span class="err">@</span><span class="p">(</span><span class="mi">120000</span><span class="p">);</span> <span class="c1">// in millisecons
+</span><span class="n">videoData</span><span class="p">.</span><span class="n">videoIsLive</span> <span class="o">=</span> <span class="nb">@NO</span><span class="p">;</span>
+<span class="n">videoData</span><span class="p">.</span><span class="n">videoEncodingVariant</span> <span class="o">=</span> <span class="s">@"Variant 1"</span><span class="p">;</span>
+<span class="n">videoData</span><span class="p">.</span><span class="n">videoCdn</span> <span class="o">=</span> <span class="s">@"cdn"</span><span class="p">;</span>
 
 <span class="n">AVPlayerLayer</span> <span class="o">*</span><span class="n">player</span> <span class="o">=</span> <span class="p">[</span><span class="n">AVPlayerLayer</span> <span class="nf">new</span><span class="p">];</span>
 <span class="p">[</span><span class="n">MUXSDKStats</span> <span class="nf">monitorAVPlayerViewController</span><span class="p">:</span><span class="n">player</span> <span class="nf">withPlayerName</span><span class="p">:</span><span class="s">@"awesome"</span> <span class="nf">playerData</span><span class="p">:</span><span class="n">playerData</span> <span class="nf">videoData</span><span class="p">:</span><span class="n">videoData</span><span class="p">];</span>
@@ -440,9 +440,9 @@ In the Objective-C SDKs, <strong>names are converted to lowerCamelCase setters a
 </span><span class="p">[</span><span class="n">player</span> <span class="nf">replaceCurrentItemWithPlayerItem</span><span class="p">:[</span><span class="n">AVPlayerItem</span> <span class="nf">playerItemWithURL</span><span class="p">:</span><span class="s">@"..."</span><span class="p">]];</span>
 
 <span class="n">MUXSDKCustomerVideoData</span> <span class="o">*</span><span class="n">videoData</span> <span class="o">=</span> <span class="p">[</span><span class="n">MUXSDKCustomerVideoData</span> <span class="nf">new</span><span class="p">];</span>
-<span class="p">[</span><span class="n">videoData</span> <span class="nf">setVideoId</span><span class="p">:</span><span class="s">@"abcd345"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">videoData</span> <span class="nf">setVideoTitle</span><span class="p">:</span><span class="s">@"My Other Great Video"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">videoData</span> <span class="nf">setVideoSeries</span><span class="p">:</span><span class="s">@"Weekly Great Videos"</span><span class="p">];</span>
+<span class="n">videoData</span><span class="p">.</span><span class="n">videoId</span> <span class="o">=</span> <span class="s">@"abcd345"</span><span class="p">;</span>
+<span class="n">videoData</span><span class="p">.</span><span class="n">videoTitle</span> <span class="o">=</span> <span class="s">@"My Other Great Video"</span><span class="p">;</span>
+<span class="n">videoData</span><span class="p">.</span><span class="n">videoSeries</span> <span class="o">=</span> <span class="s">@"Weekly Great Videos"</span><span class="p">;</span>
 <span class="p">[</span><span class="n">MUXSDKStats</span> <span class="nf">videoChangeForPlayer</span><span class="p">:</span><span class="s">@"awesome"</span> <span class="nf">withVideoData</span><span class="p">:</span><span class="n">videoData</span><span class="p">];</span>
 </code></pre>
 
