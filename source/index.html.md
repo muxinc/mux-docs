@@ -85,7 +85,7 @@ if (typeof mux !== 'undefined') {
       video_variant_name: '', // ex: 'Spanish Hard Subs'
       video_variant_id: '', // ex: 'abcd1234'
       video_duration: '', // in milliseconds, ex: 120000
-      video_is_live: false, // ex: false or true
+      video_stream_type: '', // 'live' or 'on-demand'
       video_encoding_variant: '', // ex: 'Variant 1'
       video_cdn: '' // ex: 'Fastly', 'Akamai'
     }
