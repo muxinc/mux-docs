@@ -412,7 +412,7 @@ All metadata details except for `property_key` are *optional*, however you'll be
 - All other details will persist until explicitly changed.
 
 <p class="lang-specific objective-c">
-In the Objective-C SDKs, <strong>names are converted to lowerCamelCase setters and getters per Apple's naming guidelines</strong>. See the <a href="https://github.com/muxinc/stats-sdk-objc/blob/master/Frameworks/iOS/release/MUXSDKStats.framework/Headers/MUXSDKCustomerPlayerData.h">MUXSDKCustomerPlayerData.h</a> and <a href="https://github.com/muxinc/stats-sdk-objc/blob/master/Frameworks/iOS/release/MUXSDKStats.framework/Headers/MUXSDKCustomerVideoData.h">MUXSDKCustomerVideoData.h</a> header files for a complete list of names.
+In the Objective-C SDKs, <strong>names are converted to lowerCamelCase setters and getters per Apple's naming guidelines</strong>. See the <a href="https://github.com/muxinc/stats-sdk-objc/blob/master/Frameworks/iOS/release/MUXSDKStats.framework/Headers/MUXSDKCustomerPlayerData.h" target="_blank">MUXSDKCustomerPlayerData.h</a> and <a href="https://github.com/muxinc/stats-sdk-objc/blob/master/Frameworks/iOS/release/MUXSDKStats.framework/Headers/MUXSDKCustomerVideoData.h" target="_blank">MUXSDKCustomerVideoData.h</a> header files for a complete list of names.
 </p>
 
 Name	| Description
@@ -574,7 +574,7 @@ player.mux.emit('error', {
 <p class="lang-specific video-element videojs jwplayer bitmovin ooyala">
 Mux currently tracks fatal errors that are triggered by the player in use. However, in some cases, such as third-party HLS libraries for web players, fatal errors may occur outside of the context of the player. To handle these cases, Mux exposes a type of event that can be triggered via javascript. <strong>This event should only be used for fatal errors. Do not use this for "errors" that do not result in playback failure.</strong>
 <br><br>
-When triggering an error event, it is important to provide an <code>error_code</code> and <code>error_message</code> in an object as the second parameter. The <code>error_message</code> should provide a detailed description of the error as it happened. The <code>error_code</code> must be an integer, and should provide a category of the error. If the errors match up with the <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaError">HTML Media Element Error</a>, you can use the same codes as the corresponding HTML errors. However, for custom errors, you should choose a number greater than or equal to 100. Whether all errors use the same code or you use different codes for different types of errors is up to you. In general you should not send a distinct code for each possible error message, but rather group similar errors under the same code. For instance, if your library has two different conditions for network errors, both should have the same <code>error_code</code> but different messages.
+When triggering an error event, it is important to provide an <code>error_code</code> and <code>error_message</code> in an object as the second parameter. The <code>error_message</code> should provide a detailed description of the error as it happened. The <code>error_code</code> must be an integer, and should provide a category of the error. If the errors match up with the <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaError" target="_blank">HTML Media Element Error</a>, you can use the same codes as the corresponding HTML errors. However, for custom errors, you should choose a number greater than or equal to 100. Whether all errors use the same code or you use different codes for different types of errors is up to you. In general you should not send a distinct code for each possible error message, but rather group similar errors under the same code. For instance, if your library has two different conditions for network errors, both should have the same <code>error_code</code> but different messages.
 </p>
 
 <p class="lang-specific objective-c">
@@ -588,7 +588,7 @@ There are currently no ad integrations supported for the core HTML Video Element
 </p>
 
 <p class="lang-specific videojs">
-Mux supports <a href="https://github.com/googleads/videojs-ima">videojs-ima</a>, as well as Brightcove's IMA3, FreeWheel, and OnceUX plugins. Simply configure these plugins as you would normally, and Mux will track ads automatically. No additional configuration is needed.
+Mux supports <a href="https://github.com/googleads/videojs-ima" target="_blank">videojs-ima</a>, as well as Brightcove's IMA3, FreeWheel, and OnceUX plugins. Simply configure these plugins as you would normally, and Mux will track ads automatically. No additional configuration is needed.
 </p>
 
 <p class="lang-specific jwplayer">
