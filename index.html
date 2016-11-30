@@ -93,7 +93,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;video-element&quot;,&quot;videojs&quot;,&quot;objective_c&quot;]">
+  <body class="index" data-languages="[&quot;video-element&quot;,&quot;videojs&quot;,&quot;jwplayer&quot;,&quot;bitmovin&quot;,&quot;ooyala&quot;,&quot;objective-c&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -107,7 +107,10 @@
         <div class="lang-selector">
               <a href="#" data-language-name="video-element">Video Element</a>
               <a href="#" data-language-name="videojs">Video.js</a>
-              <a href="#" data-language-name="objective_c">Objective-C</a>
+              <a href="#" data-language-name="jwplayer">JW Player</a>
+              <a href="#" data-language-name="bitmovin">Bitmovin</a>
+              <a href="#" data-language-name="ooyala">Ooyala</a>
+              <a href="#" data-language-name="objective-c">iOS/tvOS</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -124,47 +127,95 @@
       <div class="content">
         <h1 id="sdk-integration">SDK Integration</h1>
 
-<p>Mux is still in early development. At this time we support <strong>iOS</strong>, <strong>tvOS</strong> and two browser-based video players: <strong>Video.js</strong> and the bare <strong>HTML5 video element</strong>. More players and platforms as well as native SDKs for Android and OTT platforms are coming soon.</p>
+<p>Mux has integrations with the following web players and native environments:</p>
+
+<ul>
+<li>HTML5 Video Element</li>
+<li>Video.js (also supports Brightcove players version 5.x)</li>
+<li>JW Player 7</li>
+<li>Bitmovin Player 5.x and 6.x</li>
+<li>Ooyala Player V4</li>
+<li>iOS 8+ and tvOS 9+ (Objective-C)</li>
+</ul>
+
+<p>More players and platforms will be added as they become available. If you are interested in an integration that is not listed, please <a href="https://mux.com/sales-contact">contact us</a> as we may have plans for that platform already.</p>
 
 <p>Pick which SDK you want to use from the tabs on the right (or in the nav on mobile).</p>
 
 <h2 id="including-the-sdk">Including the SDK</h2>
 <pre class="highlight video-element--html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//src.litix.io/core/2/mux.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
+<pre class="highlight video-element--shell"><code><span class="c"># For npm installs, use the following</span>
+<span class="gp">$ </span>npm install --save mux-embed
+</code></pre>
 
 <p class="lang-specific video-element">
-  Include the Mux JavaScript SDK on every page of your site/app that includes video. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
+  Include the Mux JavaScript SDK on every page of your site/app that includes video. You can use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
+  <br><br>
+  Alternatively, you can bundle Mux into your own player script through <code>npm</code>. If you choose to go down this path, we suggest that you check for updates often and merge these into your player as soon as makes sense with your development schedule. The API will not change within major versions.
 </p>
 <pre class="highlight videojs--html"><code><span class="c">&lt;!-- Include videojs-mux after Video.js --&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"path/to/video.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="c">&lt;!-- Include any ad-specific files here --&gt;</span>
+<span class="c">&lt;!-- Include other videojs plugin files here --&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//src.litix.io/videojs/2/videojs-mux.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre>
+<pre class="highlight videojs--shell"><code><span class="c"># For npm installs, use the following</span>
+<span class="gp">$ </span>npm install --save videojs-mux
 </code></pre>
 
 <p class="lang-specific videojs">
-  Include the videojs-mux plugin after Video.js in the page (or wherever your other Video.js plugins are loaded). If you utilize any ad integrations with Video.js, include the necessary ad integration JavaScript files before the videojs-mux plugin.
+  Include the videojs-mux plugin after Video.js in the page (or wherever your other Video.js plugins are loaded). If you utilize any ad integrations with Video.js, include the necessary ad integration JavaScript files before the videojs-mux plugin. You can use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
+  <br><br>
+  Alternatively, you can bundle videojs-mux into your own player script through <code>npm</code>. If you choose to go down this path, we suggest that you check for updates often and merge these into your player as soon as makes sense with your development schedule. The API will not change within major versions.
 </p>
-<pre class="highlight objective_c"><code><span class="cp"># git clone https://github.com/muxinc/stats-sdk-objc.git
-</span>
-<span class="c1">// for iOS
+<pre class="highlight jwplayer--html"><code><span class="c">&lt;!-- Include jwplayer-mux after the core JW Player favascript file --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//content.jwplatform.com/libraries/key.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//src.litix.io/jwplayer/2/jwplayer-mux.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre>
+
+<p class="lang-specific jwplayer">
+  Include the jwplayer-mux file after the core JW Player javascript file in the page. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions). Note that <code>key</code> in the example on the right should be replaced with the key provided by JW Player for your account.
+</p>
+<pre class="highlight bitmovin--html"><code><span class="c">&lt;!-- Include bitmovin-mux after the core Bitmovin javascript file --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//bitmovin-a.akamaihd.net/bitmovin-player/stable/6/bitmovinplayer.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//src.litix.io/bitmovin/2/bitmovin-mux.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre>
+
+<p class="lang-specific bitmovin">
+  Include the bitmovin-mux file after the core Bitmovin javascript file in the page. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions). Note that <code>stable</code> and <code>6</code> in the example on the right can be replaced with the Release Channel and player version (5 or 6), respectively, that you want to use.
+</p>
+<pre class="highlight ooyala--html"><code><span class="c">&lt;!-- Include ooyala-mux after the core Ooyala javascript files --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//player.ooyala.com/static/v4/stable/latest/core.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="c">&lt;!-- Insert other Ooyala plugin files here --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//src.litix.io/ooyala/2/ooyala-mux.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre>
+
+<p class="lang-specific ooyala">
+  Include the bitmovin-mux file after the core Bitmovin javascript file in the page. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions). Note that <code>stable</code> and <code>6</code> in the example on the right can be replaced with the Release Channel and player version (5 or 6), respectively, that you want to use.
+</p>
+<pre class="highlight objective-c--shell"><code><span class="gp">$ </span>git clone https://github.com/muxinc/stats-sdk-objc.git
+</code></pre>
+<pre class="highlight objective-c"><code><span class="c1">// for iOS
 </span><span class="k">@import</span> <span class="n">MUXSDKStats</span><span class="p">;</span>
 
 <span class="c1">// for tvOS
 </span><span class="k">@import</span> <span class="n">MUXSDKStatsTv</span><span class="p">;</span>
 </code></pre>
 
-<p class="lang-specific objective_c">
-  Include the correct Mux Objective-C SDK for your project by cloning our repository and dragging the framework into your Xcode project. The <code>Frameworks</code> folder contains two folders, one for iOS and one for tvOS. Inside these folders, there are 3 additional folders containing different architecture combinations. The <code>fat</code> folder contains a library with all architectures in one. This library cannot be used when compiling for submission to the App Store as it contains the simulator architectures that are not used by any Apple devices. You can use the framework in the <code>release</code> folder when building a release version of your application, or you can run <a href="https://gist.github.com/brett-stover-hs/b25947a125ff7e38e7ca#file-frameworks_blogpost_removal_script_a-sh">a script to strip unneeded architectures</a>. Finally, don&rsquo;t forget to add the correct import statement for your target platform.
+<p class="lang-specific objective-c">
+  Include the correct Mux Objective-C SDK for your project by cloning our repository and dragging the framework into your Xcode project. The <code>Frameworks</code> folder contains two folders, one for iOS and one for tvOS. Inside these folders, there are 3 additional folders containing different architecture combinations. The <code>fat</code> folder contains a library with all architectures in one. This library cannot be used when compiling for submission to the App Store as it contains the simulator architectures that are not used by any Apple devices. You can use the framework in the <code>release</code> folder when building a release version of your application, or you can run <a href="https://gist.github.com/brett-stover-hs/b25947a125ff7e38e7ca#file-frameworks_blogpost_removal_script_a-sh" target="_blank">a script to strip unneeded architectures</a>. Finally, don&rsquo;t forget to add the correct import statement for your target platform.
 </p>
 
 <h2 id="initializing">Initializing</h2>
 <pre class="highlight video-element--html"><code><span class="c">&lt;!-- Example html video element --&gt;</span>
-<span class="nt">&lt;video</span> <span class="na">id=</span><span class="s">"my-video"</span><span class="nt">&gt;&lt;/video&gt;</span>
+<span class="nt">&lt;video</span> <span class="na">id=</span><span class="s">"myVideo"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;source</span> <span class="na">src=</span><span class="s">"//path/to/video.mp4"</span> <span class="na">type=</span><span class="s">"video/mp4"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/video&gt;</span>
 
 <span class="nt">&lt;script&gt;</span>
 <span class="c1">// Initialize mux monitoring</span>
 <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">mux</span> <span class="o">!==</span> <span class="s1">'undefined'</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">mux</span><span class="p">.</span><span class="nx">monitor</span><span class="p">(</span><span class="s1">'#my-video'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">mux</span><span class="p">.</span><span class="nx">monitor</span><span class="p">(</span><span class="s1">'#myVideo'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
       <span class="na">property_key</span><span class="p">:</span> <span class="s1">'EXAMPLE_PROPERTY_KEY'</span><span class="p">,</span> <span class="c1">// required</span>
@@ -187,7 +238,7 @@
       <span class="na">video_variant_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Spanish Hard Subs'</span>
       <span class="na">video_variant_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd1234'</span>
       <span class="na">video_duration</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// in milliseconds, ex: 120000</span>
-      <span class="na">video_is_live</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// ex: false or true</span>
+      <span class="na">video_stream_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// 'live' or 'on-demand'</span>
       <span class="na">video_encoding_variant</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Variant 1'</span>
       <span class="na">video_cdn</span><span class="p">:</span> <span class="s1">''</span> <span class="c1">// ex: 'Fastly', 'Akamai'</span>
     <span class="p">}</span>
@@ -197,7 +248,7 @@
 </code></pre>
 
 <p class="lang-specific video-element">
-  To monitor the performance of a specific video element, call <code>mux.monitor</code>, passing a valid CSS selector for your video element along with options for the SDK. This selector must return only a single element (the <code>&ltvideo&gt</code> element that is tracked), and should be used in any further calls to mux for the same player, such as when <a href="#changing-the-video">changing the video</a>.
+  To monitor the performance of a specific video element, call <code>mux.monitor</code>, passing options for the SDK along with either a valid CSS selector for your video element or a reference to the video element itself. If you pass a selector, it must return only a single element (the <code>&ltvideo&gt</code> element that is tracked). Any further calls to <code>mux</code> for the same player (such as when <a href="#changing-the-video">changing the video</a>) can be passed either the selector or the reference to the video element.
 </p>
 <pre class="highlight videojs"><code><span class="c1">// Record the player init time</span>
 <span class="kd">var</span> <span class="nx">player_init_time</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
@@ -228,7 +279,7 @@
         <span class="na">video_variant_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Spanish Hard Subs'</span>
         <span class="na">video_variant_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd1234'</span>
         <span class="na">video_duration</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// in milliseconds, ex: 120000</span>
-        <span class="na">video_is_live</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// ex: false or true</span>
+        <span class="na">video_stream_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// 'live' or 'on-demand'</span>
         <span class="na">video_encoding_variant</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Variant 1'</span>
         <span class="na">video_cdn</span><span class="p">:</span> <span class="s1">''</span> <span class="c1">// ex: 'Fastly', 'Akamai'</span>
       <span class="p">}</span>
@@ -236,11 +287,162 @@
   <span class="p">}</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight videojs--html"><code><span class="c">&lt;!-- OR in the data-setup attribute of the video.js element --&gt;</span>
+<span class="nt">&lt;video</span> <span class="na">id=</span><span class="s">"my-player"</span>
+  <span class="na">data-setup=</span><span class="s">'{"plugins": {"mux": {"debug": false, "data": { ... }}}}'</span> <span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/video&gt;</span>
+</code></pre>
+<pre class="highlight videojs"><code><span class="c1">// OR by calling the plugin directly</span>
+<span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">videojs</span><span class="p">(</span><span class="s1">'my-player'</span><span class="p">);</span>
+<span class="nx">player</span><span class="p">.</span><span class="nx">mux</span><span class="p">({</span>
+  <span class="na">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">data</span><span class="p">:</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
 
-<p class="lang-specific objective_c">
-  To monitor the performance of an AVPlayer, call either <code>monitorAVPlayerViewController:withPlayerName:playerData:videoData:</code> or <code>monitorAVPlayerLayer:withPlayerName:playerData:videoData:</code>, passing a pointer to your AVPlayer container (either the <code>AVPlayerLayer</code> or <code>AVPlayerViewController</code>) to the SDK. When calling <code>destroyPlayer</code> or <code>videoChangeForPlayer:withVideoData:</code> to <a href="#changing-the-video">change the video</a> the same player name used for the monitor call must be used.
+<p class="lang-specific videojs">
+  Like other Video.js plugins, initialize the videojs-mux plugin by including options in the player plugin options. This can be in the options passed to the <code>videojs</code> function (or the <code>data-setup</code> attribute) or by calling the <code>mux</code> function directly on the player instance.
 </p>
-<pre class="highlight objective_c"><code><span class="c1">// Property and player data that persists until the player is destroyed
+<pre class="highlight jwplayer--html"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"myPlayer"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="kd">var</span> <span class="nx">conf</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// Insert JW Player configuration here</span>
+  <span class="p">};</span>
+
+  <span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">jwplayer</span><span class="p">(</span><span class="s1">'myPlayer'</span><span class="p">).</span><span class="nx">setup</span><span class="p">(</span><span class="nx">conf</span><span class="p">);</span>
+
+  <span class="nx">initJWPlayerMux</span><span class="p">(</span><span class="nx">player</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">property_key</span><span class="p">:</span> <span class="s1">'EXAMPLE_PROPERTY_KEY'</span><span class="p">,</span> <span class="c1">// required</span>
+      <span class="na">page_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// (see docs) 'watchpage', 'iframe', or leave empty</span>
+      <span class="na">viewer_user_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '12345'</span>
+      <span class="na">experiment_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'player_test_A'</span>
+
+      <span class="c1">// Player Metadata</span>
+      <span class="na">player_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'My Main Player'</span>
+      <span class="na">player_version</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '1.0.0'</span>
+      <span class="na">player_init_time</span><span class="p">:</span> <span class="nx">player_init_time</span><span class="p">,</span> <span class="c1">// ex: 1451606400000</span>
+
+      <span class="c1">// Video Metadata (cleared with 'videochange' event)</span>
+      <span class="na">video_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd123'</span>
+      <span class="na">video_title</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'My Great Video'</span>
+      <span class="na">video_series</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Weekly Great Videos'</span>
+      <span class="na">video_producer</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Bob the Producer'</span>
+      <span class="na">video_content_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// 'short', 'movie', 'episode', 'clip', 'trailer', or 'event'</span>
+      <span class="na">video_language_code</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'en'</span>
+      <span class="na">video_variant_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Spanish Hard Subs'</span>
+      <span class="na">video_variant_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd1234'</span>
+      <span class="na">video_duration</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// in milliseconds, ex: 120000</span>
+      <span class="na">video_stream_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// 'live' or 'on-demand'</span>
+      <span class="na">video_encoding_variant</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Variant 1'</span>
+      <span class="na">video_cdn</span><span class="p">:</span> <span class="s1">''</span> <span class="c1">// ex: 'Fastly', 'Akamai'</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+
+<p class="lang-specific jwplayer">
+  After creating you instance of JW Player, simply pass that player reference to <code>initJWPlayerMux</code> along with the options for the SDK. It is preferred to retrieve the reference from the return of <code>jwplayer(id).setup({...})</code> so that Mux can track events as soon as possible.
+</p>
+<pre class="highlight bitmovin--html"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"playerdiv"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="kd">var</span> <span class="nx">conf</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// Insert Bitmovin player configuration here</span>
+  <span class="p">};</span>
+
+  <span class="c1">// For 5.x of Bitmovin's player, use `bitdash.('playerdiv')`</span>
+  <span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">bitmovin</span><span class="p">.</span><span class="nx">player</span><span class="p">(</span><span class="s1">'playerdiv'</span><span class="p">);</span>
+  <span class="nx">player</span><span class="p">.</span><span class="nx">setup</span><span class="p">(</span><span class="nx">conf</span><span class="p">);</span>
+
+  <span class="nx">initBitmovinMux</span><span class="p">(</span><span class="nx">player</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">property_key</span><span class="p">:</span> <span class="s1">'EXAMPLE_PROPERTY_KEY'</span><span class="p">,</span> <span class="c1">// required</span>
+      <span class="na">page_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// (see docs) 'watchpage', 'iframe', or leave empty</span>
+      <span class="na">viewer_user_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '12345'</span>
+      <span class="na">experiment_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'player_test_A'</span>
+
+      <span class="c1">// Player Metadata</span>
+      <span class="na">player_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'My Main Player'</span>
+      <span class="na">player_version</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '1.0.0'</span>
+      <span class="na">player_init_time</span><span class="p">:</span> <span class="nx">player_init_time</span><span class="p">,</span> <span class="c1">// ex: 1451606400000</span>
+
+      <span class="c1">// Video Metadata (cleared with 'videochange' event)</span>
+      <span class="na">video_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd123'</span>
+      <span class="na">video_title</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'My Great Video'</span>
+      <span class="na">video_series</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Weekly Great Videos'</span>
+      <span class="na">video_producer</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Bob the Producer'</span>
+      <span class="na">video_content_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// 'short', 'movie', 'episode', 'clip', 'trailer', or 'event'</span>
+      <span class="na">video_language_code</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'en'</span>
+      <span class="na">video_variant_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Spanish Hard Subs'</span>
+      <span class="na">video_variant_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd1234'</span>
+      <span class="na">video_duration</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// in milliseconds, ex: 120000</span>
+      <span class="na">video_stream_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// 'live' or 'on-demand'</span>
+      <span class="na">video_encoding_variant</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Variant 1'</span>
+      <span class="na">video_cdn</span><span class="p">:</span> <span class="s1">''</span> <span class="c1">// ex: 'Fastly', 'Akamai'</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+
+<p class="lang-specific bitmovin">
+  After creating the instance of the Bitmovin player, simply pass that player reference to <code>initBitmovinMux</code> along with the options for the SDK. It is preferred to retrieve the reference from the return of <code>bitmovin.player(id)</code> rather than on a player callback so that Mux can track events as soon as possible.
+</p>
+<pre class="highlight ooyala--html"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"playerdiv"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="c1">// Use a callback for when the player is created to register Mux</span>
+  <span class="kd">var</span> <span class="nx">onPlayerCreated</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">player</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">initOoyalaMux</span><span class="p">(</span><span class="nx">player</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">property_key</span><span class="p">:</span> <span class="s1">'EXAMPLE_PROPERTY_KEY'</span><span class="p">,</span> <span class="c1">// required</span>
+        <span class="na">page_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// (see docs) 'watchpage', 'iframe', or leave empty</span>
+        <span class="na">viewer_user_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '12345'</span>
+        <span class="na">experiment_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'player_test_A'</span>
+
+        <span class="c1">// Player Metadata</span>
+        <span class="na">player_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'My Main Player'</span>
+        <span class="na">player_version</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: '1.0.0'</span>
+        <span class="na">player_init_time</span><span class="p">:</span> <span class="nx">player_init_time</span><span class="p">,</span> <span class="c1">// ex: 1451606400000</span>
+
+        <span class="c1">// Video Metadata (cleared with 'videochange' event)</span>
+        <span class="na">video_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd123'</span>
+        <span class="na">video_title</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'My Great Video'</span>
+        <span class="na">video_series</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Weekly Great Videos'</span>
+        <span class="na">video_producer</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Bob the Producer'</span>
+        <span class="na">video_content_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// 'short', 'movie', 'episode', 'clip', 'trailer', or 'event'</span>
+        <span class="na">video_language_code</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'en'</span>
+        <span class="na">video_variant_name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Spanish Hard Subs'</span>
+        <span class="na">video_variant_id</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'abcd1234'</span>
+        <span class="na">video_duration</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// in milliseconds, ex: 120000</span>
+        <span class="na">video_stream_type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// 'live' or 'on-demand'</span>
+        <span class="na">video_encoding_variant</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// ex: 'Variant 1'</span>
+        <span class="na">video_cdn</span><span class="p">:</span> <span class="s1">''</span> <span class="c1">// ex: 'Fastly', 'Akamai'</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">};</span>
+
+  <span class="kd">var</span> <span class="nx">asset</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// Insert Ooyala asset configuration here</span>
+  <span class="p">};</span>
+  <span class="kd">var</span> <span class="nx">playerConfig</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"onCreate"</span><span class="p">:</span> <span class="nx">onPlayerCreated</span><span class="p">,</span>
+    <span class="c1">// Insert other Ooyala player configuration (e.g. autoplay etc) here</span>
+  <span class="p">};</span>
+
+  <span class="c1">// Create the player with the Mux callback</span>
+  <span class="nx">OO</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">OO</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'playerdiv'</span><span class="p">,</span> <span class="nx">asset</span><span class="p">,</span> <span class="nx">playerConfig</span><span class="p">)</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+
+<p class="lang-specific ooyala">
+  You must register an <code>onCreate</code> handler when you create the Ooyala player, and in that callback simply pass that player reference to <code>initOoyalaMux</code> along with the options for the SDK.
+</p>
+<pre class="highlight objective-c"><code><span class="c1">// Property and player data that persists until the player is destroyed
 </span><span class="n">MUXSDKCustomerPlayerData</span> <span class="o">*</span><span class="n">playerData</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MUXSDKCustomerPlayerData</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithPropertyKey</span><span class="p">:</span><span class="s">@"EXAMPLE_PROPERTY_KEY"</span><span class="p">];</span>
 <span class="n">playerData</span><span class="p">.</span><span class="n">viewerUserId</span> <span class="o">=</span> <span class="s">@"1234"</span><span class="p">;</span>
 <span class="n">playerData</span><span class="p">.</span><span class="n">experimentName</span> <span class="o">=</span> <span class="s">@"player_test_A"</span><span class="p">;</span>
@@ -265,22 +467,9 @@
 <span class="n">AVPlayerLayer</span> <span class="o">*</span><span class="n">player</span> <span class="o">=</span> <span class="p">[</span><span class="n">AVPlayerLayer</span> <span class="nf">new</span><span class="p">];</span>
 <span class="p">[</span><span class="n">MUXSDKStats</span> <span class="nf">monitorAVPlayerViewController</span><span class="p">:</span><span class="n">player</span> <span class="nf">withPlayerName</span><span class="p">:</span><span class="s">@"awesome"</span> <span class="nf">playerData</span><span class="p">:</span><span class="n">playerData</span> <span class="nf">videoData</span><span class="p">:</span><span class="n">videoData</span><span class="p">];</span>
 </code></pre>
-<pre class="highlight videojs--html"><code><span class="c">&lt;!-- OR in the data-setup attribute of the video.js element --&gt;</span>
-<span class="nt">&lt;video</span> <span class="na">id=</span><span class="s">"my-player"</span>
-  <span class="na">data-setup=</span><span class="s">'{"plugins": {"mux": {"debug": false, "data": { ... }}}}'</span> <span class="nt">&gt;</span>
-  ...
-<span class="nt">&lt;/video&gt;</span>
-</code></pre>
-<pre class="highlight videojs"><code><span class="c1">// OR by calling the plugin directly</span>
-<span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">videojs</span><span class="p">(</span><span class="s1">'my-player'</span><span class="p">);</span>
-<span class="nx">player</span><span class="p">.</span><span class="nx">mux</span><span class="p">({</span>
-  <span class="na">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="na">data</span><span class="p">:</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
-<span class="p">});</span>
-</code></pre>
 
-<p class="lang-specific videojs">
-  Like other Video.js plugins, initialize the videojs-mux plugin by including options in the player plugin options. This can be in the options passed to the <code>videojs</code> function (or the <code>data-setup</code> attribute) or by calling the <code>mux</code> function directly on the player instance.
+<p class="lang-specific objective-c">
+  To monitor the performance of an AVPlayer, call either <code>monitorAVPlayerViewController:withPlayerName:playerData:videoData:</code> or <code>monitorAVPlayerLayer:withPlayerName:playerData:videoData:</code>, passing a pointer to your AVPlayer container (either the <code>AVPlayerLayer</code> or <code>AVPlayerViewController</code>) to the SDK. When calling <code>destroyPlayer</code> or <code>videoChangeForPlayer:withVideoData:</code> to <a href="#changing-the-video">change the video</a> the same player name used for the monitor call must be used.
 </p>
 
 <h3 id="sdk-options">SDK Options</h3>
@@ -304,7 +493,7 @@
 </tr>
 </tbody></table>
 
-<p class="lang-specific objective_c">
+<p class="lang-specific objective-c">
   In the Objective-C SDKs, <strong>options are provided via the MUXSDKCustomerPlayerData and MUXSDKCustomerVideoData objects</strong>.
 </p>
 
@@ -317,11 +506,11 @@
 <ul>
 <li>Video details (prepended by <code class="prettyprint">video_</code>) describe the current video that&rsquo;s playing and are all reset automatically when <a href="#changing-the-video">changing the video</a>. This metadata would come from your internal CMS or video management system.</li>
 <li>Player details (prepended by <code class="prettyprint">player_</code>) describe the player configuration that&rsquo;s being used and should be set whenever monitoring is started on a new player. They do not reset when the video is changed.</li>
-<li>All other details can be set once per page load, and after being set they will persist between videos and player instances on a page.</li>
+<li>All other details will persist until explicitly changed.</li>
 </ul>
 
-<p class="lang-specific objective_c">
-In the Objective-C SDKs, <strong>names are converted to lowerCamelCase setters and getters per Apple&rsquo;s naming guidelines</strong>. See the <a href="https://github.com/muxinc/stats-sdk-objc/blob/master/Frameworks/iOS/release/MUXSDKStats.framework/Headers/MUXSDKCustomerPlayerData.h">MUXSDKCustomerPlayerData.h</a> and <a href="https://github.com/muxinc/stats-sdk-objc/blob/master/Frameworks/iOS/release/MUXSDKStats.framework/Headers/MUXSDKCustomerVideoData.h">MUXSDKCustomerVideoData.h</a> header files for a complete list of names.
+<p class="lang-specific objective-c">
+In the Objective-C SDKs, <strong>names are converted to lowerCamelCase setters and getters per Apple&rsquo;s naming guidelines</strong>. See the <a href="https://github.com/muxinc/stats-sdk-objc/blob/master/Frameworks/iOS/release/MUXSDKStats.framework/Headers/MUXSDKCustomerPlayerData.h" target="_blank">MUXSDKCustomerPlayerData.h</a> and <a href="https://github.com/muxinc/stats-sdk-objc/blob/master/Frameworks/iOS/release/MUXSDKStats.framework/Headers/MUXSDKCustomerVideoData.h" target="_blank">MUXSDKCustomerVideoData.h</a> header files for a complete list of names.
 </p>
 
 <table><thead>
@@ -391,8 +580,8 @@ In the Objective-C SDKs, <strong>names are converted to lowerCamelCase setters a
 <td>The length of the video in <strong>milliseconds</strong> [integer]</td>
 </tr>
 <tr>
-<td>video_is_live</td>
-<td>Boolean indicating if the video is a live stream or not</td>
+<td>video_stream_type</td>
+<td>&#39;live&rsquo; or &#39;on-demand&rsquo;</td>
 </tr>
 <tr>
 <td>video_producer</td>
@@ -411,11 +600,11 @@ In the Objective-C SDKs, <strong>names are converted to lowerCamelCase setters a
 <h2 id="changing-the-video">Changing the Video</h2>
 <pre class="highlight video-element"><code><span class="c1">// Example of changing the source of a video element</span>
 <span class="c1">// Should happen before emitting the videochange event</span>
-<span class="kd">var</span> <span class="nx">myVideo</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#my-video'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">myVideo</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#myVideo'</span><span class="p">);</span>
 <span class="nx">myVideo</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">'nextVideo.mp4'</span><span class="p">;</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">mux</span> <span class="o">!==</span> <span class="s1">'undefined'</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">mux</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'#my-video'</span><span class="p">,</span> <span class="s1">'videochange'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">mux</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'#myVideo'</span><span class="p">,</span> <span class="s1">'videochange'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">video_id</span><span class="p">:</span> <span class="s1">'abc345'</span><span class="p">,</span>
     <span class="na">video_title</span><span class="p">:</span> <span class="s1">'My Other Great Video'</span><span class="p">,</span>
     <span class="na">video_series</span><span class="p">:</span> <span class="s1">'Weekly Great Videos'</span><span class="p">,</span>
@@ -423,19 +612,39 @@ In the Objective-C SDKs, <strong>names are converted to lowerCamelCase setters a
   <span class="p">});</span>
 <span class="p">}</span>
 </code></pre>
-<pre class="highlight videojs"><code><span class="c1">// Example of changing the source of a Video.js player</span>
-<span class="c1">// Should happen before emitting the videochange event</span>
-<span class="kd">var</span> <span class="nx">myPlayer</span> <span class="o">=</span> <span class="nx">videojs</span><span class="p">(</span><span class="s1">'my-player'</span><span class="p">);</span>
-<span class="nx">myPlayer</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'nextVideo.mp4'</span><span class="p">);</span>
-
-<span class="nx">myPlayer</span><span class="p">.</span><span class="nx">mux</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'videochange'</span><span class="p">,</span> <span class="p">{</span>
+<pre class="highlight videojs"><code><span class="c1">// Call this immediately after loading the new video into the player</span>
+<span class="nx">player</span><span class="p">.</span><span class="nx">mux</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'videochange'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">video_id</span><span class="p">:</span> <span class="s1">'abc345'</span><span class="p">,</span>
   <span class="na">video_title</span><span class="p">:</span> <span class="s1">'My Other Great Video'</span><span class="p">,</span>
   <span class="na">video_series</span><span class="p">:</span> <span class="s1">'Weekly Great Videos'</span><span class="p">,</span>
   <span class="p">...</span>
 <span class="p">});</span>
 </code></pre>
-<pre class="highlight objective_c"><code><span class="c1">// Example of changing the AVPlayerItem
+<pre class="highlight jwplayer"><code><span class="c1">// Call this immediately after loading the new video into the player</span>
+<span class="nx">player</span><span class="p">.</span><span class="nx">mux</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'videochange'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">video_id</span><span class="p">:</span> <span class="s1">'abc345'</span><span class="p">,</span>
+  <span class="na">video_title</span><span class="p">:</span> <span class="s1">'My Other Great Video'</span><span class="p">,</span>
+  <span class="na">video_series</span><span class="p">:</span> <span class="s1">'Weekly Great Videos'</span><span class="p">,</span>
+  <span class="p">...</span>
+<span class="p">});</span>
+</code></pre>
+<pre class="highlight bitmovin"><code><span class="c1">// Call this immediately after loading the new video into the player</span>
+<span class="nx">player</span><span class="p">.</span><span class="nx">mux</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'videochange'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">video_id</span><span class="p">:</span> <span class="s1">'abc345'</span><span class="p">,</span>
+  <span class="na">video_title</span><span class="p">:</span> <span class="s1">'My Other Great Video'</span><span class="p">,</span>
+  <span class="na">video_series</span><span class="p">:</span> <span class="s1">'Weekly Great Videos'</span><span class="p">,</span>
+  <span class="p">...</span>
+<span class="p">});</span>
+</code></pre>
+<pre class="highlight ooyala"><code><span class="c1">// Call this immediately after loading the new video into the player</span>
+<span class="nx">player</span><span class="p">.</span><span class="nx">mux</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'videochange'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">video_id</span><span class="p">:</span> <span class="s1">'abc345'</span><span class="p">,</span>
+  <span class="na">video_title</span><span class="p">:</span> <span class="s1">'My Other Great Video'</span><span class="p">,</span>
+  <span class="na">video_series</span><span class="p">:</span> <span class="s1">'Weekly Great Videos'</span><span class="p">,</span>
+  <span class="p">...</span>
+<span class="p">});</span>
+</code></pre>
+<pre class="highlight objective-c"><code><span class="c1">// Example of changing the AVPlayerItem
 // Should happen before telling MUXSDKStats about the change.
 </span><span class="p">[</span><span class="n">player</span> <span class="nf">replaceCurrentItemWithPlayerItem</span><span class="p">:[</span><span class="n">AVPlayerItem</span> <span class="nf">playerItemWithURL</span><span class="p">:</span><span class="s">@"..."</span><span class="p">]];</span>
 
@@ -455,14 +664,91 @@ In the Objective-C SDKs, <strong>names are converted to lowerCamelCase setters a
 
 <p><strong>You do not need to change the video info when changing to a different source of the same video content (e.g. different resolution or video format).</strong></p>
 
-<p>It&rsquo;s best to change the video info immediately after telling the player which new source to play.</p>
+<p class="lang-specific video-element videojs jwplayer bitmovin ooyala">
+It&rsquo;s best to change the video info immediately after telling the player which new source to play.
+<p>
 
-<p class="lang-specific videojs video-element">
-This is done by emitting a <code>videochange</code> event through <code>mux</code>, and when this is emitted it removes all previous video data and resets all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
+<p class="lang-specific objective-c">
+It&rsquo;s best to change the video info immediately before telling the player which new source to play.
+<p>
+
+<p class="lang-specific video-element">
+This is done by emitting a <code>videochange</code> event via <code>mux.emit</code> in page. When this is emitted, it removes all previous video data and resets all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
 </p>
 
-<p class="lang-specific obj-c">
+<p class="lang-specific videojs jwplayer bitmovin ooyala">
+This is done by emitting a <code>videochange</code> event via <code>mux.emit</code> which has been added to the <code>player</code> object. When this is emitted it removes all previous video data and resets all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
+</p>
+
+<p class="lang-specific objective-c">
 This is done by calling <code>videoChangeForPlayer:withVideoData:</code> which will remove all previous video data and reset all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
+</p>
+
+<h2 id="sending-custom-error-events">Sending Custom Error Events</h2>
+<pre class="highlight video-element"><code><span class="nx">mux</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'#myVideo'</span><span class="p">,</span> <span class="s1">'error'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">error_code</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="na">error_message</span><span class="p">:</span> <span class="s1">'Description of error'</span>
+<span class="p">});</span>
+</code></pre>
+<pre class="highlight videojs"><code><span class="nx">player</span><span class="p">.</span><span class="nx">mux</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">error_code</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="na">error_message</span><span class="p">:</span> <span class="s1">'Description of error'</span>
+<span class="p">});</span>
+</code></pre>
+<pre class="highlight jwplayer"><code><span class="nx">player</span><span class="p">.</span><span class="nx">mux</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">error_code</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="na">error_message</span><span class="p">:</span> <span class="s1">'Description of error'</span>
+<span class="p">});</span>
+</code></pre>
+<pre class="highlight bitmovin"><code><span class="nx">player</span><span class="p">.</span><span class="nx">mux</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">error_code</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="na">error_message</span><span class="p">:</span> <span class="s1">'Description of error'</span>
+<span class="p">});</span>
+</code></pre>
+<pre class="highlight ooyala"><code><span class="nx">player</span><span class="p">.</span><span class="nx">mux</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">error_code</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="na">error_message</span><span class="p">:</span> <span class="s1">'Description of error'</span>
+<span class="p">});</span>
+</code></pre>
+
+<p class="lang-specific video-element videojs jwplayer bitmovin ooyala">
+Mux currently tracks fatal errors that are triggered by the player in use. However, in some cases, such as third-party HLS libraries for web players, fatal errors may occur outside of the context of the player. To handle these cases, Mux exposes a type of event that can be triggered via javascript. <strong>This event should only be used for fatal errors. Do not use this for &ldquo;errors&rdquo; that do not result in playback failure.</strong>
+<br><br>
+When triggering an error event, it is important to provide an <code>error_code</code> and <code>error_message</code> in an object as the second parameter. The <code>error_message</code> should provide a detailed description of the error as it happened. The <code>error_code</code> must be an integer, and should provide a category of the error. If the errors match up with the <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaError" target="_blank">HTML Media Element Error</a>, you can use the same codes as the corresponding HTML errors. However, for custom errors, you should choose a number greater than or equal to 100. Whether all errors use the same code or you use different codes for different types of errors is up to you. In general you should not send a distinct code for each possible error message, but rather group similar errors under the same code. For instance, if your library has two different conditions for network errors, both should have the same <code>error_code</code> but different messages.
+</p>
+
+<p class="lang-specific objective-c">
+There is currently no way to fire custom error events for iOS/tvOS. Mux automatically tracks any errors that are triggered by the underlying video player.
+</p>
+
+<h2 id="ad-support">Ad Support</h2>
+
+<p class="lang-specific video-element">
+There are currently no ad integrations supported for the core HTML Video Element integration. Ads will work fine, but will not be tracked.
+</p>
+
+<p class="lang-specific videojs">
+Mux supports <a href="https://github.com/googleads/videojs-ima" target="_blank">videojs-ima</a>, as well as Brightcove&rsquo;s IMA3, FreeWheel, and OnceUX plugins. Simply configure these plugins as you would normally, and Mux will track ads automatically. No additional configuration is needed.
+</p>
+
+<p class="lang-specific jwplayer">
+Mux has been tested with and supports JW Player&rsquo;s <code>vast</code> integration for pre-, mid-, and post-roll ads. Simply configure these plugins as you would normally, and Mux will track ads automatically. No additional configuration is needed.
+<br><br>
+Other JW Player ad integrations, such as <code>googima</code> and <code>freewheel</code> have not been tested, but may work out of the box. Please <a href="mailto:help@mux.com">contact us</a> with any questions.
+</p>
+
+<p class="lang-specific bitmovin">
+Mux has been tested with and supports Bitmovin&rsquo;s <code>vast</code> advertising client for pre-, mid-, and post-roll ads. Simply configure these plugins as you would normally, and Mux will track ads automatically. No additional configuration is needed.
+</p>
+
+<p class="lang-specific ooyala">
+Mux has been tested with and supports Ooyala&rsquo;s <code>google-ima-ads-manager</code>. Simply configure these plugins as you would normally, and Mux will track ads automatically. No additional configuration is needed.
+<br><br>
+Other Ooyala ad integrations, such as <code>FreeWheel</code> and <code>VAST/VPAID</code> may work out of the box. Please <a href="mailto:help@mux.com">contact us</a> with any questions.
+</p>
+
+<p class="lang-specific objective-c">
+There are currently no ad integrations supported for iOS and tvOS. Ads will work fine, but will not be tracked appropriately.
 </p>
 
 <!-- hackety hack hack to make left nav work better -->
@@ -510,7 +796,10 @@ This is done by calling <code>videoChangeForPlayer:withVideoData:</code> which w
           <div class="lang-selector">
                 <a href="#" data-language-name="video-element">Video Element</a>
                 <a href="#" data-language-name="videojs">Video.js</a>
-                <a href="#" data-language-name="objective_c">Objective-C</a>
+                <a href="#" data-language-name="jwplayer">JW Player</a>
+                <a href="#" data-language-name="bitmovin">Bitmovin</a>
+                <a href="#" data-language-name="ooyala">Ooyala</a>
+                <a href="#" data-language-name="objective-c">iOS/tvOS</a>
           </div>
       </div>
     </div>
