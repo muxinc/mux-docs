@@ -43,7 +43,7 @@ $ npm install --save mux-embed
 <p class="lang-specific video-element">
   Include the Mux JavaScript SDK on every page of your site/app that includes video. You can use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
   <br><br>
-  Alternatively, you can bundle mux into your own player script through <code>npm</code>. If you choose to go down this path, we suggest that you check for updates often and merge these into your player as soon as makes since with your development schedule. The API will not change within major versions.
+  Alternatively, you can bundle Mux into your own player script through <code>npm</code>. If you choose to go down this path, we suggest that you check for updates often and merge these into your player as soon as makes sense with your development schedule. The API will not change within major versions.
 </p>
 
 ```videojs--html
@@ -60,7 +60,7 @@ $ npm install --save videojs-mux
 <p class="lang-specific videojs">
   Include the videojs-mux plugin after Video.js in the page (or wherever your other Video.js plugins are loaded). If you utilize any ad integrations with Video.js, include the necessary ad integration JavaScript files before the videojs-mux plugin. You can use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
   <br><br>
-  Alternatively, you can bundle videojs-mux into your own player script through <code>npm</code>. If you choose to go down this path, we suggest that you check for updates often and merge these into your player as soon as makes since with your development schedule. The API will not change within major versions.
+  Alternatively, you can bundle videojs-mux into your own player script through <code>npm</code>. If you choose to go down this path, we suggest that you check for updates often and merge these into your player as soon as makes sense with your development schedule. The API will not change within major versions.
 </p>
 
 ```jwplayer--html
@@ -106,7 +106,7 @@ $ git clone https://github.com/muxinc/stats-sdk-objc.git
 ```
 
 <p class="lang-specific objective-c">
-  Include the correct Mux Objective-C SDK for your project by cloning our repository and dragging the framework into your Xcode project. The <code>Frameworks</code> folder contains two folders, one for iOS and one for tvOS. Inside these folders, there are 3 additional folders containing different architecture combinations. The <code>fat</code> folder contains a library with all architectures in one. This library cannot be used when compiling for submission to the App Store as it contains the simulator architectures that are not used by any Apple devices. You can use the framework in the <code>release</code> folder when building a release version of your application, or you can run <a href="https://gist.github.com/brett-stover-hs/b25947a125ff7e38e7ca#file-frameworks_blogpost_removal_script_a-sh">a script to strip unneeded architectures</a>. Finally, don't forget to add the correct import statement for your target platform.
+  Include the correct Mux Objective-C SDK for your project by cloning our repository and dragging the framework into your Xcode project. The <code>Frameworks</code> folder contains two folders, one for iOS and one for tvOS. Inside these folders, there are 3 additional folders containing different architecture combinations. The <code>fat</code> folder contains a library with all architectures in one. This library cannot be used when compiling for submission to the App Store as it contains the simulator architectures that are not used by any Apple devices. You can use the framework in the <code>release</code> folder when building a release version of your application, or you can run <a href="https://gist.github.com/brett-stover-hs/b25947a125ff7e38e7ca#file-frameworks_blogpost_removal_script_a-sh" target="_blank">a script to strip unneeded architectures</a>. Finally, don't forget to add the correct import statement for your target platform.
 </p>
 
 ## Initializing
@@ -153,7 +153,7 @@ if (typeof mux !== 'undefined') {
 ```
 
 <p class="lang-specific video-element">
-  To monitor the performance of a specific video element, call <code>mux.monitor</code>, passing options for the SDK along with either a valid CSS selector for your video element or a reference to the video element itself. If you pass a selector, it must return only a single element (the <code>&ltvideo&gt</code> element that is tracked), and should be used in any further calls to mux for the same player, such as when <a href="#changing-the-video">changing the video</a>. You can also use the same reference to the player in further calls to mux for the same player.
+  To monitor the performance of a specific video element, call <code>mux.monitor</code>, passing options for the SDK along with either a valid CSS selector for your video element or a reference to the video element itself. If you pass a selector, it must return only a single element (the <code>&ltvideo&gt</code> element that is tracked). Any further calls to <code>mux</code> for the same player (such as when <a href="#changing-the-video">changing the video</a>) can be passed either the selector or the reference to the video element.
 </p>
 
 ```videojs
@@ -397,7 +397,7 @@ Name	| Description	| Default
 debug	| Put the SDK in debug mode to log operational details	| false
 data | User, page, player, and video metadata for the video | { }
 
-<p class="lang-specific objective_c">
+<p class="lang-specific objective-c">
   In the Objective-C SDKs, <strong>options are provided via the MUXSDKCustomerPlayerData and MUXSDKCustomerVideoData objects</strong>.
 </p>
 
@@ -409,9 +409,9 @@ All metadata details except for `property_key` are *optional*, however you'll be
 
 - Video details (prepended by `video_`) describe the current video that's playing and are all reset automatically when [changing the video](#changing-the-video). This metadata would come from your internal CMS or video management system.
 - Player details (prepended by `player_`) describe the player configuration that's being used and should be set whenever monitoring is started on a new player. They do not reset when the video is changed.
-- All other details can be set once per page load, and after being set they will persist between videos and player instances on a page.
+- All other details will persist until explicitly changed.
 
-<p class="lang-specific objective_c">
+<p class="lang-specific objective-c">
 In the Objective-C SDKs, <strong>names are converted to lowerCamelCase setters and getters per Apple's naming guidelines</strong>. See the <a href="https://github.com/muxinc/stats-sdk-objc/blob/master/Frameworks/iOS/release/MUXSDKStats.framework/Headers/MUXSDKCustomerPlayerData.h">MUXSDKCustomerPlayerData.h</a> and <a href="https://github.com/muxinc/stats-sdk-objc/blob/master/Frameworks/iOS/release/MUXSDKStats.framework/Headers/MUXSDKCustomerVideoData.h">MUXSDKCustomerVideoData.h</a> header files for a complete list of names.
 </p>
 
@@ -523,11 +523,11 @@ It's best to change the video info immediately before telling the player which n
 <p>
 
 <p class="lang-specific video-element">
-This is done by emitting a <code>videochange</code> event through <code>mux</code> in page, and when this is emitted it removes all previous video data and resets all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
+This is done by emitting a <code>videochange</code> event via <code>mux.emit</code> in page. When this is emitted, it removes all previous video data and resets all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
 </p>
 
 <p class="lang-specific videojs jwplayer bitmovin ooyala">
-This is done by emitting a <code>videochange</code> event through <code>mux</code> which has been added to the <code>player</code> object, and when this is emitted it removes all previous video data and resets all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
+This is done by emitting a <code>videochange</code> event via <code>mux.emit</code> which has been added to the <code>player</code> object. When this is emitted it removes all previous video data and resets all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
 </p>
 
 <p class="lang-specific objective-c">
@@ -572,9 +572,9 @@ player.mux.emit('error', {
 ```
 
 <p class="lang-specific video-element videojs jwplayer bitmovin ooyala">
-Mux currently tracks fatal errors that are triggered by the player in use. However, in some cases, such as third-party HLS libraries for web players, fatal errors may occur outside of the context of the player. To handle these cases, Mux exposes a type of event that can be triggered via javascript. <strong>This method should only be used for fatal errors. Do not use this for "errors" that do result in playback failure</strong>
+Mux currently tracks fatal errors that are triggered by the player in use. However, in some cases, such as third-party HLS libraries for web players, fatal errors may occur outside of the context of the player. To handle these cases, Mux exposes a type of event that can be triggered via javascript. <strong>This event should only be used for fatal errors. Do not use this for "errors" that do not result in playback failure.</strong>
 <br><br>
-When triggering an error event, it is important to provide an <code>error_code</code> and <code>error_message</code> in an object as the second parameter. The <code>error_message</code> should provide a detailed description of the error as it happened, whereas the <code>error_code</code> must be an integer, and should provide a category of the error. If the errors match up with the <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaError">HTML Media Element Error</a>, you can use the same codes as the corresponding HTML errors. However, for custom errors, you should choose a number greater than or equal to 100. Whether all errors use the same code or you use different codes for different types of errors is up to you, but in general you should not send a distinct code for each possible error message.
+When triggering an error event, it is important to provide an <code>error_code</code> and <code>error_message</code> in an object as the second parameter. The <code>error_message</code> should provide a detailed description of the error as it happened. The <code>error_code</code> must be an integer, and should provide a category of the error. If the errors match up with the <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaError">HTML Media Element Error</a>, you can use the same codes as the corresponding HTML errors. However, for custom errors, you should choose a number greater than or equal to 100. Whether all errors use the same code or you use different codes for different types of errors is up to you. In general you should not send a distinct code for each possible error message, but rather group similar errors under the same code. For instance, if your library has two different conditions for network errors, both should have the same <code>error_code</code> but different messages.
 </p>
 
 <p class="lang-specific objective-c">
@@ -584,7 +584,7 @@ There is currently no way to fire custom error events for iOS/tvOS. Mux automati
 ## Ad Support
 
 <p class="lang-specific video-element">
-There are currently no ad integrations supported for the core HTML Video Element integration. Ads will work fine, but will not be tracked appropriately.
+There are currently no ad integrations supported for the core HTML Video Element integration. Ads will work fine, but will not be tracked.
 </p>
 
 <p class="lang-specific videojs">
