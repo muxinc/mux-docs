@@ -135,7 +135,7 @@
 <li>JW Player 7</li>
 <li>Bitmovin Player 5.x and 6.x</li>
 <li>Ooyala Player V4</li>
-<li>iOS 8+ and tvOS 9+ (Objective-C) (<strong>currently in beta</strong>)</li>
+<li>iOS 8+ and tvOS 9+ (Objective-C)</li>
 </ul>
 
 <p>More players and platforms will be added as they become available. If you are interested in an integration that is not listed, please <a href="https://mux.com/sales-contact">contact us</a> as we may have plans for that platform already.</p>
@@ -203,8 +203,6 @@
 </code></pre>
 
 <p class="lang-specific objective-c">
-  <strong>The iOS/tvOS SDKs are currently available as beta releases</strong>
-  <br><br>
   Include the correct Mux Objective-C SDK for your project by cloning our repository and dragging the framework into your Xcode project. The <code>Frameworks</code> folder contains two folders, one for iOS and one for tvOS. Inside these folders, there are 3 additional folders containing different architecture combinations. The <code>fat</code> folder contains a library with all architectures in one. This library cannot be used when compiling for submission to the App Store as it contains the simulator architectures that are not used by any Apple devices. You can use the framework in the <code>release</code> folder when building a release version of your application, or you can run <a href="https://gist.github.com/brett-stover-hs/b25947a125ff7e38e7ca#file-frameworks_blogpost_removal_script_a-sh" target="_blank">a script to strip unneeded architectures</a>. Finally, don&rsquo;t forget to add the correct import statement for your target platform.
 </p>
 
