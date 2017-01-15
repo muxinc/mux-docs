@@ -1,66 +1,6 @@
----
-title: Mux API Docs
 
-language_tabs:
-  - video-element: Video Element
-  - videojs: Video.js
-  - jwplayer: JW Player
-  - bitmovin: Bitmovin
-  - ooyala: Ooyala
-  - objective-c: iOS/tvOS
-
-toc_footers:
-  - <a href='https://mux.com/sales-contact'>Sign Up for Mux</a>
-
-search: true
----
-
-# SDK Integration
-
-Mux has integrations with the following web players and native environments:
-
-* HTML5 Video Element
-* Video.js (also supports Brightcove players version 5.x)
-* JW Player 7
-* Bitmovin Player 5.x and 6.x
-* Ooyala Player V4
-* iOS 8+ and tvOS 9+ (Objective-C) (**currently in beta**)
-
-More players and platforms will be added as they become available. If you are interested in an integration that is not listed, please [contact us](https://mux.com/sales-contact) as we may have plans for that platform already.
-
-Pick which SDK you want to use from the tabs on the right (or in the nav on mobile).
-
-## Including the SDK
-
-```video-element--html
-<script src="//src.litix.io/core/2/mux.js"></script>
-```
-```video-element--shell
-# For npm installs, use the following
-$ npm install --save mux-embed
-```
-
-<p class="lang-specific video-element">
-  Include the Mux JavaScript SDK on every page of your site/app that includes video. You can use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
-  <br><br>
-  Alternatively, you can bundle Mux into your own player script through <code>npm</code>. If you choose to go down this path, we suggest that you check for updates often and merge these into your player as soon as makes sense with your development schedule. The API will not change within major versions.
-</p>
-
-```videojs--html
-<!-- Include videojs-mux after Video.js -->
-<script src="/path/to/video.js"></script>
-<!-- Include other videojs plugin files here -->
-<script src="//src.litix.io/videojs/2/videojs-mux.js"></script>
-```
-```videojs--shell
-# For npm installs, use the following
-$ npm install --save videojs-mux
-```
 
 <p class="lang-specific videojs">
-  Include the videojs-mux plugin after Video.js in the page (or wherever your other Video.js plugins are loaded). If you utilize any ad integrations with Video.js, include the necessary ad integration JavaScript files before the videojs-mux plugin. You can use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
-  <br><br>
-  Alternatively, you can bundle videojs-mux into your own player script through <code>npm</code>. If you choose to go down this path, we suggest that you check for updates often and merge these into your player as soon as makes sense with your development schedule. The API will not change within major versions.
 </p>
 
 ```jwplayer--html
