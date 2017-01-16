@@ -1,3 +1,8 @@
+/*
+Title: Options and Metadata
+Sort: 2
+*/
+
 Name	| Description	| Default
 ----------- | ----------- | --------
 debug	| Put the SDK in debug mode to log operational details	| false
