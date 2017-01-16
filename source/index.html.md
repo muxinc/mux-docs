@@ -91,7 +91,7 @@ $ npm install --save videojs-mux
 ```
 
 <p class="lang-specific ooyala">
-  Include the bitmovin-mux file after the core Bitmovin javascript file in the page. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions). Note that <code>stable</code> and <code>6</code> in the example on the right can be replaced with the Release Channel and player version (5 or 6), respectively, that you want to use.
+  Include the ooyala-mux file after the core Ooyala javascript file in the page. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
 </p>
 
 ```objective-c--shell
