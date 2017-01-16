@@ -1,4 +1,6 @@
-# SDK Integration
+/*
+Title: SDK Integration
+*/
 
 Mux has integrations with the following web players and native environments:
 
