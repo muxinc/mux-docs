@@ -1,7 +1,3 @@
-/*
-Title: SDK Options and Metadata
-*/
-
 Name	| Description	| Default
 ----------- | ----------- | --------
 debug	| Put the SDK in debug mode to log operational details	| false
