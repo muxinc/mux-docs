@@ -1,17 +1,23 @@
-After creating the instance of the Bitmovin player, simply pass that player reference to <code>initBitmovinMux</code> along with the options for the SDK. It is preferred to retrieve the reference from the return of <code>bitmovin.player(id)</code> rather than on a player callback so that Mux can track events as soon as possible.
+Include the jwplayer-mux file after the core JW Player javascript file in the page. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions). Note that key in the example on the right should be replaced with the key provided by JW Player for your account.
+
+```
+<!-- Include jwplayer-mux after the core JW Player favascript file -->
+<script src="//content.jwplatform.com/libraries/key.js"></script>
+<script src="//src.litix.io/jwplayer/2/jwplayer-mux.js"></script>
+```
+
+After creating you instance of JW Player, simply pass that player reference to <code>initJWPlayerMux</code> along with the options for the SDK. It is preferred to retrieve the reference from the return of <code>jwplayer(id).setup({...})</code> so that Mux can track events as soon as possible.
 
 ```html
-<div id="playerdiv"></div>
+<div id="myPlayer"></div>
 <script>
   var conf = {
-    // Insert Bitmovin player configuration here
+    // Insert JW Player configuration here
   };
 
-  // For 5.x of Bitmovin's player, use `bitdash.('playerdiv')`
-  var player = bitmovin.player('playerdiv');
-  player.setup(conf);
+  var player = jwplayer('myPlayer').setup(conf);
 
-  initBitmovinMux(player, {
+  initJWPlayerMux(player, {
     debug: false,
     data: {
       property_key: 'EXAMPLE_PROPERTY_KEY', // required
@@ -41,3 +47,4 @@ After creating the instance of the Bitmovin player, simply pass that player refe
   });
 </script>
 ```
+

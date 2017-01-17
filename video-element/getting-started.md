@@ -1,3 +1,17 @@
+Include the Mux JavaScript SDK on every page of your site/app that includes video. You can use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
+
+```
+<script src="//src.litix.io/core/2/mux.js"></script>
+```
+
+
+Alternatively, you can bundle Mux into your own player script through `npm`. If you choose to go down this path, we suggest that you check for updates often and merge these into your player as soon as makes sense with your development schedule. The API will not change within major versions.
+
+```bash
+# For npm installs, use the following
+npm install --save mux-embed
+```
+
 To monitor the performance of a specific video element, call <code>mux.monitor</code>, passing options for the SDK along with either a valid CSS selector for your video element or a reference to the video element itself. If you pass a selector, it must return only a single element (the <code>&lt;video&gt;</code> element that is tracked). Any further calls to <code>mux</code> for the same player (such as when <a href="#changing-the-video">changing the video</a>) can be passed either the selector or the reference to the video element.
 
 ```html
