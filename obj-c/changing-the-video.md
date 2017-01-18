@@ -13,7 +13,7 @@ It's best to change the video info immediately before telling the player which n
 
 This is done by calling <code>videoChangeForPlayer:withVideoData:</code> which will remove all previous video data and reset all metrics for the video view. See <a href="#metadata">Metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
 
-```objective-c
+```objectivec
 // Example of changing the AVPlayerItem
 // Should happen before telling MUXSDKStats about the change.
 [player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:@"..."]];
