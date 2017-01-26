@@ -14,7 +14,7 @@ The data object allows you to provide details about the video and environment th
 
 All metadata details except for `property_key` are *optional*, however you'll be able to compare and see more interesting results as you include more details.
 
-- Video details (prepended by `video_`) describe the current video that's playing and are all reset automatically when [changing the video](#changing-the-video). This metadata would come from your internal CMS or video management system.
+- Video details (prepended by `video_`) describe the current video that's playing and are all reset automatically when [changing the video](changing-the-video). This metadata would come from your internal CMS or video management system.
 - Player details (prepended by `player_`) describe the player configuration that's being used and should be set whenever monitoring is started on a new player. They do not reset when the video is changed.
 - All other details will persist until explicitly changed.
 

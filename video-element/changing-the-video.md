@@ -11,7 +11,7 @@ When you change to a new video (in the same player) you need to update the infor
 
 It's best to change the video info immediately after telling the player which new source to play.
 
-This is done by emitting a <code>videochange</code> event via <code>mux.emit</code> in page. When this is emitted, it removes all previous video data and resets all metrics for the video view. See <a href="/sdk-options">metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
+This is done by emitting a <code>videochange</code> event via <code>mux.emit</code> in page. When this is emitted, it removes all previous video data and resets all metrics for the video view. See <a href="options-and-metadata">metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
 
 ```javascript
 // Example of changing the source of a video element
