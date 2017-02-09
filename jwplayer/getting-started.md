@@ -15,6 +15,7 @@ After creating you instance of JW Player, simply pass that player reference to <
     // Insert JW Player configuration here
   };
 
+  var playerInitTime = Date.now();
   var player = jwplayer('myPlayer').setup(conf);
 
   initJWPlayerMux(player, {
@@ -28,7 +29,7 @@ After creating you instance of JW Player, simply pass that player reference to <
       // Player Metadata
       player_name: '', // ex: 'My Main Player'
       player_version: '', // ex: '1.0.0'
-      player_init_time: player_init_time, // ex: 1451606400000
+      player_init_time: playerInitTime, // ex: 1451606400000
 
       // Video Metadata (cleared with 'videochange' event)
       video_id: '', // ex: 'abcd123'
@@ -47,4 +48,3 @@ After creating you instance of JW Player, simply pass that player reference to <
   });
 </script>
 ```
-

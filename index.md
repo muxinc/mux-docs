@@ -9,6 +9,7 @@ Mux has integrations with the following web players and native environments:
 * [JW Player 7](jwplayer/getting-started)
 * [Bitmovin Player 5.x and 6.x](bitmovin/getting-started)
 * [Ooyala Player V4](ooyala/getting-started)
+* [THEOplayer 2.x](theoplayer/getting-started)
 * [iOS 8+ and tvOS 9+](obj-c/getting-started) (Objective-C)
 * [ExoPlayer v2](exoplayer/getting-started) (**currently in beta**)
 

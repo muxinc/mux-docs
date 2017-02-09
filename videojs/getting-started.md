@@ -19,7 +19,7 @@ Like other Video.js plugins, initialize the videojs-mux plugin by including opti
 
 ```javascript
 // Record the player init time
-var player_init_time = Date.now();
+var playerInitTime = Date.now();
 
 // Initialize through player options
 videojs('my-player', {
@@ -35,7 +35,7 @@ videojs('my-player', {
         // Player Metadata
         player_name: '', // ex: 'My Main Player'
         player_version: '', // ex: '1.0.0'
-        player_init_time: player_init_time, // ex: 1451606400000
+        player_init_time: playerInitTime, // ex: 1451606400000
 
         // Video Metadata (cleared with 'videochange' event)
         video_id: '', // ex: 'abcd123'

@@ -1,27 +1,29 @@
-Include the bitmovin-mux file after the core Bitmovin javascript file in the page. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions). Note that `stable` and `6` in the example on the right can be replaced with the Release Channel and player version (5 or 6), respectively, that you want to use.
+Include the theoplayer-mux file after the core THEOplayer javascript file in the page. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
 
 ```
-<!-- Include bitmovin-mux after the core Bitmovin javascript file -->
-<script src="//bitmovin-a.akamaihd.net/bitmovin-player/stable/6/bitmovinplayer.min.js"></script>
-<script src="//src.litix.io/bitmovin/2/bitmovin-mux.js"></script>
+<!-- Include theoplayer-mux after the core THEOplayer javascript files -->
+<script type='text/javascript' src='//cdn.theoplayer.com/latest/~yourlicense~/theoplayer.loader.js'>
+<script src="//src.litix.io/theoplayer/2/theoplayer-mux.js"></script>
 ```
 
-After creating the instance of the Bitmovin player, simply pass that player reference to <code>initBitmovinMux</code> along with the options for the SDK. It is preferred to retrieve the reference from the return of <code>bitmovin.player(id)</code> rather than on a player callback so that Mux can track events as soon as possible.
+After creating you instance of THEOplayer, simply pass that player reference to <code>initTHEOplayerMux</code> along with the options for the SDK. It is preferred to retrieve the reference from the return of <code>new THEOplayer.Player(...)</code> so that Mux can track events as soon as possible.
 
 ```html
-<div id="playerdiv"></div>
+<div id='playerwrapper' class='video-js theoplayer-skin theo-seekbar-above-controls'></div>
 <script>
-  var conf = {
-    // Insert Bitmovin player configuration here
-  };
+  var element = document.querySelector('div');
 
+  // Retrieve the current time prior to creating the player
   var playerInitTime = Date.now();
 
-  // For 5.x of Bitmovin's player, use `bitdash.('playerdiv')`
-  var player = bitmovin.player('playerdiv');
-  player.setup(conf);
+  // Get a reference to your player, and pass it to the init function
+  var player = new THEOplayer.Player(element, {
+    width: 854,
+    height: 480
+  });
+  player.src = '/path/to/video';
 
-  initBitmovinMux(player, {
+  initTHEOplayerMux(player, {
     debug: false,
     data: {
       property_key: 'EXAMPLE_PROPERTY_KEY', // required

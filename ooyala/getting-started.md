@@ -12,6 +12,8 @@ You must register an <code>onCreate</code> handler when you create the Ooyala pl
 ```html
 <div id="playerdiv"></div>
 <script>
+  var playerInitTime;
+
   // Use a callback for when the player is created to register Mux
   var onPlayerCreated = function (player) {
     initOoyalaMux(player, {
@@ -25,7 +27,7 @@ You must register an <code>onCreate</code> handler when you create the Ooyala pl
         // Player Metadata
         player_name: '', // ex: 'My Main Player'
         player_version: '', // ex: '1.0.0'
-        player_init_time: player_init_time, // ex: 1451606400000
+        player_init_time: playerInitTime, // ex: 1451606400000
 
         // Video Metadata (cleared with 'videochange' event)
         video_id: '', // ex: 'abcd123'
@@ -54,8 +56,9 @@ You must register an <code>onCreate</code> handler when you create the Ooyala pl
 
   // Create the player with the Mux callback
   OO.ready(function() {
+    playerInitTime = Date.now();
+    
     OO.player.create('playerdiv', asset, playerConfig)
   });
 </script>
 ```
-
