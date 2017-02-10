@@ -11,11 +11,11 @@ When you change to a new video (in the same player) you need to update the infor
 
 It's best to change the video info immediately after telling the player which new source to play.
 
-This is done by emitting a <code>videochange</code> event via <code>mux.emit</code> which has been added to the <code>player</code> object. When this is emitted it removes all previous video data and resets all metrics for the video view. See <a href="options-and-metadata">metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
+This is done by calling <code>window.changeMuxVideo</code>, passing in the <strong>same</strong> reference to the THEOplayer player object you used in <code>initTHEOplayerMux</code>. When this is called it removes all previous video data and resets all metrics for the video view. See <a href="options-and-metadata">metadata</a> for the list of video details you can provide. You can include any metadata when changing the video but you should only need to update the values that start with <code>video_</code>.
 
 ```javascript
 // Call this immediately after loading the new video into the player
-player.mux.emit('videochange', {
+changeMuxVideo(player, {
   video_id: 'abc345',
   video_title: 'My Other Great Video',
   video_series: 'Weekly Great Videos',
