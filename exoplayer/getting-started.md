@@ -1,3 +1,8 @@
+/*
+Title: Getting Started
+Sort: 1
+*/
+
 **The ExoPlayer v2 SDK is currently available as a beta release.**
 
 Include the Mux SDK for your project by <a href="https://github.com/muxinc/stats-sdk-exoplayer/blob/release-v2/mux/mux.aar">downloading the AAR from our GitHub repo</a> and including it in your project.

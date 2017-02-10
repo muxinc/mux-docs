@@ -1,3 +1,8 @@
+/*
+Title: Getting Started
+Sort: 1
+*/
+
 Include the Mux JavaScript SDK on every page of your site/app that includes video. You can use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
 
 ```

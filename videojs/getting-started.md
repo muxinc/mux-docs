@@ -1,3 +1,8 @@
+/*
+Title: Getting Started
+Sort: 1
+*/
+
 Include the videojs-mux plugin after Video.js in the page (or wherever your other Video.js plugins are loaded). If you utilize any ad integrations with Video.js, include the necessary ad integration JavaScript files before the videojs-mux plugin. You can use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
 
 ```html

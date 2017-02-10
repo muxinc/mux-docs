@@ -41,4 +41,3 @@ video_stream_type | 'live' or 'on-demand'
 video_producer | The producer of the video title
 video_encoding_variant | An optional detail that allows you to compare different encoding settings.
 video_cdn | An optional detail that allows you to compare different CDNs (assuming the CDN selection is made at page load time).
-

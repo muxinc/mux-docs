@@ -8,8 +8,6 @@ Name	| Description	| Default
 debug	| Put the SDK in debug mode to log operational details	| false
 data | User, page, player, and video metadata for the video | { }
 
-In the Objective-C SDKs, *options are provided via the MUXSDKCustomerPlayerData and MUXSDKCustomerVideoData objects*.
-
 The data object allows you to provide details about the video and environment that can't be detected automatically or if the video fails to load.
 
 All metadata details except for `property_key` are *optional*, however you'll be able to compare and see more interesting results as you include more details.
@@ -17,8 +15,6 @@ All metadata details except for `property_key` are *optional*, however you'll be
 - Video details (prepended by `video_`) describe the current video that's playing and are all reset automatically when [changing the video](changing-the-video). This metadata would come from your internal CMS or video management system.
 - Player details (prepended by `player_`) describe the player configuration that's being used and should be set whenever monitoring is started on a new player. They do not reset when the video is changed.
 - All other details will persist until explicitly changed.
-
-In the Objective-C SDKs, *names are converted to lowerCamelCase setters and getters per Apple's naming guidelines*. See the <a href="https://github.com/muxinc/stats-sdk-objc/blob/master/Frameworks/iOS/release/MUXSDKStats.framework/Headers/MUXSDKCustomerPlayerData.h" target="_blank">MUXSDKCustomerPlayerData.h</a> and <a href="https://github.com/muxinc/stats-sdk-objc/blob/master/Frameworks/iOS/release/MUXSDKStats.framework/Headers/MUXSDKCustomerVideoData.h" target="_blank">MUXSDKCustomerVideoData.h</a> header files for a complete list of names.
 
 Name	| Description
 ----- | -----------
@@ -41,4 +37,3 @@ video_stream_type | 'live' or 'on-demand'
 video_producer | The producer of the video title
 video_encoding_variant | An optional detail that allows you to compare different encoding settings.
 video_cdn | An optional detail that allows you to compare different CDNs (assuming the CDN selection is made at page load time).
-

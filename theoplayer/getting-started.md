@@ -1,3 +1,8 @@
+/*
+Title: Getting Started
+Sort: 1
+*/
+
 Include the theoplayer-mux file after the core THEOplayer javascript file in the page. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
 
 ```

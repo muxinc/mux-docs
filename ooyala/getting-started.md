@@ -1,3 +1,8 @@
+/*
+Title: Getting Started
+Sort: 1
+*/
+
 Include the ooyala-mux file after the core Ooyala javascript file in the page. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
 
 ```
@@ -57,7 +62,7 @@ You must register an <code>onCreate</code> handler when you create the Ooyala pl
   // Create the player with the Mux callback
   OO.ready(function() {
     playerInitTime = Date.now();
-    
+
     OO.player.create('playerdiv', asset, playerConfig)
   });
 </script>
