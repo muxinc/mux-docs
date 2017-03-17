@@ -63,7 +63,7 @@ videojs('my-player', {
 
 ```html
 <!-- OR in the data-setup attribute of the video.js element -->
-<video id="my-player"
+<video id="my-player" controls
   data-setup='{"plugins": {"mux": {"debug": false, "data": { ... }}}}' >
   ...
 </video>

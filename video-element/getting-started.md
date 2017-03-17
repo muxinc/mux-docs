@@ -21,7 +21,7 @@ To monitor the performance of a specific video element, call <code>mux.monitor</
 
 ```html
 <!-- Example html video element -->
-<video id="myVideo">
+<video id="myVideo" controls>
   <source src="//path/to/video.mp4" type="video/mp4">
 </video>
 
