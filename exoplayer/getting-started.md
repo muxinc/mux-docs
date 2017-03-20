@@ -47,7 +47,7 @@ muxStats.setScreenSize(size.x, size.y);
 muxStats.setPlayerView(simpleExoPlayerView.getVideoSurfaceView());
 ```
 
-5) Next, we need to attach all the appropriate listeners to the player as well as all of your `ChunkSource` and `MediaSource` objects. There are two things that are tricky about this. First, there is no built in chaining of listeners meaning that if you already have listeners attached you will need to use the `get*EventListener(*EventListener):*EventListener` function to wrap your exisiting listener. Second, there is no base-class for these listeners which means that each object requires a different listener to be attached. Failure to attach the `MuxStats` listeners to all appropriate objects will result in at least partially broken integration.
+5) Next, we need to attach all the appropriate listeners to the player as well as all of your `ChunkSource` and `MediaSource` objects. There are two things that we are need to consider. First, there is no built in chaining of listeners meaning that if you already have listeners attached you will need to use the `get*EventListener(*EventListener):*EventListener` function to wrap your exisiting listener. Second, there is no base-class for these listeners which means that each object requires a different listener to be attached. Failure to attach the `MuxStats` listeners to all appropriate objects will result in at least partially broken integration.
 
 **Note that `MuxStats` will call `ExoPlayer.addListener(EventListener)` itself.**
 
