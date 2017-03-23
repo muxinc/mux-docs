@@ -11,7 +11,7 @@ Include the theoplayer-mux file after the core THEOplayer javascript file in the
 <script src="//src.litix.io/theoplayer/2/theoplayer-mux.js"></script>
 ```
 
-After creating you instance of THEOplayer, simply pass that player reference to <code>initTHEOplayerMux</code> along with the options for the SDK. It is preferred to retrieve the reference from the return of <code>new THEOplayer.Player(...)</code> so that Mux can track events as soon as possible.
+After creating you instance of THEOplayer, simply pass that player reference to <code>initTHEOplayerMux</code> along with the options for the SDK. We reccomend you retrieve the reference from the return of <code>new THEOplayer.Player(...)</code> so that Mux can track events as soon as possible.
 
 ```html
 <div id='playerwrapper' class='video-js theoplayer-skin theo-seekbar-above-controls'></div>
