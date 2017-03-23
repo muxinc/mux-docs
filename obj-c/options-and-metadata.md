@@ -15,7 +15,7 @@ The data object allows you to provide details about the video and environment th
 All metadata details except for `property_key` are *optional*, however you'll be able to compare and see more interesting results as you include more details.
 
 - Video details (prepended by `video_`) describe the current video that's playing and are all reset automatically when [changing the video](changing-the-video). This metadata would come from your internal CMS or video management system.
-- Player details (prepended by `player_`) describe the player configuration that's being used and should be set whenever monitoring is started on a new player. They do not reset when the video is changed.
+- Player details (prepended by `player_`) describe the player configuration that's being used and should be set whenever monitoring is begun on a new player. They do not reset when the video is changed.
 - All other details will persist until explicitly changed.
 
 In the Objective-C SDKs, *names are converted to lowerCamelCase setters and getters per Apple's naming guidelines*. See the <a href="https://github.com/muxinc/stats-sdk-objc/blob/master/Frameworks/iOS/release/MUXSDKStats.framework/Headers/MUXSDKCustomerPlayerData.h" target="_blank">MUXSDKCustomerPlayerData.h</a> and <a href="https://github.com/muxinc/stats-sdk-objc/blob/master/Frameworks/iOS/release/MUXSDKStats.framework/Headers/MUXSDKCustomerVideoData.h" target="_blank">MUXSDKCustomerVideoData.h</a> header files for a complete list of names.
@@ -28,7 +28,7 @@ page_type | Provide the context of the page for more specific analysis. Values i
 experiment_name | You can use this field to separate views into different experiments, if you would like to filter by this dimension later. This should be a string value, but your account is limited to a total of 10 unique experiment names, so be sure that this value is not generated dynamically or randomly.
 player_name | If you have different configurations or types of players around your site or application you can use player_name to compare them. **This is *not* the player software (e.g. Video.js), which is tracked automatically by the SDK.**
 player_version | As you make changes to your player you can compare how new versions of your player perform by updating this value. **This is *not* the player software version (e.g. Video.js 5.0.0), which is tracked automatically by the SDK.**
-player_init_time | If you are explicitly loading your player in page (perhaps as a response to a user interaction), include the timestamp (milliseconds since Jan 1 1970) when you initialize the player (or for HTML5 video, when right before you add the `<video>` element to the DOM) in order to accurately track page load time and player startup time.
+player_init_time | If you are explicitly loading your player in page (perhaps as a response to a user interaction), include the timestamp (milliseconds since Jan 1 1970) when you initialize the player (or for HTML5 video, right before you add the `<video>` element to the DOM) in order to accurately track page load time and player startup time.
 video_id | Your internal ID for the video
 video_title | example: 'Awesome Show Episode 1'
 video_series | example: 'Season 1'
