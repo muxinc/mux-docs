@@ -20,7 +20,7 @@ import com.mux.stats.core.models.CustomerPlayerData;
 import com.mux.stats.core.models.CustomerVideoData;
 ...
 CustomerPlayerData customerPlayerData = new CustomerPlayerData();
-customerPlayerData.setPropertyKey("YOUR_PROPERTY_KEY");
+customerPlayerData.setPropertyKey("EXAMPLE_PROPERTY_KEY");
 CustomerVideoData customerVideoData = new CustomerVideoData();
 customerVideoData.setVideoTitle("The most epic video ever");
 ```
