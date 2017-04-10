@@ -3,7 +3,7 @@ Title: Getting Started
 Sort: 1
 */
 
-Include the jwplayer-mux file after the core JW Player javascript file in the page. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions). Note that the KEY in the example should be replaced with the key provided by JW Player for your account.
+Include the jwplayer-mux file after the core JW Player javascript file in the page. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions). Note that the `KEY` in the example should be replaced with the key provided by JW Player for your account.
 
 ```
 <!-- Include jwplayer-mux after the core JW Player favascript file -->
@@ -56,7 +56,7 @@ After creating you instance of JW Player, simply pass that player reference to <
 
 ## Confirming it works
 
-After you've finished integration, you can quickly see if it's working by opening your [browser developer tools](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools), selecting the network tab, and then clicking 'play' on the video you've set to be monitored. You should begin to see beacons being sent to the mux servers (litix.io) like in the example image.
+After you've finished integration, you can quickly see if it's working by opening your [browser developer tools](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools), selecting the network tab, and then clicking 'play' on the video you've set to be monitored. You should begin to see beacons being sent to the Mux servers (litix.io) like in the example image.
 
 <img src="/images/chrome-dev-tools.png"
 srcset="/images/chrome-dev-tools.png 1x, /images/chrome-dev-tools@2x.png 2x">
