@@ -11,7 +11,7 @@ Include the theoplayer-mux file after the core THEOplayer javascript file in the
 <script src="//src.litix.io/theoplayer/2/theoplayer-mux.js"></script>
 ```
 
-After creating you instance of THEOplayer, simply pass that player reference to <code>initTHEOplayerMux</code> along with the options for the SDK. We recommend you retrieve the reference from the return of <code>new THEOplayer.Player(...)</code> so that Mux can track events as soon as possible.
+After creating your instance of THEOplayer, simply pass that player reference to <code>initTHEOplayerMux</code> along with the options for the SDK. We recommend you retrieve the reference from the return of <code>new THEOplayer.Player(...)</code> so that Mux can track events as soon as possible.
 
 ```html
 <div id='playerwrapper' class='video-js theoplayer-skin theo-seekbar-above-controls'></div>
@@ -58,3 +58,12 @@ After creating you instance of THEOplayer, simply pass that player reference to 
   });
 </script>
 ```
+
+## Confirming it works
+
+After you've finished integration, you can quickly see if it's working by opening your [browser developer tools](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools), selecting the network tab, and then clicking 'play' on the video you've set to be monitored. You should begin to see beacons being sent to the Mux servers (litix.io) like in the example image.
+
+<img src="/images/chrome-dev-tools.png"
+srcset="/images/chrome-dev-tools.png 1x, /images/chrome-dev-tools@2x.png 2x">
+
+For your current viewing session (called a "video view") to show up in the Mux dashboard, you need to first finish viewing the video by closing the browser window. In a few minutes you'll see the results in your Mux account. We'll also email you when the first video view has been recorded.

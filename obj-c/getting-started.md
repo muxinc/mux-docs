@@ -45,3 +45,7 @@ videoData.videoCdn = @"cdn";
 AVPlayerLayer *player = [AVPlayerLayer new];
 [MUXSDKStats monitorAVPlayerViewController:player withPlayerName:@"awesome" playerData:playerData videoData:videoData];
 ```
+
+## Confirming it works
+
+After you've integrated, start playing a video in the player you've integrated with. Then for your viewing session (called a "video view") to show up in the Mux dashboard, you need to stop watching the video. In a few minutes you'll see the results in your Mux account. We'll also email you when the first video view has been recorded.

@@ -3,7 +3,7 @@ Title: Getting Started
 Sort: 1
 */
 
-Include the videojs-mux plugin after Video.js in the page (or wherever your other Video.js plugins are loaded). If you utilize any ad integrations with Video.js, include the necessary ad integration JavaScript files before the videojs-mux plugin. You can use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
+Include the videojs-mux plugin after Video.js in the page (or wherever your other Video.js plugins are loaded). If you use any ad integrations with Video.js, include the necessary ad integration JavaScript files *before* the videojs-mux plugin. You can use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions, as in `videojs/MAJOR_VERSION/videojs-mux.js` ).
 
 ```html
 <!-- Include videojs-mux after Video.js -->
@@ -12,7 +12,7 @@ Include the videojs-mux plugin after Video.js in the page (or wherever your othe
 <script src="//src.litix.io/videojs/2/videojs-mux.js"></script>
 ```
 
-Alternatively, you can bundle videojs-mux into your own player script through `npm`. If you choose to go down this path, we suggest that you check for updates often and merge these into your player as soon as makes sense with your development schedule. The API will not change within major versions.
+**Alternatively**, you can bundle videojs-mux into your own player script through `npm`. If you choose this path we suggest that you update often to make sure you have the latest features.
 
 ```bash
 # For npm installs, use the following
@@ -70,10 +70,20 @@ videojs('my-player', {
 ```
 
 ```javascript
-// OR by calling the plugin directly
+// OR by calling the mux function on the player instance
 var player = videojs('my-player');
+
 player.mux({
   debug: false,
   data: { ... }
 });
 ```
+
+## Confirming it works
+
+After you've finished integration, you can quickly see if it's working by opening your [browser developer tools](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools), selecting the network tab, and then clicking 'play' on the video you've set to be monitored. You should begin to see beacons being sent to the Mux servers (litix.io) like in the example image.
+
+<img src="/images/chrome-dev-tools.png"
+srcset="/images/chrome-dev-tools.png 1x, /images/chrome-dev-tools@2x.png 2x">
+
+For your current viewing session (called a "video view") to show up in the Mux dashboard, you need to first finish viewing the video by closing the browser window. In a few minutes you'll see the results in your Mux account. We'll also email you when the first video view has been recorded.

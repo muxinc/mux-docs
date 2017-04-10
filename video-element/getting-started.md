@@ -3,26 +3,26 @@ Title: Getting Started
 Sort: 1
 */
 
-Include the Mux JavaScript SDK on every page of your site/app that includes video. You can use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions).
+Include the Mux JavaScript SDK on every page of your site/app that includes video. You can use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions, as in `core/MAJOR_VERSION/mux.js` ).
 
 ```
 <script src="//src.litix.io/core/2/mux.js"></script>
 ```
 
-
-Alternatively, you can bundle Mux into your own player script through `npm`. If you choose to go down this path, we suggest that you check for updates often and merge these into your player as soon as makes sense with your development schedule. The API will not change within major versions.
+**Alternatively**, you can bundle Mux into your own app or player javascript using `npm`. If you choose this path we suggest that you update often to make sure you have the latest features.
 
 ```bash
 # For npm installs, use the following
 npm install --save mux-embed
 ```
 
-To monitor the performance of a specific video element, call <code>mux.monitor</code>, passing options for the SDK along with either a valid CSS selector for your video element or a reference to the video element itself. If you pass a selector, it must return only a single element (the <code>&lt;video&gt;</code> element that is tracked). Any further calls to <code>mux</code> for the same player (such as when <a href="#changing-the-video">changing the video</a>) can be passed either the selector or the reference to the video element.
+To monitor the performance of a specific video element, call <code>mux.monitor</code>, passing
+a valid CSS selector for your video element or the element itself, along with SDK options and metadata. If you use a CSS selector that matches multiple elements, the first matching element in the document will be used.
 
 ```html
 <!-- Example html video element -->
 <video id="myVideo" controls>
-  <source src="//path/to/video.mp4" type="video/mp4">
+  <source src="path/to/video.mp4" type="video/mp4">
 </video>
 
 <script>
@@ -59,3 +59,12 @@ if (typeof mux !== 'undefined') {
 }
 </script>
 ```
+
+## Confirming it works
+
+After you've finished integration, you can quickly see if it's working by opening your [browser developer tools](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools), selecting the network tab, and then clicking 'play' on the video you've set to be monitored. You should begin to see beacons being sent to the Mux servers (litix.io) like in the example image.
+
+<img src="/images/chrome-dev-tools.png"
+srcset="/images/chrome-dev-tools.png 1x, /images/chrome-dev-tools@2x.png 2x">
+
+For your current viewing session (called a "video view") to show up in the Mux dashboard, you need to first finish viewing the video by closing the browser window. In a few minutes you'll see the results in your Mux account. We'll also email you when the first video view has been recorded.

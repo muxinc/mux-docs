@@ -3,11 +3,11 @@ Title: Getting Started
 Sort: 1
 */
 
-Include the jwplayer-mux file after the core JW Player javascript file in the page. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions). Note that the key in the example should be replaced with the key provided by JW Player for your account.
+Include the jwplayer-mux file after the core JW Player javascript file in the page. Use the Mux-hosted version of the script to receive automatic updates (the API will not change within major versions). Note that the `KEY` in the example should be replaced with the key provided by JW Player for your account.
 
 ```
 <!-- Include jwplayer-mux after the core JW Player favascript file -->
-<script src="//content.jwplatform.com/libraries/key.js"></script>
+<script src="//content.jwplatform.com/libraries/KEY.js"></script>
 <script src="//src.litix.io/jwplayer/2/jwplayer-mux.js"></script>
 ```
 
@@ -53,3 +53,12 @@ After creating you instance of JW Player, simply pass that player reference to <
   });
 </script>
 ```
+
+## Confirming it works
+
+After you've finished integration, you can quickly see if it's working by opening your [browser developer tools](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools), selecting the network tab, and then clicking 'play' on the video you've set to be monitored. You should begin to see beacons being sent to the Mux servers (litix.io) like in the example image.
+
+<img src="/images/chrome-dev-tools.png"
+srcset="/images/chrome-dev-tools.png 1x, /images/chrome-dev-tools@2x.png 2x">
+
+For your current viewing session (called a "video view") to show up in the Mux dashboard, you need to first finish viewing the video by closing the browser window. In a few minutes you'll see the results in your Mux account. We'll also email you when the first video view has been recorded.
