@@ -75,4 +75,4 @@ After you've finished integration, you can quickly see if it's working by openin
 <img src="/images/chrome-dev-tools.png"
 srcset="/images/chrome-dev-tools.png 1x, /images/chrome-dev-tools@2x.png 2x">
 
-For your current viewing session (called a "video view") to show up in the Mux dashboard, you need to first finish viewing the video by closing the browser window. In a few minutes you'll see the results in your Mux account. We'll also email you when the first video view has been recorded.
+For your current viewing session (called a "video view") to show up in the Mux dashboard, you need to first finish viewing the video by closing or reloading the browser window. In a few minutes you'll see the results in your Mux account. We'll also email you when the first video view has been recorded.
