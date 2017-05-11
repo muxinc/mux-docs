@@ -7,8 +7,8 @@ Include the bitmovin-mux file after the core Bitmovin javascript file in the pag
 
 ```
 <!-- Include bitmovin-mux after the core Bitmovin javascript file -->
-<script src="//bitmovin-a.akamaihd.net/bitmovin-player/stable/6/bitmovinplayer.min.js"></script>
-<script src="//src.litix.io/bitmovin/2/bitmovin-mux.js"></script>
+<script src="https://bitmovin-a.akamaihd.net/bitmovin-player/stable/6/bitmovinplayer.min.js"></script>
+<script src="https://src.litix.io/bitmovin/2/bitmovin-mux.js"></script>
 ```
 
 After creating the instance of the Bitmovin player, simply pass that player reference to <code>initBitmovinMux</code> along with the options for the SDK. It is preferred to retrieve the reference from the return of <code>bitmovin.player(id)</code> rather than on a player callback so that Mux can track events as soon as possible.

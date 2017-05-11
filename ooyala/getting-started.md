@@ -7,9 +7,9 @@ Include the ooyala-mux file after the core Ooyala javascript file in the page. U
 
 ```
 <!-- Include ooyala-mux after the core Ooyala javascript files -->
-<script src="//player.ooyala.com/static/v4/stable/latest/core.min.js"></script>
+<script src="https://player.ooyala.com/static/v4/stable/latest/core.min.js"></script>
 <!-- Insert other Ooyala plugin files here -->
-<script src="//src.litix.io/ooyala/2/ooyala-mux.js"></script>
+<script src="https://src.litix.io/ooyala/2/ooyala-mux.js"></script>
 ```
 
 You must register an <code>onCreate</code> handler when you create the Ooyala player, and in that callback simply pass that player reference to <code>initOoyalaMux</code> along with the options for the SDK.

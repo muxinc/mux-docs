@@ -7,8 +7,8 @@ Include the theoplayer-mux file after the core THEOplayer javascript file in the
 
 ```
 <!-- Include theoplayer-mux after the core THEOplayer javascript files -->
-<script type='text/javascript' src='//cdn.theoplayer.com/latest/~yourlicense~/theoplayer.loader.js'>
-<script src="//src.litix.io/theoplayer/2/theoplayer-mux.js"></script>
+<script type="text/javascript" src="https://cdn.theoplayer.com/latest/~yourlicense~/theoplayer.loader.js">
+<script src="https://src.litix.io/theoplayer/2/theoplayer-mux.js"></script>
 ```
 
 After creating your instance of THEOplayer, simply pass that player reference to <code>initTHEOplayerMux</code> along with the options for the SDK. We recommend you retrieve the reference from the return of <code>new THEOplayer.Player(...)</code> so that Mux can track events as soon as possible.
