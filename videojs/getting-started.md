@@ -9,7 +9,7 @@ Include the videojs-mux plugin after Video.js in the page (or wherever your othe
 <!-- Include videojs-mux after Video.js -->
 <script src="/path/to/video.js"></script>
 <!-- Include other videojs plugin files here -->
-<script src="//src.litix.io/videojs/2/videojs-mux.js"></script>
+<script src="https://src.litix.io/videojs/2/videojs-mux.js"></script>
 ```
 
 **Alternatively**, you can bundle videojs-mux into your own player script through `npm`. If you choose this path we suggest that you update often to make sure you have the latest features.

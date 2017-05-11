@@ -7,8 +7,8 @@ Include the jwplayer-mux file after the core JW Player javascript file in the pa
 
 ```
 <!-- Include jwplayer-mux after the core JW Player favascript file -->
-<script src="//content.jwplatform.com/libraries/KEY.js"></script>
-<script src="//src.litix.io/jwplayer/2/jwplayer-mux.js"></script>
+<script src="https://content.jwplatform.com/libraries/KEY.js"></script>
+<script src="https://src.litix.io/jwplayer/2/jwplayer-mux.js"></script>
 ```
 
 After creating you instance of JW Player, simply pass that player reference to <code>initJWPlayerMux</code> along with the options for the SDK. We recommend you retrieve the reference from the return of <code>jwplayer(id).setup({...})</code> so that Mux can track events as soon as possible.
