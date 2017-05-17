@@ -28,6 +28,7 @@ You must register an <code>onCreate</code> handler when you create the Ooyala pl
         page_type: '', // (see docs) 'watchpage', 'iframe', or leave empty
         viewer_user_id: '', // ex: '12345'
         experiment_name: '', // ex: 'player_test_A'
+        sub_property_id: '', // ex: 'cus-1'
 
         // Player Metadata
         player_name: '', // ex: 'My Main Player'
