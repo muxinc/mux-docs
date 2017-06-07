@@ -3,11 +3,22 @@ Title: Getting Started
 Sort: 1
 */
 
-Include the correct Mux Objective-C SDK for your project by cloning our repository and dragging the framework into your Xcode project. The <code>Frameworks</code> folder contains two folders, one for iOS and one for tvOS. Inside these folders, there are 3 additional folders containing different architecture combinations. The <code>fat</code> folder contains a library with all architectures in one. This library cannot be used when compiling for submission to the App Store as it contains the simulator architectures that are not used by any Apple devices. You can use the framework in the <code>release</code> folder when building a release version of your application, or you can run <a href="https://gist.github.com/brett-stover-hs/b25947a125ff7e38e7ca#file-frameworks_blogpost_removal_script_a-sh" target="_blank">a script to strip unneeded architectures</a>. Finally, don't forget to add the correct import statement for your target platform.
+The Mux Objective-C SDK is available either via CocoaPods or you can manually install it. If you have any problems, feel free to get in touch.
+
+## Installing with CocoaPods
+Modify your `Podfile` to use frameworks by including `use_frameworks!` and then add `pod "Mux-Stats-SDK", "~> 0.0"`. This will use our current release which is version `0.0.3`. There will no be API breaking changes within our `0.0` releases, so you can safely run `pod update`.
+
+## Installing manually
+Include the correct Mux Objective-C SDK for your project by cloning our repository and dragging the framework into your Xcode project. The <code>Frameworks</code> folder contains two folders, one for iOS and one for tvOS. Inside these folders, there are 3 additional folders containing different architecture combinations. The <code>fat</code> folder contains a library with all architectures in one.
+
+You can use the `fat` library when developing but this library cannot be used when compiling for submission to the App Store as it contains the simulator architectures that are not used by any Apple devices (the community believes <a href="http://www.openradar.me/radar?id=6409498411401216" target="_blank">this is a bug</a>). You can use the framework in the <code>release</code> folder when building a release version of your application, or you can run <a href="https://gist.github.com/brett-stover-hs/b25947a125ff7e38e7ca#file-frameworks_blogpost_removal_script_a-sh" target="_blank">a script to strip unneeded architectures</a>.
 
 ```bash
 $ git clone https://github.com/muxinc/stats-sdk-objc.git
 ```
+
+## Adding the monitor
+Add the correct import statement for your target platform;
 
 ```objectivec
 // for iOS
