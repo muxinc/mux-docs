@@ -8,7 +8,7 @@ When triggering an error event, it is important to provide an <code>player_error
 
 ```javascript
 player.mux.emit('error', {
-  error_code: 100,
-  error_message: 'Description of error'
+  player_error_code: 100,
+  player_error_message: 'Description of error'
 });
 ```
