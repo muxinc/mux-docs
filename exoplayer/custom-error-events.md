@@ -2,4 +2,14 @@
 Sort: 4
 */
 
-There is currently no way to fire custom error events for ExoPlayer. Mux automatically tracks any errors that are triggered by the underlying video player.
+Mux currently tracks most fatal ExoPlayer errors automatically. However, in some cases, such as when you have your own HLS or DASH manifest loader, fatal errors may occur outside of the context of the player. To handle these cases, Mux exposes a class you can instantiate and send to the SDK. <strong>This should only be used for fatal errors. Do not use this for "errors" that do not result in playback failure.</strong>
+
+Create an instance of `com.mux.stats.sdk.muxstats.MuxErrorException` with an error code and message. Then, pass that instance to `MuxStats.error(MuxErrorException)`.
+
+```java
+import com.mux.stats.sdk.muxstats.MuxErrorException;
+...
+
+MuxErrorException error = new MuxErrorException(1000, "something went wrong");
+muxStats.error(error);
+```
