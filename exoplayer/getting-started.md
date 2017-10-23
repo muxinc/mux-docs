@@ -5,7 +5,7 @@ Sort: 1
 
 **The ExoPlayer v2 SDK is currently available as a beta release.**
 
-Include the Mux SDK for your project by <a href="https://github.com/muxinc/stats-sdk-exoplayer/blob/release-v2/mux/mux.aar">downloading the AAR from our GitHub repo</a> and including it in your project.
+Include the Mux SDK for your project by <a href="https://github.com/muxinc/stats-sdk-exoplayer/releases">downloading the appropriate AAR for your version of ExoPlayer from our GitHub repo</a> and including it in your project. Note it is important to use the version of the AAR that matches the version of ExoPlayer that you are using, as ExoPlayer introduces breaking changes often.
 
 We recommend using Android Studio's new module tool which can be accessed via `File > New > New Module...`. Select the `Import .JAR/.AAR Package` and then select the `mux.arr` that you downloaded from our GitHub repo. This should correctly configure the IDE as well as modify your build configuration (Gradle/Maven).
 

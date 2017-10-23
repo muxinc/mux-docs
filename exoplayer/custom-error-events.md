@@ -13,3 +13,5 @@ import com.mux.stats.sdk.muxstats.MuxErrorException;
 MuxErrorException error = new MuxErrorException(1000, "something went wrong");
 muxStats.error(error);
 ```
+
+In addition, if you would like to send _all_ errors directly yourself, you can turn off Mux's automatic error detection by calling `muxStats.setAutomaticErrorTracking(false)`. This will cause Mux to not track any errors that the underlying ExoPlayer throws, and relies on your integration to pass all errors to Mux.
