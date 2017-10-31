@@ -7,7 +7,7 @@ Include the bitmovin-mux file after the core Bitmovin javascript file in the pag
 
 ```
 <!-- Include bitmovin-mux after the core Bitmovin javascript file -->
-<script src="https://bitmovin-a.akamaihd.net/bitmovin-player/stable/7/bitmovinplayer.min.js"></script>
+<script src="https://bitmovin-a.akamaihd.net/bitmovin-player/stable/7/bitmovinplayer.js"></script>
 <script src="https://src.litix.io/bitmovin/2/bitmovin-mux.js"></script>
 ```
 
